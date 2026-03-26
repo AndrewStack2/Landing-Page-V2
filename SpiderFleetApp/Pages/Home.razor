@@ -1,0 +1,38 @@
+@* Home.razor *@
+@page "/"
+<PageTitle>Spider Fleet — Inteligencia de Flota para México</PageTitle>
+
+@using SpiderFleetApp.Pages.Components
+
+@* 1. THE HOOK: Atraer la atención y mostrar el producto interactivo *@
+<Hero />
+
+@* 2. THE PAIN: Mostrar empatía con los problemas logísticos actuales *@
+<PainVsDream />
+
+@* 3. THE FIX: Explicar cómo funciona detalladamente (Z-Pattern) *@
+<FeaturesMode />
+
+@* 4. THE PROOF (Visual): Verlo en acción retiene a los dudosos *@
+<VideoFeature />
+
+@* 5. THE PROOF (Social): Testimonios validan la compra *@
+<TestimonialsGrid />
+
+@* 6. OBJECTIONS: Resolver dudas antes de pedir la compra *@
+<FAQ />
+
+@* 7. CLIMAX: El llamado a la acción final *@
+<CtaBannerFinal />
+
+@code {
+    [Inject] IJSRuntime JS { get; set; } = default!;
+
+   protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}

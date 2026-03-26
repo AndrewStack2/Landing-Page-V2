@@ -1,0 +1,125 @@
+@page "/contacto"
+<PageTitle>Contacto | Spider Fleet</PageTitle>
+<HeadContent>
+    <meta name="description" content="¿Listo para conectar tu primera unidad? Contáctanos y un asesor de Spider Fleet te guía sin compromiso. Soporte disponible para flotas en México." />
+    <link rel="canonical" href="https://spiderfleet.mx/contacto" />
+    <meta property="og:title" content="Contacto | Spider Fleet" />
+    <meta property="og:description" content="Habla con un asesor de Spider Fleet. Te ayudamos a conectar tu primera unidad sin compromiso." />
+    <meta property="og:url" content="https://spiderfleet.mx/contacto" />
+</HeadContent>
+@inject IJSRuntime JS
+
+<PageTitle>Contacto | SpiderFleet</PageTitle>
+
+<div class="relative overflow-hidden bg-white pt-32 md:pt-48 pb-24">
+    <!-- Grid Background -->
+    <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+    
+    <div class="mx-auto max-w-7xl px-6 relative z-10">
+        <!-- Header Section -->
+        <div class="mb-20 max-w-3xl scroll-animate">
+            <div class="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 shadow-sm mb-10">
+                <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-blue-500"></span>
+                Estamos aquí para ayudarte
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl mb-10 leading-tight">
+                Lleva tu flota al siguiente nivel. <span class="text-primary">Hablemos.</span>
+            </h1>
+            <p class="text-lg text-slate-600 md:text-xl leading-relaxed mt-4 mb-16">
+                ¿Tienes alguna duda sobre nuestros planes o necesitas una solución a la medida? Nuestro equipo de expertos está listo para asesorarte.
+            </p>
+        </div>
+
+        <div class="grid gap-12 lg:grid-cols-2">
+            <!-- Form Section -->
+            <div class="scroll-animate delay-100">
+                <div class="glass-card rounded-2xl border border-slate-200 bg-white/60 p-8 shadow-xl backdrop-blur-sm">
+                    <form action="#" method="POST" class="flex flex-col gap-6">
+                        <div class="grid gap-6 md:grid-cols-2">
+                            <div class="flex flex-col gap-2">
+                                <label for="name" class="text-sm font-bold text-slate-700">Nombre completo</label>
+                                <input type="text" id="name" placeholder="Ej. Juan Pérez" class="rounded-xl border border-slate-200 bg-white/50 px-4 py-3 text-sm transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label for="email" class="text-sm font-bold text-slate-700">Correo electrónico</label>
+                                <input type="email" id="email" placeholder="juan@empresa.com" class="rounded-xl border border-slate-200 bg-white/50 px-4 py-3 text-sm transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="subject" class="text-sm font-bold text-slate-700">Asunto</label>
+                            <select id="subject" class="rounded-xl border border-slate-200 bg-white/50 px-4 py-3 text-sm transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
+                                <option>Soporte técnico</option>
+                                <option>Ventas y Presupuesto</option>
+                                <option>Información general</option>
+                                <option>Alianzas estratégicas</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label for="message" class="text-sm font-bold text-slate-700">Mensaje</label>
+                            <textarea id="message" rows="5" placeholder="¿En qué podemos ayudarte?" class="rounded-xl border border-slate-200 bg-white/50 px-4 py-3 text-sm transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"></textarea>
+                        </div>
+                        <button type="submit" class="mt-4 rounded-full bg-primary py-4 text-sm font-bold text-white shadow-lg shadow-primary/25 transition-all hover:bg-blue-700 hover:scale-[1.02] active:scale-[0.98]">
+                            Enviar mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="flex flex-col gap-8 scroll-animate delay-200">
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-1">
+                    <!-- Contact Details -->
+                    <div class="rounded-2xl border border-slate-100 bg-slate-50/50 p-6 transition-all hover:border-blue-200 hover:bg-white hover:shadow-lg group">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-primary transition-transform group-hover:scale-110 group-hover:rotate-3">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <h4 class="mb-1 text-lg font-bold text-slate-900">Escríbenos</h4>
+                        <p class="text-sm text-slate-600 mb-2">Nuestro equipo responde en menos de 24 horas.</p>
+                        <a href="mailto:hola@spiderfleet.mx" class="text-sm font-bold text-primary hover:underline">hola@spiderfleet.mx</a>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-100 bg-slate-50/50 p-6 transition-all hover:border-blue-200 hover:bg-white hover:shadow-lg group">
+                        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-primary transition-transform group-hover:scale-110 group-hover:rotate-3">
+                            <span class="material-symbols-outlined">phone</span>
+                        </div>
+                        <h4 class="mb-1 text-lg font-bold text-slate-900">Llámanos</h4>
+                        <p class="text-sm text-slate-600 mb-2">Lunes a Viernes de 9:00 AM a 6:00 PM.</p>
+                        <a href="tel:+522220009999" class="text-sm font-bold text-primary hover:underline">+52 222 000 9999</a>
+                    </div>
+                </div>
+
+                <!-- Office Location Mockup -->
+                <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl">
+                    <div class="bg-slate-100 h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-slate-200">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                                <div class="h-10 w-10 flex items-center justify-center rounded-full bg-primary text-white shadow-lg animate-bounce">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <div class="mt-2 rounded-lg bg-white px-3 py-1 text-[10px] font-bold shadow-md">Matrix Headquarter</div>
+                            </div>
+                            <div class="w-full h-full opacity-30" style="background-image: radial-gradient(#1364ed 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="mb-2 text-lg font-bold text-slate-900">Nuestras oficinas</h4>
+                        <p class="text-sm text-slate-600">
+                            Calle Inteligencia Logística #402, Nivel 12<br />
+                            Konoha Tailwind, 06600, CDMX, México
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}

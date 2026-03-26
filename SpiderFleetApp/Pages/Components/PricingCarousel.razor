@@ -1,0 +1,269 @@
+@inject IJSRuntime JS
+
+<div id="precios">
+    <div class="w-full h-16 bg-background-light overflow-hidden relative flex items-center justify-center">
+        <div class="absolute w-full h-px bg-slate-200"></div>
+        <div class="data-flow-line absolute w-full h-1 opacity-50"></div>
+        <div class="relative z-10 bg-background-light px-4">
+            <span class="material-symbols-outlined text-primary animate-bounce">keyboard_double_arrow_down</span>
+        </div>
+    </div>
+
+    <section class="bg-white py-24 relative">
+        <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+        <div class="mx-auto max-w-7xl px-6 relative z-10">
+
+            <div class="mb-10 md:text-center scroll-animate">
+                <h2 class="text-3xl font-extrabold text-slate-900 md:text-4xl">El plan perfecto para ti. Sea cual sea tu operación.</h2>
+                <p class="mt-4 text-lg text-slate-600 md:mx-auto md:max-w-3xl">
+                    Desde un vehículo personal hasta una flota completa, Spider Fleet tiene un plan que se adapta a tu ritmo y presupuesto. Empieza gratis, crece cuando quieras.
+                </p>
+            </div>
+
+            <div class="flex justify-center mb-12 scroll-animate delay-100">
+                <div class="bg-slate-100 p-1.5 rounded-full flex relative isolate border border-slate-200 shadow-inner w-full max-w-[340px]">
+                    <div class="absolute left-1.5 top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white rounded-full shadow transition-all duration-300 ease-in-out z-0 border border-slate-200" style="transform: translateX(@(IsPersonalMode ? "0" : "100%"));"></div>
+                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-indigo-600 font-bold" : "text-slate-500 font-semibold hover:text-slate-800")" @onclick="() => SetMode(true)">
+                        Uso Personal
+                    </button>
+                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-slate-500 font-semibold hover:text-slate-800" : "text-primary font-bold")" @onclick="() => SetMode(false)">
+                        Para Empresas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid overlay: both sections occupy the same cell -->
+            <div class="grid w-full min-w-0 overflow-x-hidden">
+
+                <!-- ===== PERSONAL PLANS ===== -->
+                <div class="col-start-1 row-start-1 min-w-0 transition-all duration-500 @(IsPersonalMode ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none")">
+                    <div class="relative group mt-8">
+                        <button onclick="scrollPricing(-1)" class="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-600 shadow-xl border border-slate-200 hover:text-primary hover:scale-110 transition-all opacity-0 group-hover:opacity-100 cursor-pointer">
+                            <span class="material-symbols-outlined text-2xl">chevron_left</span>
+                        </button>
+                        <button onclick="scrollPricing(1)" class="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-600 shadow-xl border border-slate-200 hover:text-primary hover:scale-110 transition-all opacity-0 group-hover:opacity-100 cursor-pointer">
+                            <span class="material-symbols-outlined text-2xl">chevron_right</span>
+                        </button>
+                        <div id="pricing-carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 pt-8 w-full cursor-grab active:cursor-grabbing px-4 md:px-8 hide-scrollbar">
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] glass-card flex flex-col rounded-3xl border border-slate-200 bg-white/60 p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] hover:border-indigo-300 group">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Gratis</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Para empezar sin riesgos</p>
+                                </div>
+                                <div class="mb-6 flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-slate-900">$0</span>
+                                    <span class="text-lg font-bold text-slate-900">MXN</span>
+                                    <span class="text-slate-500">/mes</span>
+                                </div>
+                                <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">Elegir Gratis</button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Rastreo básico</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>1 vehículo</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Historial 7 días</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Alertas básicas</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] relative flex flex-col rounded-3xl border-2 border-indigo-500 bg-white p-8 shadow-2xl shadow-indigo-900/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_40px_rgba(79,70,229,0.3)] hover:scale-105 z-10">
+                                <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-indigo-500 px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">Más Popular</div>
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900">Básico</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Para quien quiere proteger su vehículo</p>
+                                </div>
+                                <div class="mb-6 flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-slate-900">$99</span>
+                                    <span class="text-lg font-bold text-slate-900">MXN</span>
+                                    <span class="text-slate-500">/mes</span>
+                                </div>
+                                <button class="mb-8 w-full relative overflow-hidden rounded-full bg-indigo-600 py-3 text-sm font-bold text-white transition-all hover:bg-indigo-700 hover:shadow-lg group">
+                                    <span class="relative z-10">Elegir Básico</span>
+                                    <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
+                                </button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span><span>Rastreo en tiempo real</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span><span>Geocercas</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span><span>Historial 30 días</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span><span>Alertas por app y correo</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span><span>Anti-robo remoto</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] glass-card flex flex-col rounded-3xl border border-slate-200 bg-white/60 p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] hover:border-indigo-300 group">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Avanzado</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Control total de tu unidad</p>
+                                </div>
+                                <div class="mb-6 flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-slate-900">$199</span>
+                                    <span class="text-lg font-bold text-slate-900">MXN</span>
+                                    <span class="text-slate-500">/mes</span>
+                                </div>
+                                <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">Elegir Avanzado</button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span><strong>Todo en Básico +</strong></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Gestión documental</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Calendarización de mantenimientos</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Historial ilimitado</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] glass-card flex flex-col rounded-3xl border border-slate-200 bg-white/60 p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(79,70,229,0.15)] hover:border-indigo-300 group">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Familiar</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Para quienes cuidan más de un vehículo</p>
+                                </div>
+                                <div class="mb-6 flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-slate-900">$299</span>
+                                    <span class="text-lg font-bold text-slate-900">MXN</span>
+                                    <span class="text-slate-500">/mes</span>
+                                </div>
+                                <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">Elegir Familiar</button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span><strong>Todo en Avanzado +</strong></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Hasta 3 vehículos</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Perfiles por conductor</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Reportes de conducción</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ===== END PERSONAL PLANS ===== -->
+
+                <!-- ===== BUSINESS PLANS ===== -->
+                <div class="col-start-1 row-start-1 min-w-0 transition-all duration-500 @(IsPersonalMode ? "opacity-0 pointer-events-none" : "opacity-100 pointer-events-auto")">
+                    <div class="relative group mt-8">
+                        <button onclick="scrollPricingBusiness(-1)" class="absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-600 shadow-xl border border-slate-200 hover:text-primary hover:scale-110 transition-all opacity-0 group-hover:opacity-100 cursor-pointer">
+                            <span class="material-symbols-outlined text-2xl">chevron_left</span>
+                        </button>
+                        <button onclick="scrollPricingBusiness(1)" class="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-white text-slate-600 shadow-xl border border-slate-200 hover:text-primary hover:scale-110 transition-all opacity-0 group-hover:opacity-100 cursor-pointer">
+                            <span class="material-symbols-outlined text-2xl">chevron_right</span>
+                        </button>
+                        <div id="pricing-carousel-business" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 pt-8 w-full cursor-grab active:cursor-grabbing px-4 md:px-8 hide-scrollbar">
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] glass-card flex flex-col rounded-3xl border border-slate-200 bg-white/60 p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(19,100,237,0.15)] hover:border-blue-300 group">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Gratis</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Prueba Spider Fleet sin costo</p>
+                                </div>
+                                <div class="mb-6 flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-slate-900">$0</span>
+                                    <span class="text-lg font-bold text-slate-900">MXN</span>
+                                    <span class="text-slate-500">/mes</span>
+                                </div>
+                                <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">Elegir Gratis</button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>1 unidad</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Rastreo básico</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Historial 7 días</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] glass-card flex flex-col rounded-3xl border border-slate-200 bg-white/60 p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(19,100,237,0.15)] hover:border-blue-300 group">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Pequeña flota</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Ideal para flotas de hasta 10 unidades</p>
+                                </div>
+                                <div class="mb-6 flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-slate-900">$499</span>
+                                    <span class="text-lg font-bold text-slate-900">MXN</span>
+                                    <span class="text-slate-500">/mes</span>
+                                </div>
+                                <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">Elegir Pequeña flota</button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Rastreo en tiempo real</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Geocercas</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Alertas</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Historial 30 días</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>App para conductores</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] relative flex flex-col rounded-3xl border-2 border-primary bg-white p-8 shadow-2xl shadow-blue-900/10 transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_0_40px_rgba(19,100,237,0.3)] hover:scale-105 z-10">
+                                <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">Más Popular</div>
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900">En crecimiento</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Para operaciones en expansión</p>
+                                </div>
+                                <div class="mb-6 flex items-baseline gap-1">
+                                    <span class="text-4xl font-extrabold text-slate-900">$899</span>
+                                    <span class="text-lg font-bold text-slate-900">MXN</span>
+                                    <span class="text-slate-500">/mes</span>
+                                </div>
+                                <button class="mb-8 w-full relative overflow-hidden rounded-full bg-primary py-3 text-sm font-bold text-white transition-all hover:bg-blue-700 hover:shadow-lg group">
+                                    <span class="relative z-10">Elegir En crecimiento</span>
+                                    <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
+                                </button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><strong>Todo en Pequeña flota +</strong></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Optimización de rutas</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Gestión de envíos</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Calificación de choferes</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Mapa de calor</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span><span>Documentos</span></li>
+                                </ul>
+                            </div>
+
+                            <div class="snap-center shrink-0 w-[85%] sm:w-[350px] lg:w-[320px] glass-card flex flex-col rounded-3xl border border-slate-200 bg-white/60 p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(19,100,237,0.15)] hover:border-blue-300 group">
+                                <div class="mb-4">
+                                    <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary transition-colors">Operación compleja</h3>
+                                    <p class="text-sm text-slate-500 min-h-[40px]">Flotas grandes y operaciones críticas</p>
+                                </div>
+                                <div class="mb-6">
+                                    <span class="text-4xl font-extrabold text-slate-900 leading-none">Contactar</span>
+                                </div>
+                                <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">Cotizar Ahora</button>
+                                <ul class="flex flex-col gap-4 text-sm text-slate-600">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Suite completa</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>API personalizada</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Hardware GPS incluido</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Soporte 24/7</span></li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span><span>Integraciones</span></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ===== END BUSINESS PLANS ===== -->
+
+            </div>
+            <!-- end grid overlay wrapper -->
+
+        </div>
+    </section>
+
+    <section class="relative overflow-hidden bg-primary px-6 py-20">
+        <div class="absolute inset-0 z-0 bg-cover bg-center opacity-10 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1494548162494-384bba4ab999?q=80&amp;w=2080&amp;auto=format&amp;fit=crop');"></div>
+        <div class="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[shimmer_5s_infinite]"></div>
+        <div class="relative z-10 mx-auto max-w-4xl text-center scroll-animate">
+            <h2 class="text-3xl font-extrabold text-white md:text-5xl drop-shadow-lg">¿Listo para optimizar tu logística?</h2>
+            <p class="mx-auto mt-6 max-w-2xl text-lg text-blue-100">
+                Únete a más de 500 empresas mexicanas que ya controlan su flota con Spider Fleet. Instalación rápida en toda la república.
+            </p>
+            <div class="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                <button class="rounded-full bg-white px-10 py-4 text-base font-bold text-primary transition-all hover:bg-blue-50 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105">Empieza Gratis Ahora</button>
+                <button class="rounded-full border border-blue-400 bg-transparent px-10 py-4 text-base font-bold text-white transition-all hover:bg-blue-800/30 hover:border-white hover:scale-105 hover:shadow-[0_0_15px_rgba(255,255,255,0.5)]">Hablar con Ventas</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+@code {
+    private bool IsPersonalMode { get; set; } = true;
+
+    private void SetMode(bool isPersonal)
+    {
+        IsPersonalMode = isPersonal;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initializeCarouselDrag");
+        }
+    }
+}

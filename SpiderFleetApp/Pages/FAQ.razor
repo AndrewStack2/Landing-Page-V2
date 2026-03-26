@@ -1,0 +1,131 @@
+@inject IJSRuntime JS
+
+<section id="faq" class="relative bg-white py-24 overflow-hidden">
+    <!-- Orb decorativo de fondo -->
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1364ed]/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+    <div class="mx-auto max-w-7xl px-6 relative z-10">
+        
+        <!-- Header Centrado -->
+        <div class="mb-16 text-center scroll-animate">
+            <div class="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-bold text-primary shadow-sm mb-6">
+                F.A.Q.
+            </div>
+            <h2 class="text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl mb-4">
+                Preguntas <span class="text-primary">Frecuentes</span>
+            </h2>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                Todo lo que necesitas saber sobre nuestra tecnología, instalación y cómo podemos ayudarte a tomar el control de tu vehículo o flotilla.
+            </p>
+        </div>
+
+        <!-- Layout Grid: 1 Columna en Móvil, 3 Columnas en Desktop -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+            
+            <!-- Columna Izquierda (1/3 Desktop): Contexto Visual -->
+            <div class="lg:col-span-1 space-y-6 scroll-animate">
+
+                <!-- Card Soporte -->
+                <div class="rounded-2xl border border-slate-200 shadow-sm bg-slate-50 p-6 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-primary mb-4 border border-slate-100">
+                        <span class="material-symbols-outlined text-2xl">headset_mic</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-2">¿Tienes más dudas?</h3>
+                    <p class="text-sm text-slate-600 mb-4">Nuestro equipo de soporte está listo para ayudarte en cualquier momento.</p>
+                    <a href="mailto:hola@spiderfleet.mx" class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
+                        hola@spiderfleet.mx
+                        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Columna Derecha (2/3 Desktop): Acordeón -->
+            <div class="lg:col-span-2 space-y-4 scroll-animate delay-200">
+                @foreach (var item in FaqItems)
+                {
+                    <div class="rounded-2xl border transition-colors duration-300 bg-white shadow-sm overflow-hidden flex flex-col @(item.IsOpen ? "border-primary/40 shadow-md" : "border-slate-200 hover:border-slate-300")">
+                        <button class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none transition-colors @(item.IsOpen ? "bg-blue-50/30" : "bg-transparent")"
+                                style="touch-action: manipulation;"
+                                @onclick="() => Toggle(item)">
+                            <h4 class="font-bold text-slate-900 pr-4 text-[15px]">@item.Question</h4>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors @(item.IsOpen ? "bg-primary text-white" : "bg-slate-100 text-slate-400")">
+                                <span class="material-symbols-outlined text-lg transition-transform duration-300 @(item.IsOpen ? "rotate-180" : "")">
+                                    expand_more
+                                </span>
+                            </div>
+                        </button>
+                        
+                        @if (item.IsOpen)
+                        {
+                            <div class="px-6 pb-6 pt-2 text-slate-600 text-sm leading-relaxed animate-fade-in-up border-t border-slate-100 bg-blue-50/10">
+                                @((MarkupString)item.Answer)
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@code {
+    private List<FaqItem> FaqItems = new()
+    {
+        new FaqItem { 
+            Question = "¿Cómo se instala el GPS?", 
+            Answer = "Contamos con dos métodos: <br/><br/><strong>Cableado:</strong> Consiste en una integración permanente al sistema eléctrico de tu vehículo, quedando totalmente oculta y segura contra manipulaciones.<br/><br/><strong>Imán:</strong> Es una instalación no invasiva que tú mismo puedes realizar en segundos. Se adhiere fuertemente a superficies metálicas estratégicas sin necesidad de herramientas." 
+        },
+        new FaqItem { 
+            Question = "¿Necesito ser empresa?", 
+            Answer = "No, Spider Fleet no es exclusivo corporativo. También está diseñado para uso personal, brindando tecnología de grado corporativo a dueños de vehículos particulares que buscan la máxima seguridad." 
+        },
+        new FaqItem { 
+            Question = "¿Qué precisión tiene el rastreo?", 
+            Answer = "Nuestra tecnología de geolocalización tiene una precisión estricta de 2 a 5 metros de margen. La ubicación en tu mapa se actualiza automáticamente cada 10 a 30 segundos, asegurando visibilidad en tiempo real." 
+        },
+        new FaqItem { 
+            Question = "¿Puedo configurar geocercas y alertas?", 
+            Answer = "Sí. Desde la plataforma puedes dibujar geocercas personalizadas por zonas. Recibirás una alerta inmediata en tu aplicación o por correo electrónico si el vehículo entra o sale de tu área definida." 
+        },
+        new FaqItem { 
+            Question = "¿Puedo cancelar cuando quiera?", 
+            Answer = "Sí, no amarramos a nuestros clientes con plazos forzosos o letras chiquitas. Puedes cancelar tu suscripción en el momento que lo decidas, sin pagar penalizaciones por cancelación." 
+        },
+        new FaqItem { 
+            Question = "¿Cómo funciona el módulo de mantenimiento?", 
+            Answer = "Cargas la fecha o el kilometraje en el que debes realizar un servicio (cambio de bujías, llantas, aceite, etc.). Cuando el vehículo alcance ese límite o la fecha se aproxime, la plataforma te notificará preventivamente." 
+        },
+        new FaqItem { 
+            Question = "¿El historial de rutas se puede exportar?", 
+            Answer = "Sí. Disfrutas de un historial consultable donde puedes revisar paradas, tiempos muertos y velocidades. Todo es exportable a formatos PDF y Excel para facilitar la logística e informes operativos." 
+        }
+    };
+
+    private void Toggle(FaqItem selectedItem)
+    {
+        // Opcional: Cerrar los demás al abrir uno para mantener el acordeón limpio
+        foreach (var item in FaqItems.Where(i => i != selectedItem))
+        {
+            item.IsOpen = false;
+        }
+        
+        selectedItem.IsOpen = !selectedItem.IsOpen;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+
+    public class FaqItem
+    {
+        public string Question { get; set; } = "";
+        public string Answer { get; set; } = "";
+        public bool IsOpen { get; set; }
+    }
+}

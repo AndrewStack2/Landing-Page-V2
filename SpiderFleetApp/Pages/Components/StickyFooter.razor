@@ -1,0 +1,80 @@
+@namespace SpiderFleetApp.Pages.Components
+
+<style>
+    @@media (max-width: 767px) {
+        .mobile-footer-wrapper { height: auto !important; clip-path: none !important; }
+        .mobile-footer-inner { position: relative !important; height: auto !important; }
+    }
+</style>
+<footer class="mobile-footer-wrapper relative h-[650px] md:h-[450px] w-full" style="clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%)">
+    <div class="mobile-footer-inner fixed bottom-0 h-[650px] md:h-[450px] w-full bg-background-dark text-slate-400 overflow-hidden">
+        
+        <!-- Premium Radial Gradients (Background) -->
+        <div class="absolute inset-0 isolate z-0 pointer-events-none">
+            <div class="bg-[radial-gradient(50%_50%_at_50%_50%,rgba(19,100,237,0.1)_0,rgba(19,100,237,0.02)_50%,transparent_100%)] absolute -top-1/2 -left-1/4 h-[800px] w-[800px] rounded-full blur-3xl"></div>
+            <div class="bg-[radial-gradient(50%_50%_at_50%_50%,rgba(19,100,237,0.05)_0,rgba(19,100,237,0.01)_80%,transparent_100%)] absolute top-0 right-0 h-[600px] w-[600px] rounded-full blur-2xl"></div>
+        </div>
+
+        <div class="relative z-10 mx-auto max-w-7xl px-6 py-12 h-full flex flex-col justify-between">
+            <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4 items-start">
+                
+                <!-- Logo & Description -->
+                <div class="flex flex-col gap-6 col-span-1 lg:col-span-2">
+                    <div class="flex items-center gap-2 text-white">
+                        <img src="Assets/logo horizontal.png" alt="SpiderFleet Logo" class="h-10 w-auto" />
+                    </div>
+                    <p class="text-sm leading-relaxed max-w-md">
+                        La plataforma líder en inteligencia de flota y logística de última milla diseñada para México.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full border border-slate-800 bg-slate-900/50 text-slate-400 hover:text-white hover:border-primary transition-all">
+                             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+                        </a>
+                        <a href="#" class="h-10 w-10 flex items-center justify-center rounded-full border border-slate-800 bg-slate-900/50 text-slate-400 hover:text-white hover:border-primary transition-all">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Empresa Links -->
+                <div class="flex flex-col gap-6">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white">Empresa</h4>
+                    <ul class="flex flex-col gap-3 text-sm">
+                        <li><a class="hover:text-primary transition-colors flex items-center gap-2" href="/nosotros">Nosotros <span class="material-symbols-outlined text-[10px]">arrow_forward</span></a></li>
+                        <li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#">Blog <span class="material-symbols-outlined text-[10px]">arrow_forward</span></a></li>
+                        <li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#">Carreras <span class="bg-primary/20 text-primary text-[10px] px-1.5 py-0.5 rounded ml-1 font-bold">Hiring</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div class="flex flex-col gap-6">
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-white">Contacto</h4>
+                    <ul class="flex flex-col gap-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                            <span class="leading-relaxed">Konoha Tailwind,<br />06600, CDMX, México</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-sm text-primary">mail</span>
+                            <a href="mailto:hola@spiderfleet.mx" class="hover:text-white transition-colors">hola@spiderfleet.mx</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="mt-8 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-medium">
+                <p>© 2026 SpiderFleet by Magica México. Todos los derechos reservados.</p>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Términos de Servicio</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+                    <p class="text-slate-600">SpiderFleet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+@code {
+}

@@ -1,0 +1,383 @@
+@page "/gestion-documental"
+<PageTitle>Gestión Documental Vehicular Digital | Spider Fleet</PageTitle>
+<HeadContent>
+    <meta name="description" content="Digitaliza toda la papelería de tu flota: licencias, seguros, permisos y verificaciones. Alertas de vencimiento y acceso desde cualquier dispositivo. Spider Fleet México." />
+    <link rel="canonical" href="https://spiderfleet.mx/gestion-documental" />
+    <meta property="og:title" content="Gestión Documental Vehicular Digital | Spider Fleet" />
+    <meta property="og:description" content="Digitaliza licencias, seguros y permisos de tu flota con alertas de vencimiento automáticas." />
+    <meta property="og:url" content="https://spiderfleet.mx/gestion-documental" />
+</HeadContent>
+<style>
+    .feature-card {
+        min-height: 260px;
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                    border-color 0.4s ease;
+    }
+    .feature-card:hover {
+        transform: translateY(-6px);
+    }
+
+    .feature-card .card-body {
+        transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+        .feature-card .card-body {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        .feature-card:hover .card-body {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .feature-card .card-top-line {
+        opacity: 0;
+        transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .feature-card:hover .card-top-line {
+        opacity: 1;
+    }
+
+    .feature-card .card-icon-b {
+        background-color: #eff6ff;
+        color: #2563eb;
+        transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    color 0.4s ease,
+                    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .feature-card:hover .card-icon-b {
+        transform: scale(1.1);
+    }
+</style>
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+
+
+<div class="bg-white">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-32">
+        <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-blue-400/5 rounded-full blur-3xl"></div>
+
+        <div class="mx-auto max-w-7xl px-6 relative z-10 text-center">
+            <div class="inline-flex items-center rounded-full border border-blue-500/20 bg-blue-50 px-4 py-1.5 text-sm font-semibold text-primary mb-8 scroll-animate">
+                <span class="mr-2 h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                Control Digital
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 md:text-7xl mb-6 scroll-animate delay-100">
+                Tus documentos protegidos.<br /><span class="text-primary">Tu tranquilidad en movimiento.</span>
+            </h1>
+            <p class="mx-auto max-w-2xl text-lg text-slate-600 md:text-xl leading-relaxed mb-10 scroll-animate delay-200">
+                Toda la papelería de tu vehículo o flota, ordenada, digitalizada y con alertas automáticas de vencimiento, en un solo lugar.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 scroll-animate delay-300">
+                <button @onclick='() => NavigationManager.NavigateTo("/signup")' class="w-full sm:w-auto rounded-full bg-primary px-10 py-4 text-base font-bold text-white shadow-lg shadow-primary/25 transition-all hover:bg-blue-600 hover:scale-105 active:scale-95 group relative overflow-hidden">
+                    <span class="relative z-10">Empieza Gratis Ahora</span>
+                    <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"></div>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Toggle Section -->
+    <section class="py-16 bg-slate-50">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="flex justify-center mb-16 scroll-animate">
+                <div class="bg-slate-100 p-1.5 rounded-full flex relative isolate border border-slate-200 shadow-inner w-full max-w-[340px]">
+                    <div class="absolute left-1.5 top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white rounded-full shadow transition-all duration-300 ease-in-out z-0 border border-slate-200" style="transform: translateX(@(IsPersonalMode ? "0" : "100%"));"></div>
+                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-primary font-bold" : "text-slate-500 font-semibold hover:text-slate-800")" @onclick="() => SetMode(true)">
+                        Uso Personal
+                    </button>
+                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-slate-500 font-semibold hover:text-slate-800" : "text-primary font-bold")" @onclick="() => SetMode(false)">
+                        Para Flotas
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-col gap-16 @(IsPersonalMode ? "flex" : "hidden")">
+                <div class="grid gap-6 md:grid-cols-3">
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
+                        <div class="relative z-10 p-8 flex flex-col h-full">
+                            <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
+                                <span class="material-symbols-outlined text-3xl">description</span>
+                            </div>
+                            <p class="text-xs font-bold tracking-widest text-primary uppercase mb-2">Digital</p>
+                            <p class="text-xl font-bold text-slate-900">Carpeta Digital</p>
+                            <div class="mt-auto pt-6">
+                                <div class="card-body">
+                                    <p class="text-sm text-slate-500 leading-relaxed">Tenencia, tarjeta de circulación, póliza, factura y verificación siempre en tu celular. Adiós al miedo a perderlos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-100 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
+                        <div class="relative z-10 p-8 flex flex-col h-full">
+                            <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
+                                <span class="material-symbols-outlined text-3xl">shield_lock</span>
+                            </div>
+                            <p class="text-xs font-bold tracking-widest text-primary uppercase mb-2">Tránsito</p>
+                            <p class="text-xl font-bold text-slate-900">Protección en Tránsito</p>
+                            <div class="mt-auto pt-6">
+                                <div class="card-body">
+                                    <p class="text-sm text-slate-500 leading-relaxed">Evita que te detengan o pasar malos ratos en retenes; demuestra la validez de tu documentación en segundos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-200 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
+                        <div class="relative z-10 p-8 flex flex-col h-full">
+                            <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
+                                <span class="material-symbols-outlined text-3xl">inventory_2</span>
+                            </div>
+                            <p class="text-xs font-bold tracking-widest text-primary uppercase mb-2">Trámites</p>
+                            <p class="text-xl font-bold text-slate-900">Trámites sin Estrés</p>
+                            <div class="mt-auto pt-6">
+                                <div class="card-body">
+                                    <p class="text-sm text-slate-500 leading-relaxed">Todo ordenado para cuando necesites renovar placas, hacer la verificación o presentar tu póliza en un accidente.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Funcionalidades Detalle Personal *@
+                <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 scroll-animate delay-300">
+                    <div class="md:w-1/2">
+                        <div class="inline-flex items-center gap-2 text-primary font-bold mb-4 uppercase tracking-widest text-sm">
+                            <span class="h-px w-8 bg-primary"></span>
+                            Organización Absoluta
+                        </div>
+                        <h2 class="text-3xl font-extrabold text-slate-900 md:text-5xl mb-6 leading-tight">Tu guantera digital conectada a la nube</h2>
+                        <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                            Crea una carpeta digital por cada vehículo de tu propiedad. Dile adiós a las copias ilegibles, fotocopias perdidas y fólderes desgastados. Sube y clasifica tus archivos en segundos.
+                        </p>
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-blue-50 border border-blue-100">
+                            <span class="material-symbols-outlined text-primary mt-1">info</span>
+                            <p class="text-sm text-blue-900 leading-relaxed">Asegura la trazabilidad y resguardo permanente de tus documentos clave desde cualquier lugar.</p>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 relative">
+                        <div class="relative z-10 rounded-3xl border border-white/60 bg-white/40 backdrop-blur-md shadow-2xl p-6">
+                            <div class="flex items-center justify-between mb-8 border-b border-slate-100/50 pb-4">
+                                <h4 class="font-bold text-slate-900">Documentos del Vehículo</h4>
+                                <span class="text-xs text-slate-500 font-medium">Sincronizado a la nube</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                    <div class="h-10 w-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xl">verified</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-sm font-bold text-slate-900">Tarjeta de Circulación</div>
+                                        <div class="text-[10px] text-slate-500">PDF Original • Válido</div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-slate-400">cloud_download</span>
+                                </div>
+                                <div class="flex items-center gap-4 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                                    <div class="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xl">shield</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-sm font-bold text-slate-900">Póliza de Seguro</div>
+                                        <div class="text-[10px] text-slate-500">Multiva Seguros • Válido</div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-slate-400">visibility</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODO FLOTA -->
+            <div class="flex-col gap-16 @(!IsPersonalMode ? "flex" : "hidden")">
+                <div class="grid gap-6 md:grid-cols-3">
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
+                        <div class="relative z-10 p-8 flex flex-col h-full">
+                            <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
+                                <span class="material-symbols-outlined text-3xl">folder_special</span>
+                            </div>
+                            <p class="text-xs font-bold tracking-widest text-primary uppercase mb-2">Cumplimiento</p>
+                            <p class="text-xl font-bold text-slate-900">Control de Cumplimiento</p>
+                            <div class="mt-auto pt-6">
+                                <div class="card-body">
+                                    <p class="text-sm text-slate-500 leading-relaxed">Centraliza documentos SCT, licencias federales, permisos, seguros y verificaciones de cada unidad.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-100 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
+                        <div class="relative z-10 p-8 flex flex-col h-full">
+                            <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
+                                <span class="material-symbols-outlined text-3xl">gavel</span>
+                            </div>
+                            <p class="text-xs font-bold tracking-widest text-primary uppercase mb-2">Legal</p>
+                            <p class="text-xl font-bold text-slate-900">Cero Retenciones</p>
+                            <div class="mt-auto pt-6">
+                                <div class="card-body">
+                                    <p class="text-sm text-slate-500 leading-relaxed">Protege tu rentabilidad evitando multas y tiempo en corralón por falta de papelería vigente y demostrable.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-200 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
+                        <div class="relative z-10 p-8 flex flex-col h-full">
+                            <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
+                                <span class="material-symbols-outlined text-3xl">assignment_ind</span>
+                            </div>
+                            <p class="text-xs font-bold tracking-widest text-primary uppercase mb-2">Choferes</p>
+                            <p class="text-xl font-bold text-slate-900">Expedientes de Choferes</p>
+                            <div class="mt-auto pt-6">
+                                <div class="card-body">
+                                    <p class="text-sm text-slate-500 leading-relaxed">Mantén ordenados los contratos, exámenes médicos aptos y vigencia de licencias vinculados a tus operadores.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @* Funcionalidades Detalle Flota (Z-Pattern) *@
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-24 scroll-animate delay-100">
+                    <div class="md:w-1/2">
+                        <div class="inline-flex items-center gap-2 text-primary font-bold mb-4 uppercase tracking-widest text-sm">
+                            <span class="h-px w-8 bg-primary"></span>
+                            Sin Multas Ni Retrasos
+                        </div>
+                        <h2 class="text-3xl font-extrabold text-slate-900 md:text-5xl mb-6 leading-tight">Alertas automáticas de expiración</h2>
+                        <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                            Nuestro motor reconoce las fechas de vencimiento de tus expedientes y envía alarmas mucho antes de que expiren. Jamás volverás a dejar vencer una prueba SCT o un seguro.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                                <div class="text-2xl font-bold text-primary mb-1">0</div>
+                                <div class="text-[10px] font-bold text-slate-500 uppercase">Recargos por olvido</div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                                <div class="text-2xl font-bold text-primary mb-1">100%</div>
+                                <div class="text-[10px] font-bold text-slate-500 uppercase">Control sobre pólizas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="rounded-3xl border border-slate-200 bg-white p-8 text-slate-900 shadow-2xl relative overflow-hidden group">
+                           <div class="absolute -top-12 -right-12 w-48 h-48 bg-red-500/5 rounded-full blur-3xl transition-transform group-hover:scale-150 duration-700"></div>
+                           <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 text-red-500">
+                               <span class="material-symbols-outlined">event_busy</span>
+                           </div>
+                           <h4 class="text-xl font-bold mb-4 italic text-slate-900">"Alerta: Póliza de la Nissan Frontier expira en 7 días"</h4>
+                           <p class="text-slate-600 text-sm leading-relaxed mb-8">Notificación preventiva automática por correo electrónico a tu área administrativa.</p>
+                           <button class="w-full rounded-full border border-slate-200 bg-slate-50 py-3 text-sm font-bold text-slate-700 hover:bg-slate-100 hover:border-red-500/20 hover:text-red-600 transition-all">Ver Documento</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 scroll-animate delay-200">
+                    <div class="md:w-1/2">
+                        <div class="inline-flex items-center gap-2 text-primary font-bold mb-4 uppercase tracking-widest text-sm">
+                            <span class="h-px w-8 bg-primary"></span>
+                            Listos Para Auditorías
+                        </div>
+                        <h2 class="text-3xl font-extrabold text-slate-900 md:text-5xl mb-6 leading-tight">Exporta información al instante</h2>
+                        <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                            Localiza exactamente la factura o el permiso que necesitas. Descarga reportes y expedientes masivos para entregar a auditorías contables o controles de carretera.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 font-medium text-slate-800">
+                                <span class="material-symbols-outlined text-primary">manage_search</span>
+                                Buscador inteligente de expedientes
+                            </li>
+                            <li class="flex items-center gap-3 font-medium text-slate-800">
+                                <span class="material-symbols-outlined text-primary">archive</span>
+                                Consolidación de información en PDF/ZIP
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="relative space-y-4">
+                            <div class="rounded-3xl border border-white/60 bg-white/40 backdrop-blur-md shadow-xl overflow-hidden p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 flex items-center justify-center rounded-xl bg-slate-100 text-slate-600">
+                                            <span class="material-symbols-outlined">folder_open</span>
+                                        </div>
+                                        <h4 class="font-bold text-slate-900">Expedientes Flota</h4>
+                                    </div>
+                                    <button class="flex items-center gap-1 text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-full">
+                                        <span class="material-symbols-outlined text-[14px]">download</span> Exportar
+                                    </button>
+                                </div>
+                                
+                                <div class="space-y-2">
+                                    <div class="flex items-center gap-3 border border-slate-100 rounded-lg p-3 bg-slate-50">
+                                        <div class="h-4 w-4 rounded border border-primary bg-primary flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-white text-[12px]">check</span>
+                                        </div>
+                                        <span class="material-symbols-outlined text-red-400">picture_as_pdf</span>
+                                        <p class="text-xs font-bold text-slate-800 flex-1">Permiso_SCT_2024.pdf</p>
+                                    </div>
+                                    <div class="flex items-center gap-3 border border-slate-100 rounded-lg p-3 bg-white opacity-60">
+                                        <div class="h-4 w-4 rounded border border-slate-300"></div>
+                                        <span class="material-symbols-outlined text-blue-400">image</span>
+                                        <p class="text-xs font-bold text-slate-800 flex-1">Licencia_Federal_A.jpg</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-24 bg-primary text-white relative overflow-hidden text-center mx-6 my-12 rounded-[2.5rem] md:mx-auto md:max-w-7xl">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-900 -z-10"></div>
+        <div class="absolute inset-0 z-0 bg-grid-white/[0.05]"></div>
+        <div class="mx-auto max-w-4xl px-6 relative z-10 scroll-animate">
+            <h2 class="text-3xl font-extrabold md:text-5xl mb-8 leading-tight">
+                ¿Cuánto te cuesta hoy enfrentarte a un imprevisto por no traer la documentación física vigente?
+            </h2>
+            <p class="mx-auto max-w-2xl text-blue-100 text-lg mb-10">
+                Digitaliza toda la papelería, automatiza tu administración y mantén la tranquilidad en cada kilómetro con Spider Fleet.
+            </p>
+            <button @onclick='() => NavigationManager.NavigateTo("/signup")' class="rounded-full bg-white px-12 py-5 text-lg font-bold text-primary shadow-xl transition-all hover:bg-slate-50 hover:scale-105 active:scale-95">
+                Empezar ahora gratis
+            </button>
+
+        </div>
+    </section>
+</div>
+
+@code {
+    private bool IsPersonalMode { get; set; } = true;
+
+    private async Task SetMode(bool isPersonal)
+    {
+        IsPersonalMode = isPersonal;
+        StateHasChanged();
+        await Task.Delay(50);
+        await JS.InvokeVoidAsync("initScrollAnimations");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Task.Delay(150);
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}

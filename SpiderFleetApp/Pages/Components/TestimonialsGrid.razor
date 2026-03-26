@@ -1,0 +1,81 @@
+@inject IJSRuntime JS
+
+<section class="bg-slate-50 py-24 border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <div class="text-center mb-16 scroll-animate">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
+                Flotas que ya se mueven hacia adelante
+            </h2>
+            <p class="text-lg text-slate-600">No tomes solo nuestra palabra. Escucha a los que ya operan con SpiderFleet.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            
+            @* Testimonio 1 *@
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm scroll-animate hover:shadow-md transition-shadow">
+                <div class="flex text-amber-400 mb-4">
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                </div>
+                <p class="text-slate-700 mb-6 font-medium">"Pasamos de gastar horas intentando localizar a los choferes a tener todo en una pantalla. El ahorro en combustible pagó el sistema en el primer mes."</p>
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-500 font-bold">RC</div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Roberto Carlos</p>
+                        <p class="text-xs text-slate-500">Director de Logística, Transportes RC</p>
+                    </div>
+                </div>
+            </div>
+
+            @* Testimonio 2 *@
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm scroll-animate delay-100 hover:shadow-md transition-shadow">
+                <div class="flex text-amber-400 mb-4">
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                </div>
+                <p class="text-slate-700 mb-6 font-medium">"La alerta de mantenimiento predictivo nos salvó de perder un motor completo en carretera. El sistema documental es simplemente una maravilla legal."</p>
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-500 font-bold">MS</div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900">Mariana Silva</p>
+                        <p class="text-xs text-slate-500">Gerente Operativa, FleetMex</p>
+                    </div>
+                </div>
+            </div>
+
+            @* Testimonio 3 *@
+            <div class="bg-primary p-8 rounded-2xl shadow-lg scroll-animate delay-200 text-white">
+                <div class="flex text-yellow-300 mb-4">
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                    <span class="material-symbols-outlined text-lg">star</span>
+                </div>
+                <p class="text-white/90 mb-6 font-medium">"Usaba Excel para todo. Con SpiderFleet automaticé las alertas de seguros y licencias de mis 15 camionetas. Ya no me preocupo por multas sorpresa."</p>
+                <div class="flex items-center gap-3">
+                    <div class="h-10 w-10 bg-white/20 rounded-full flex items-center justify-center font-bold">JL</div>
+                    <div>
+                        <p class="text-sm font-bold">Jorge López</p>
+                        <p class="text-xs text-white/70">Dueño Independiente</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) { await JS.InvokeVoidAsync("initScrollAnimations"); }
+    }
+}

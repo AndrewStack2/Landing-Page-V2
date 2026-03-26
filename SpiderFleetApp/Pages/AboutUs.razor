@@ -1,0 +1,209 @@
+@page "/nosotros"
+<PageTitle>Nuestra Historia | Spider Fleet</PageTitle>
+<HeadContent>
+    <meta name="description" content="Conoce la historia de Spider Fleet: 10 años resolviendo el caos logístico en México. Nuestra misión es que nunca pierdas el control de lo que mueve tu vida o tu negocio." />
+    <link rel="canonical" href="https://spiderfleet.mx/nosotros" />
+    <meta property="og:title" content="Nuestra Historia | Spider Fleet" />
+    <meta property="og:description" content="10 años resolviendo el caos logístico en México. Conoce la historia, misión y valores de Spider Fleet." />
+    <meta property="og:url" content="https://spiderfleet.mx/nosotros" />
+</HeadContent>
+
+@using SpiderFleetApp.Pages.Components
+@inject IJSRuntime JS
+
+<div class="relative min-h-screen bg-white dark:bg-background-dark pt-32 pb-20 overflow-hidden">
+    <!-- Background Gradients -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute -top-24 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute top-1/2 -right-20 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl" style="animation-delay: 2s"></div>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section class="relative z-10 mx-auto max-w-5xl px-6 text-center mb-32">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold mb-6 animate-fade-in-up">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            Nuestra Esencia
+        </div>
+        <h1 class="text-4xl md:text-6xl font-display font-bold text-slate-900 dark:text-white mb-8 leading-tight tracking-tight">
+            La inteligencia que <span class="text-primary italic">mueve</span> lo que más te importa
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+            Nacimos para resolver el caos logístico en las calles de México, pero hoy estamos aquí para que nunca pierdas de vista la seguridad y el control de tu camino.
+        </p>
+    </section>
+
+    <!-- 2. Historia Section (Storytelling) -->
+    <section class="relative z-10 mx-auto max-w-6xl px-6 mb-40">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-display font-bold text-slate-900 dark:text-white mb-4">Un camino de 10 años</h2>
+            <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+        </div>
+
+        <div class="relative">
+            <!-- Timeline Line -->
+            <div class="absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 hidden md:block"></div>
+
+            <!-- Stage 1: Origen -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-32 relative">
+                <div class="md:text-right scroll-animate">
+                    <span class="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">EL ORIGEN</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Todo empezó en el asfalto</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                        Hace una década, vimos a las empresas de mensajería perder tiempo, gasolina y paciencia intentando descifrar dónde estaban sus unidades. México necesitaba una solución dinámica para la última milla, y nosotros decidimos construirla.
+                    </p>
+                </div>
+                <div class="relative group scroll-animate">
+                    <div class="absolute inset-0 bg-primary/20 rounded-3xl blur-2xl group-hover:bg-primary/30 transition-all"></div>
+                    <img src="Assets/Meeting.jpg" width="600" height="256" class="relative rounded-3xl w-full h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500" alt="Fundadores de Spider Fleet planificando la solución de logística para flotas en México — 2014" />
+                </div>
+                <!-- Point -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white dark:bg-slate-900 border-4 border-primary rounded-full hidden md:block z-20"></div>
+            </div>
+
+            <!-- Stage 2: Evolución -->
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-32 relative">
+                <div class="md:order-2 scroll-animate">
+                    <span class="text-xs font-bold text-blue-500 uppercase tracking-widest mb-2 block">LA EVOLUCIÓN</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Más que flotas, personas</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                        Entendimos que los problemas de las empresas —alertas vehiculares, mantenimientos preventivos, gestión de documentos— también los vivía cualquier persona con un coche propio. Así evolucionamos hacia una plataforma integral para todos.
+                    </p>
+                </div>
+                <div class="relative group scroll-animate">
+                    <div class="absolute inset-0 bg-blue-500/20 rounded-3xl blur-2xl group-hover:bg-blue-500/30 transition-all"></div>
+                    <img src="Assets/Fleet.jpg" width="600" height="256" class="relative rounded-3xl w-full h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500" alt="Flota de vehículos gestionada con Spider Fleet en México — evolución hacia plataforma integral" />
+                </div>
+                <!-- Point -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white dark:bg-slate-900 border-4 border-blue-500 rounded-full hidden md:block z-20"></div>
+            </div>
+
+            <!-- Stage 3: Hoy -->
+            <div class="grid md:grid-cols-2 gap-12 items-center relative">
+                <div class="md:text-right scroll-animate">
+                    <span class="text-xs font-bold text-emerald-500 uppercase tracking-widest mb-2 block">HOY</span>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Tu tranquilidad en movimiento</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+                        Somos la inteligencia que une IA, algoritmos y hardware de precisión para que ningún conductor pierda el control. Desde un vehículo personal hasta la flota más grande del país, Spider Fleet es tu aliado en cada kilómetro.
+                    </p>
+                </div>
+                <div class="relative group scroll-animate">
+                    <div class="absolute inset-0 bg-slate-900/20 dark:bg-white/10 rounded-3xl blur-2xl transition-all"></div>
+                    <img src="Assets/Digital-Map.jpg" width="600" height="256" class="relative rounded-3xl w-full h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500" alt="Mapa digital de rastreo GPS en tiempo real de Spider Fleet — tecnología de flota para México hoy" />
+                </div>
+                <!-- Point -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white dark:bg-slate-900 border-4 border-emerald-500 rounded-full hidden md:block z-20"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Misión y Visión Section -->
+    <section class="bg-slate-50 dark:bg-slate-900/50 py-32 mb-40 border-y border-slate-100 dark:border-slate-800">
+        <div class="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-16">
+            <div class="scroll-animate">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6">
+                    <span class="material-symbols-outlined text-3xl">flag</span>
+                </div>
+                <h2 class="text-3xl font-display font-bold text-slate-900 dark:text-white mb-6">Nuestra Misión</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium italic">
+                    "Que ningún dueño de vehículo o empresa pierda el control de lo que mueve su vida o su negocio."
+                </p>
+            </div>
+            <div class="scroll-animate delay-200">
+                <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 mb-6">
+                    <span class="material-symbols-outlined text-3xl">visibility</span>
+                </div>
+                <h2 class="text-3xl font-display font-bold text-slate-900 dark:text-white mb-6">Nuestra Visión</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-medium italic">
+                    "Convertirnos en el estándar de seguridad y eficiencia operativa en América Latina, haciendo que la tecnología compleja sea invisible y útil para todos."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Valores Section -->
+    <section class="max-w-6xl mx-auto px-6 mb-40">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-display font-bold text-slate-900 dark:text-white mb-4">Lo que nos guía</h2>
+            <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate">
+                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">insights</span>
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Visibilidad</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Información real para decisiones inteligentes en el momento justo.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-100">
+                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">shield</span>
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Confianza</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Cuidamos el patrimonio de miles como si fuera el nuestro.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-200">
+                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">auto_awesome</span>
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Innovación</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Buscamos siempre el siguiente paso de la inteligencia logística.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-300">
+                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">public</span>
+                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Accesibilidad</h4>
+                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Tecnología premium al alcance de todos los presupuestos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Estadísticas Section -->
+    <section class="max-w-5xl mx-auto px-6 mb-40">
+        <div class="rounded-[2.5rem] bg-background-dark p-12 relative overflow-hidden text-center border border-slate-800">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(19,100,237,0.1),transparent)]"></div>
+            <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="scroll-animate scale-95 transition-all duration-700">
+                    <div class="text-4xl font-bold text-white mb-2">10+</div>
+                    <div class="text-xs font-bold text-primary uppercase tracking-widest">Años de experiencia</div>
+                </div>
+                <div class="scroll-animate scale-95 transition-all duration-700 delay-100">
+                    <div class="text-4xl font-bold text-white mb-2">24/7</div>
+                    <div class="text-xs font-bold text-primary uppercase tracking-widest">Monitoreo Ininterrumpido</div>
+                </div>
+                <div class="scroll-animate scale-95 transition-all duration-700 delay-200">
+                    <div class="text-4xl font-bold text-white mb-2">+3</div>
+                    <div class="text-xs font-bold text-primary uppercase tracking-widest">Industrias Atendidas</div>
+                </div>
+                <div class="scroll-animate scale-95 transition-all duration-700 delay-300">
+                    <div class="text-4xl font-bold text-white mb-2">100%</div>
+                    <div class="text-xs font-bold text-primary uppercase tracking-widest">Cobertura Nacional</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA Final -->
+    <section class="max-w-4xl mx-auto px-6 text-center mb-20">
+        <h2 class="text-3xl md:text-5xl font-display font-bold text-slate-900 dark:text-white mb-8">
+            Empieza hoy. Tu flota no puede esperar.
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 mb-10 font-medium">
+            Tu primera unidad conectada está a un clic de distancia. Sin tarjeta, sin compromisos.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contacto" class="rounded-full bg-primary px-8 py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 hover:bg-blue-600 hover:scale-105 transition-all active:scale-95">
+                Empieza Gratis Ahora
+            </a>
+            <a href="/" class="rounded-full bg-slate-100 dark:bg-slate-800 px-8 py-4 text-sm font-bold text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+                Ver productos
+            </a>
+        </div>
+    </section>
+
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}

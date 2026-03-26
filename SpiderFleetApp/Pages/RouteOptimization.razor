@@ -1,0 +1,311 @@
+@page "/optimizacion-rutas"
+<PageTitle>Optimización de Rutas con IA para Flotas | Spider Fleet</PageTitle>
+<HeadContent>
+    <meta name="description" content="Reduce combustible y cumple entregas a tiempo con rutas calculadas por IA en tiempo real. Asignación directa a choferes y monitoreo de última milla. Spider Fleet México." />
+    <link rel="canonical" href="https://spiderfleet.mx/optimizacion-rutas" />
+    <meta property="og:title" content="Optimización de Rutas con IA para Flotas | Spider Fleet" />
+    <meta property="og:description" content="Rutas inteligentes calculadas por IA. Reduce costos, cumple entregas y asigna rutas a choferes con un clic." />
+    <meta property="og:url" content="https://spiderfleet.mx/optimizacion-rutas" />
+</HeadContent>
+
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+
+
+<div class="bg-white">
+
+    <!-- ═══════════════════════════════════════════
+         HERO SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="relative overflow-hidden pt-24 pb-20 md:pt-32 md:pb-32 bg-slate-900 text-white">
+        <div class="absolute inset-0 opacity-20" style="background-image: url('https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center;"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900 to-slate-900"></div>
+
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 relative z-10 text-center">
+            <div class="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-1.5 text-sm font-semibold text-blue-300 mb-8 scroll-animate">
+                <span class="mr-2 h-2 w-2 rounded-full bg-blue-400 animate-pulse"></span>
+                Logística Inteligente
+            </div>
+            <!-- FIX: text-4xl → text-3xl en mobile para que no se desborde -->
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight md:text-7xl mb-6 scroll-animate delay-100 leading-tight">
+                Cada entrega, en el <span class="text-primary">menor tiempo y al menor costo.</span>
+            </h1>
+            <p class="mx-auto max-w-2xl text-base sm:text-lg text-slate-300 md:text-xl leading-relaxed mb-10 scroll-animate delay-200">
+                Spider Fleet calcula la ruta más eficiente para cada chofer, considerando condiciones del camino en tiempo real. Menos ralentí, más puntualidad, clientes más felices.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 scroll-animate delay-300">
+                <button @onclick='() => NavigationManager.NavigateTo("/signup")' class="w-full sm:w-auto rounded-full bg-primary px-10 py-4 text-base font-bold text-white shadow-lg shadow-primary/25 transition-all hover:bg-blue-600 hover:scale-105 active:scale-95 group relative overflow-hidden">
+                    <span class="relative z-10">Empieza Gratis Ahora</span>
+                    <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"></div>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN BENEFITS BLOCK
+    ═══════════════════════════════════════════ -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+            <!-- FIX: grid sin breakpoint → grid-cols-1 base, md:grid-cols-3 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+                <div class="scroll-animate">
+                    <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+                        <span class="material-symbols-outlined text-3xl">local_gas_station</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Ahorro en Combustible</h3>
+                    <p class="text-slate-600 leading-relaxed">Nuestros algoritmos eliminan kilómetros innecesarios, reduciendo directamente tus costos operativos desde el primer día.</p>
+                </div>
+                <div class="scroll-animate delay-100">
+                    <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+                        <span class="material-symbols-outlined text-3xl">schedule</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Entregas a Tiempo</h3>
+                    <p class="text-slate-600 leading-relaxed">Cumple con tus promesas de entrega. Optimiza los tiempos de llegada considerando el tráfico y las ventanas de horario.</p>
+                </div>
+                <div class="scroll-animate delay-200">
+                    <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+                        <span class="material-symbols-outlined text-3xl">task_alt</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-4">Asignación sin Fricción</h3>
+                    <p class="text-slate-600 leading-relaxed">Envía rutas completas a tus choferes con un solo clic. Sin necesidad de llamadas, Excel o mensajes de WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         DETAILED FUNCTIONALITIES
+         FIX PRINCIPAL: flex-col siempre base,
+         md:flex-row solo en desktop.
+         La imagen va DESPUÉS del texto en mobile
+         (orden natural del DOM).
+    ═══════════════════════════════════════════ -->
+    <section class="py-16 md:py-24 bg-slate-50">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+            <div class="text-center mb-12 md:mb-20 scroll-animate">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 md:text-4xl mb-4 md:mb-6">Control total de tu última milla</h2>
+                <p class="mx-auto max-w-2xl text-slate-600 text-sm sm:text-base">Herramientas potentes para coordinadores que buscan eficiencia real.</p>
+            </div>
+
+            <div class="space-y-16 md:space-y-24">
+
+                <!-- Func 1: texto izquierda / imagen derecha -->
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-24 scroll-animate">
+                    <!-- TEXTO — siempre primero en DOM → primero en mobile -->
+                    <div class="w-full md:w-1/2">
+                        <div class="text-primary font-bold mb-3 md:mb-4 text-sm md:text-base">01. Planificación</div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">Planificación en tiempo real</h3>
+                        <p class="text-slate-600 text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+                            Añade nuevas paradas al vuelo. El sistema re-calcula la ruta óptima para que el chofer siempre siga el camino más eficiente sin perder el ritmo de las entregas del día.
+                        </p>
+                        <ul class="space-y-3 md:space-y-4">
+                            <li class="flex items-center gap-3 font-medium text-slate-800 text-sm md:text-base">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                Recálculo dinámico de trayecto
+                            </li>
+                            <li class="flex items-center gap-3 font-medium text-slate-800 text-sm md:text-base">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                Consideración de tráfico actual
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- IMAGEN — ocupa ancho completo en mobile -->
+                    <div class="w-full md:w-1/2 rounded-3xl overflow-hidden shadow-xl border border-slate-200 bg-white p-4">
+                        <div class="aspect-video bg-slate-100 rounded-2xl relative flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-6xl md:text-8xl text-slate-200">route</span>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Func 2: imagen izquierda / texto derecha (md:flex-row-reverse) -->
+                <!-- FIX: en mobile la imagen queda DEBAJO porque flex-col + order -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12 lg:gap-24 scroll-animate">
+                    <!-- TEXTO — order-1 en mobile (aparece primero), order-2 en md -->
+                    <div class="w-full md:w-1/2 order-1 md:order-none">
+                        <div class="text-primary font-bold mb-3 md:mb-4 text-sm md:text-base">02. Asignación</div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">Asignación directa a choferes</h3>
+                        <p class="text-slate-600 text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+                            Tus conductores reciben la hoja de ruta digital directamente en su aplicación. Con navegación paso a paso y estados de entrega integrados para mayor claridad.
+                        </p>
+                        <ul class="space-y-3 md:space-y-4">
+                            <li class="flex items-center gap-3 font-medium text-slate-800 text-sm md:text-base">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                Notificaciones push instantáneas
+                            </li>
+                            <li class="flex items-center gap-3 font-medium text-slate-800 text-sm md:text-base">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                Confirmación de lectura y aceptación
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- IMAGEN — order-2 en mobile (aparece después del texto) -->
+                    <div class="w-full md:w-1/2 order-2 md:order-none rounded-3xl overflow-hidden shadow-xl border border-slate-200 bg-white p-4">
+                        <div class="aspect-video bg-slate-100 rounded-2xl relative flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-6xl md:text-8xl text-slate-200">send_to_mobile</span>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Func 3: texto izquierda / imagen derecha -->
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-24 scroll-animate">
+                    <div class="w-full md:w-1/2">
+                        <div class="text-primary font-bold mb-3 md:mb-4 text-sm md:text-base">03. Monitoreo</div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">Monitoreo de ruta activa</h3>
+                        <p class="text-slate-600 text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+                            Visualiza el progreso de cada ruta en tiempo real. Identifica cuellos de botella antes de que se conviertan en retrasos y mantén a tus clientes informados.
+                        </p>
+                        <ul class="space-y-3 md:space-y-4">
+                            <li class="flex items-center gap-3 font-medium text-slate-800 text-sm md:text-base">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                Vista de "Bird's eye" de toda tu operación
+                            </li>
+                            <li class="flex items-center gap-3 font-medium text-slate-800 text-sm md:text-base">
+                                <span class="material-symbols-outlined text-primary flex-shrink-0">check_circle</span>
+                                Alertas por desvío de ruta
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 rounded-3xl overflow-hidden shadow-xl border border-slate-200 bg-white p-4">
+                        <div class="aspect-video bg-slate-100 rounded-2xl relative flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-6xl md:text-8xl text-slate-200">visibility</span>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         MAP ROUTE VISUALIZATION
+         FIX: h-[600px] → h-[420px] en mobile,
+         panel overlay con max-w controlado
+    ═══════════════════════════════════════════ -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6">
+            <div class="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-white h-[420px] md:h-[600px] scroll-animate">
+                <!-- Map UI Mockup -->
+                <div class="absolute inset-0 bg-slate-100">
+                    <div class="w-full h-full opacity-25" style="background-image: radial-gradient(#1364ed 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+                    <svg class="absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 1000 600">
+                        <path d="M100,200 L300,150 L500,300 L700,100 L900,250" fill="none" stroke="#1364ed" stroke-width="4" stroke-dasharray="10 6" class="animate-[dash_20s_linear_infinite] opacity-60" />
+                        <circle cx="100" cy="200" r="8" fill="#1364ed" />
+                        <circle cx="300" cy="150" r="8" fill="#1364ed" />
+                        <circle cx="500" cy="300" r="8" fill="#1364ed" />
+                        <circle cx="700" cy="100" r="8" fill="#1364ed" />
+                        <circle cx="900" cy="250" r="12" fill="#1364ed" class="animate-pulse" />
+                    </svg>
+
+                    <!-- Tooltips ocultos en mobile para no saturar pantalla -->
+                    <div class="hidden sm:block absolute top-[180px] left-[110px] bg-white rounded-lg p-2 shadow-lg text-[10px] border border-slate-200">Entrega #1 completada</div>
+                    <div class="hidden sm:block absolute top-[130px] left-[310px] bg-white rounded-lg p-2 shadow-lg text-[10px] border border-slate-200">Entrega #2 completada</div>
+                    <div class="hidden sm:block absolute top-[280px] left-[510px] bg-white rounded-lg p-2 shadow-lg text-[10px] border border-slate-200">Entrega #3 en camino</div>
+                </div>
+
+                <!-- Overlay Panel — ajuste de tamaño en mobile -->
+                <div class="absolute top-4 left-4 md:top-6 md:left-6 w-[calc(100%-2rem)] max-w-xs md:max-w-sm bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-200 p-4 md:p-6">
+                    <h4 class="text-base md:text-xl font-bold text-slate-900 mb-3 md:mb-4">Ruta de Reparto #882</h4>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex justify-between items-center text-xs md:text-sm">
+                            <span class="text-slate-500">Destinos:</span>
+                            <span class="font-bold text-slate-900">5 puntos de entrega</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs md:text-sm">
+                            <span class="text-slate-500">Distancia optimizada:</span>
+                            <span class="font-bold text-green-600">12.4 km (-3.2 km)</span>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-2">
+                            <div class="bg-primary h-2 rounded-full w-3/5"></div>
+                        </div>
+                        <div class="text-xs text-slate-500">Chofer: Alberto R. • Camión #12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         AI FEATURES BLOCK
+    ═══════════════════════════════════════════ -->
+    <section class="py-16 md:py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 h-64 w-64 bg-primary/20 rounded-full blur-3xl"></div>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                <div class="w-full lg:w-1/2 scroll-animate">
+                    <div class="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-bold text-blue-300 mb-6">Próximamente</div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">Spider AI:<br />Optimización Predictiva</h2>
+                    <p class="text-slate-400 text-base md:text-lg leading-relaxed mb-8">
+                        Estamos integrando inteligencia artificial avanzada que no solo calcula rutas, sino que predice patrones de tráfico, picos de demanda y sugiere la mejor hora para iniciar cada reparto.
+                    </p>
+                    <div class="flex items-center gap-4 text-sm font-semibold text-blue-300">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        Exclusivo de Spider Fleet
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 scroll-animate delay-200">
+                    <div class="p-6 md:p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="h-28 md:h-32 bg-white/5 rounded-2xl flex flex-col items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-primary">psychology</span>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Predicción</span>
+                            </div>
+                            <div class="h-28 md:h-32 bg-white/5 rounded-2xl flex flex-col items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-primary">traffic</span>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Flujo</span>
+                            </div>
+                            <div class="h-28 md:h-32 bg-white/5 rounded-2xl flex flex-col items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-primary">precision_manufacturing</span>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Algoritmo</span>
+                            </div>
+                            <div class="h-28 md:h-32 bg-white/5 rounded-2xl flex flex-col items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-primary">insights</span>
+                                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Patrones</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FINAL CTA
+    ═══════════════════════════════════════════ -->
+    <section class="py-16 md:py-24 bg-white relative overflow-hidden">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 relative z-10 text-center scroll-animate">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 md:text-5xl mb-6 md:mb-8 leading-tight">
+                ¿Cuánto dinero estás perdiendo hoy con rutas mal planificadas?
+            </h2>
+            <button @onclick='() => NavigationManager.NavigateTo("/signup")' class="w-full sm:w-auto rounded-full bg-primary px-10 md:px-12 py-4 md:py-5 text-base md:text-lg font-bold text-white shadow-xl shadow-primary/25 transition-all hover:bg-blue-700 hover:scale-105 active:scale-95 group relative overflow-hidden">
+                <span class="relative z-10">Empieza Gratis Ahora</span>
+                <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"></div>
+            </button>
+
+            <p class="mt-6 text-slate-500 font-medium text-sm md:text-base">Únete a la nueva era de la logística eficiente.</p>
+        </div>
+    </section>
+
+</div>
+
+@code {
+protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+}
+<style>
+    @@keyframes dash {
+        to {
+            stroke-dashoffset: -1000;
+        }
+    }
+</style>

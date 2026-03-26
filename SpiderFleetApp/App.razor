@@ -1,0 +1,13 @@
+﻿<HeadOutlet />
+
+<Router AppAssembly="typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+    </Found>
+    <NotFound>
+        <PageTitle>Página no encontrada | Spider Fleet</PageTitle>
+        <LayoutView Layout="typeof(Layout.MainLayout)">
+            <p>La página no existe.</p>
+        </LayoutView>
+    </NotFound>
+</Router>

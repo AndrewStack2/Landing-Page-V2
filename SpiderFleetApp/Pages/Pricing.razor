@@ -1,0 +1,994 @@
+@page "/precios"
+<PageTitle>Planes y Precios | Spider Fleet</PageTitle>
+@inject IJSRuntime JS
+<HeadContent>
+    <meta name="description" content="Planes flexibles para conductores independientes y flotas empresariales. Comienza gratis sin tarjeta de crédito. Spider Fleet México." />
+    <link rel="canonical" href="https://spiderfleet.mx/precios" />
+    <meta property="og:title" content="Planes y Precios | Spider Fleet" />
+    <meta property="og:description" content="Planes para conductores y empresas. Empieza gratis, sin tarjeta de crédito. Escala cuando lo necesites." />
+    <meta property="og:url" content="https://spiderfleet.mx/precios" />
+</HeadContent>
+
+
+<style>
+    .pricing-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .pricing-card:hover {
+        transform: translateY(-4px);
+    }
+    @@keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0);    }
+    }
+    @@keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to   { opacity: 1; transform: translateY(0);     }
+    }
+    .anim-header { animation: fadeInDown 0.6s ease both; }
+    .anim-toggle { animation: fadeInUp  0.5s ease 0.20s both; }
+    .anim-card-1 { animation: fadeInUp  0.5s ease 0.10s both; }
+    .anim-card-2 { animation: fadeInUp  0.5s ease 0.22s both; }
+    .anim-card-3 { animation: fadeInUp  0.5s ease 0.34s both; }
+    .anim-card-4 { animation: fadeInUp  0.5s ease 0.46s both; }
+    .anim-table  { animation: fadeInUp  0.6s ease 0.30s both; }
+    .anim-cta    { animation: fadeInUp  0.6s ease 0.10s both; }
+</style>
+
+@* ===== HEADER ===== *@
+<div class="bg-slate-50 border-b border-slate-200 pt-32 md:pt-48 pb-32 anim-header">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <span class="inline-block mb-6 text-xs font-bold tracking-widest text-primary uppercase">Planes y Precios</span>
+        <h1 class="text-4xl font-extrabold text-slate-900 md:text-5xl">El plan perfecto para ti.</h1>
+        <p class="mt-10 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Desde un vehículo personal hasta una flota completa, Spider Fleet tiene un plan
+            que se adapta a tu ritmo y presupuesto. Empieza gratis, crece cuando quieras.
+        </p>
+    </div>
+</div>
+
+<div class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+
+        @* ===== TOGGLE ===== *@
+        <div class="flex justify-center mb-14 anim-toggle">
+            <div class="bg-slate-100 p-1.5 rounded-full flex relative isolate border border-slate-200 shadow-inner w-full max-w-[340px]">
+                <div class="absolute left-1.5 top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white rounded-full shadow transition-all duration-300 ease-in-out z-0 border border-slate-200"
+                     style="@SliderStyle">
+                </div>
+                <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @BtnPersonal"
+                        @onclick="() => SetMode(true)">Uso Personal</button>
+                <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @BtnEmpresa"
+                        @onclick="() => SetMode(false)">Para Empresas</button>
+            </div>
+        </div>
+
+        @* ===================================================== *@
+        @* =================== MODO PERSONAL =================== *@
+        @* ===================================================== *@
+        <div class="@ShowPersonal">
+
+            @* -- Cards Personal -- *@
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:items-start">
+
+                @* Card: Gratis *@
+                <div class="pricing-card anim-card-1 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Gratis</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para empezar sin riesgos</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-5xl font-extrabold text-slate-900">$0</span>
+                        <span class="text-slate-500 text-sm">/mes</span>
+                    </div>
+                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
+                        Elegir Gratis
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>1 vehículo</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Rastreo básico</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Historial 7 días</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Alertas básicas</span>
+                        </li>
+                    </ul>
+                </div>
+
+                @* Card: Básico — Más Popular *@
+                <div class="pricing-card anim-card-2 relative flex flex-col bg-white border-2 border-indigo-500 text-center rounded-2xl p-8 shadow-2xl shadow-indigo-900/10 hover:shadow-[0_0_40px_rgba(79,70,229,0.25)] lg:scale-105 z-10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-indigo-500 px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">
+                        Más Popular
+                    </div>
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Básico</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para quien quiere proteger su vehículo</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-5xl font-extrabold text-slate-900">$99</span>
+                        <span class="text-slate-500 text-sm">MXN/mes</span>
+                    </div>
+                    <button class="mb-8 w-full relative overflow-hidden rounded-full bg-indigo-600 py-3 text-sm font-bold text-white transition-all hover:bg-indigo-700 hover:shadow-lg group">
+                        <span class="relative z-10">Elegir Básico</span>
+                        <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                            <span>Rastreo en tiempo real</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                            <span>Geocercas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                            <span>Historial 30 días</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                            <span>Alertas por app y correo</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                            <span>Anti-robo remoto</span>
+                        </li>
+                    </ul>
+                </div>
+
+                @* Card: Avanzado *@
+                <div class="pricing-card anim-card-3 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Avanzado</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Control total de tu unidad</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-5xl font-extrabold text-slate-900">$199</span>
+                        <span class="text-slate-500 text-sm">MXN/mes</span>
+                    </div>
+                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
+                        Elegir Avanzado
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                            <strong>Todo en Básico +</strong>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Gestión documental</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Calendarización de mantenimientos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Historial ilimitado</span>
+                        </li>
+                    </ul>
+                </div>
+
+                @* Card: Familiar *@
+                <div class="pricing-card anim-card-4 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Familiar</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para quienes cuidan más de un vehículo</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-5xl font-extrabold text-slate-900">$299</span>
+                        <span class="text-slate-500 text-sm">MXN/mes</span>
+                    </div>
+                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
+                        Elegir Familiar
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                            <strong>Todo en Avanzado +</strong>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Hasta 3 vehículos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Perfiles por conductor</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Reportes de conducción</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            @* -- Fin Cards Personal -- *@
+
+            @* -- Tabla Comparativa Personal -- *@
+            <div class="mt-20 lg:mt-28 anim-table">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-bold text-slate-900">Compara los planes personales</h3>
+                </div>
+
+                @* Mobile Personal *@
+                <div class="space-y-16 lg:hidden">
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-slate-900">Gratis</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Rastreo</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo básico</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo en tiempo real</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Historial 7 días</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Alertas básicas</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Seguridad y Gestión</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Anti-robo remoto</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Geocercas</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Gestión documental</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Perfiles por conductor</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-[0_4px_16px_rgba(79,70,229,0.12)] overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-indigo-600">Básico</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Rastreo</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo básico</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo en tiempo real</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Historial 30 días</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Alertas por app y correo</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Seguridad y Gestión</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Anti-robo remoto</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Geocercas</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Gestión documental</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Perfiles por conductor</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-slate-900">Avanzado</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Rastreo</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo básico</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo en tiempo real</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Historial ilimitado</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Alertas por app y correo</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Gestión</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Anti-robo remoto</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Gestión documental</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Calendarización mantenimientos</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Perfiles por conductor</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-slate-900">Familiar</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Rastreo y Seguridad</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo en tiempo real</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Historial ilimitado</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Anti-robo remoto</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Gestión Familiar</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Hasta 3 vehículos</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Perfiles por conductor</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Reportes de conducción</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Gestión documental</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Calendarización mantenimientos</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </div>
+                @* Fin Mobile Personal *@
+
+                @* Desktop Personal *@
+                <div class="hidden lg:block overflow-x-auto">
+                    <table class="w-full h-px">
+                        <caption class="sr-only">Comparación de planes personales</caption>
+                        <thead class="sticky top-0 bg-white z-10 shadow-sm">
+                            <tr>
+                                <th class="py-4 ps-6 pe-6 text-sm font-medium text-slate-600 text-left w-1/3">Funcionalidad</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-slate-700 text-center">Gratis</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-indigo-600 text-center">Básico</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-slate-700 text-center">Avanzado</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-slate-700 text-center">Familiar</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-t border-slate-200 divide-y divide-slate-200">
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Rastreo</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Rastreo básico</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Rastreo en tiempo real</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Historial</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Historial 7 días</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Historial 30 días</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Historial ilimitado</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Alertas</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Alertas básicas</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Alertas por app y correo</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Seguridad y Gestión</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Anti-robo remoto</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Geocercas</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Gestión documental</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Calendarización mantenimientos</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Perfiles por conductor</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Reportes de conducción</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @* Fin Desktop Personal *@
+
+            </div>
+            @* Fin Tabla Personal *@
+
+        </div>
+        @* ===== FIN MODO PERSONAL ===== *@
+
+        @* ====================================================== *@
+        @* =================== MODO EMPRESA ==================== *@
+        @* ====================================================== *@
+        <div class="@ShowEmpresa">
+
+            @* -- Cards Empresa -- *@
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:items-start">
+
+                @* Card: Gratis Empresa *@
+                <div class="pricing-card anim-card-1 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Gratis</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Prueba Spider Fleet sin costo</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-5xl font-extrabold text-slate-900">$0</span>
+                        <span class="text-slate-500 text-sm">/mes</span>
+                    </div>
+                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
+                        Elegir Gratis
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>1 unidad</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Rastreo básico</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Historial 7 días</span>
+                        </li>
+                    </ul>
+                </div>
+
+                @* Card: Pequeña Flota *@
+                <div class="pricing-card anim-card-2 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Pequeña Flota</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Ideal para flotas de hasta 10 unidades</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-5xl font-extrabold text-slate-900">$499</span>
+                        <span class="text-slate-500 text-sm">MXN/mes</span>
+                    </div>
+                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
+                        Elegir Pequeña Flota
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Rastreo en tiempo real</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Geocercas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Alertas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Historial 30 días</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>App para conductores</span>
+                        </li>
+                    </ul>
+                </div>
+
+                @* Card: En Crecimiento — Más Popular *@
+                <div class="pricing-card anim-card-3 relative flex flex-col bg-white border-2 border-primary text-center rounded-2xl p-8 shadow-2xl shadow-blue-900/10 hover:shadow-[0_0_40px_rgba(19,100,237,0.25)] lg:scale-105 z-10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">
+                        Más Popular
+                    </div>
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">En Crecimiento</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para operaciones en expansión</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-5xl font-extrabold text-slate-900">$899</span>
+                        <span class="text-slate-500 text-sm">MXN/mes</span>
+                    </div>
+                    <button class="mb-8 w-full relative overflow-hidden rounded-full bg-primary py-3 text-sm font-bold text-white transition-all hover:bg-blue-700 hover:shadow-lg group">
+                        <span class="relative z-10">Elegir En Crecimiento</span>
+                        <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <strong>Todo en Pequeña Flota +</strong>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Optimización de rutas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Gestión de envíos</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Calificación de choferes</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Mapa de calor</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <span>Gestión documental</span>
+                        </li>
+                    </ul>
+                </div>
+
+                @* Card: Operación Compleja *@
+                <div class="pricing-card anim-card-4 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
+                    <div class="mb-4">
+                        <h3 class="font-bold text-xl text-slate-900">Operación Compleja</h3>
+                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Flotas grandes y operaciones críticas</p>
+                    </div>
+                    <div class="mb-6 flex items-baseline justify-center gap-1">
+                        <span class="text-2xl font-extrabold text-slate-900">Contactar</span>
+                    </div>
+                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
+                        Cotizar Ahora
+                    </button>
+                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                            <strong>Suite completa +</strong>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>API personalizada</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Hardware GPS incluido</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Soporte 24/7</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                            <span>Integraciones personalizadas</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            @* -- Fin Cards Empresa -- *@
+
+            @* -- Tabla Comparativa Empresa -- *@
+            <div class="mt-20 lg:mt-28 anim-table">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-bold text-slate-900">Compara los planes empresariales</h3>
+                </div>
+
+                @* Mobile Empresa *@
+                <div class="space-y-16 lg:hidden">
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-slate-900">Gratis</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Rastreo</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">1 unidad</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo básico</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo en tiempo real</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-slate-900">Pequeña Flota</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Rastreo y Operación</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Rastreo en tiempo real</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Historial 30 días</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Geocercas</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">App para conductores</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-[0_4px_16px_rgba(19,100,237,0.12)] overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-primary">En Crecimiento</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Logística Avanzada</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Optimización de rutas</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Gestión de envíos</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Calificación de choferes</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Mapa de calor</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Gestión documental</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <section class="mb-10 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden pt-4 pb-2">
+                        <div class="px-4 mb-4"><h2 class="text-lg font-bold text-slate-900">Operación Compleja</h2></div>
+                        <table class="w-full">
+                            <caption class="bg-slate-50 border-t border-slate-200 py-3 px-4 text-sm font-bold text-slate-800 text-left">Enterprise</caption>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Suite completa</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">API personalizada</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Hardware GPS incluido</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Soporte 24/7</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                                <tr class="border-t border-slate-200">
+                                    <th class="py-4 px-4 text-sm font-normal text-slate-600 text-left">Integraciones personalizadas</th>
+                                    <td class="py-4 pe-4"><svg class="ms-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </div>
+                @* Fin Mobile Empresa *@
+
+                @* Desktop Empresa *@
+                <div class="hidden lg:block overflow-x-auto">
+                    <table class="w-full h-px">
+                        <caption class="sr-only">Comparación de planes empresariales</caption>
+                        <thead class="sticky top-0 bg-white z-10 shadow-sm">
+                            <tr>
+                                <th class="py-4 ps-6 pe-6 text-sm font-medium text-slate-600 text-left w-1/3">Funcionalidad</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-slate-700 text-center">Gratis</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-slate-700 text-center">Pequeña Flota</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-primary text-center">En Crecimiento</th>
+                                <th class="w-1/6 py-4 px-6 text-base font-bold text-slate-700 text-center">Op. Compleja</th>
+                            </tr>
+                        </thead>
+                        <tbody class="border-t border-slate-200 divide-y divide-slate-200">
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Rastreo</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Rastreo básico</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Rastreo en tiempo real</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Historial</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Historial 7 días</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Historial 30 días</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Alertas y Geocercas</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Geocercas</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Alertas</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Operación y Logística</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">App para conductores</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Optimización de rutas</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Gestión de envíos</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Calificación de choferes</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Mapa de calor</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Gestión documental</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr><th class="py-3 ps-6 bg-slate-50 font-bold text-slate-800 text-left text-sm" colspan="5">Enterprise</th></tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">API personalizada</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Hardware GPS incluido</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Soporte 24/7</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 ps-6 pe-6 text-sm text-slate-600">Integraciones personalizadas</td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></td>
+                                <td class="py-4 px-6 text-center"><svg class="mx-auto size-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @* Fin Desktop Empresa *@
+
+            </div>
+            @* Fin Tabla Empresa *@
+
+        </div>
+        @* ===== FIN MODO EMPRESA ===== *@
+
+    </div>
+</div>
+
+@* ===== CTA FINAL ===== *@
+<div class="relative bg-primary overflow-hidden anim-cta">
+    <div class="absolute inset-0 opacity-10 bg-cover bg-center"
+         style="background-image:url('https://images.unsplash.com/photo-1494783367193-149034c05e8f?auto=format&fit=crop&w=1600&q=80')">
+    </div>
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl font-extrabold text-white md:text-4xl">
+            ¿Listo para optimizar tu logística?
+        </h2>
+        <p class="mt-4 text-lg text-blue-100 max-w-2xl mx-auto">
+            Únete a más de 500 empresas mexicanas que ya controlan su flota con Spider Fleet.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/SignUp" class="rounded-full bg-white px-8 py-4 text-sm font-bold text-primary shadow-lg hover:bg-blue-50 transition-all">
+                Empieza Gratis Ahora
+            </a>
+            <a href="/contacto" class="rounded-full border-2 border-white px-8 py-4 text-sm font-bold text-white hover:bg-white/10 transition-all">
+                Hablar con Ventas
+            </a>
+        </div>
+        <p class="mt-4 text-xs text-blue-200">Sin tarjeta. Sin compromisos.</p>
+    </div>
+</div>
+
+@code {
+    private bool IsPersonalMode { get; set; } = true;
+
+    private void SetMode(bool personal) => IsPersonalMode = personal;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+
+    private string SliderStyle  => IsPersonalMode ? "transform:translateX(0)"    : "transform:translateX(100%)";
+    private string BtnPersonal  => IsPersonalMode ? "text-indigo-600 font-bold"  : "text-slate-500 font-semibold";
+    private string BtnEmpresa   => IsPersonalMode ? "text-slate-500 font-semibold" : "text-primary font-bold";
+    private string ShowPersonal => IsPersonalMode ? "block" : "hidden";
+    private string ShowEmpresa  => IsPersonalMode ? "hidden" : "block";
+}

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Bloquear archivos internos de Blazor WASM
+Disallow: /_framework/
+Disallow: /css/
+Disallow: /lib/
+
+Sitemap: https://spiderfleet.mx/sitemap.xml

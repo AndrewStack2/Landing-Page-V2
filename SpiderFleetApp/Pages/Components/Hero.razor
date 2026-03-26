@@ -1,0 +1,291 @@
+@inject IJSRuntime JS
+
+@* ──────────────────────────────────────────────────────────────────────────
+   Hero.razor — Responsive Switcher (Mobile Phone / Desktop Browser)
+   ────────────────────────────────────────────────────────────────────────── *@
+
+<section id="inicio"
+         class="relative flex w-full min-h-screen flex-col items-center justify-center
+                overflow-hidden bg-white px-6
+                pt-[92px] pb-16
+                sm:py-24
+                md:py-32">
+
+    @* ── Orbs decorativos ── *@
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/60 rounded-full blur-3xl -z-10"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100/40 rounded-full blur-3xl -z-10"></div>
+
+    <div class="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-8 lg:px-16">
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+
+            @* ────────────────────────────────────────────────────────────────
+               COLUMNA IZQUIERDA — Copy B2B
+               ──────────────────────────────────────────────────────────────── *@
+            <div class="flex flex-col items-start lg:col-span-5 scroll-animate">
+
+                @* Badge *@
+                <div class="inline-flex items-center rounded-full border border-slate-200
+                            bg-white px-3 py-1 text-xs font-semibold text-slate-600 mb-6 shadow-sm">
+                    <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-primary"></span>
+                    Conoce el sistema que entiende tu flota
+                </div>
+
+                @* Título Principal *@
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1]
+                           text-slate-900 mb-6 drop-shadow-sm">
+                    La inteligencia que mueve tu flota hacia
+                    <span class="text-primary block">adelante.</span>
+                </h1>
+
+                @* Cuerpo *@
+                <p class="text-lg text-slate-600 leading-relaxed mb-8 max-w-lg">
+                    Mucho más que un simple GPS. SpiderFleet es el sistema operativo integral
+                    diseñado para mantener tus vehículos en ruta, tus documentos al día y tus costos bajo control.
+                </p>
+
+                @* CTA *@
+                <div class="flex flex-col sm:flex-row items-start gap-4 w-full mt-2">
+                    <a href="/SignUp" class="flex items-center justify-center gap-2 rounded-xl
+                                   bg-primary px-6 py-3.5 text-sm font-bold text-white
+                                   shadow-lg shadow-primary/30 w-full sm:w-auto
+                                   transition-all hover:bg-blue-700 hover:-translate-y-0.5">
+                        Empieza Gratis Ahora
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </a>
+                    <a href="/precios" class="flex items-center justify-center gap-2 rounded-xl border
+                                   bg-white border-slate-200 px-6 py-3.5 text-sm font-bold text-slate-700
+                                   shadow-sm w-full sm:w-auto transition-all hover:-translate-y-0.5 hover:bg-slate-50">
+                        Ver Precios
+                    </a>
+                </div>
+            </div>
+
+            @* ────────────────────────────────────────────────────────────────
+               COLUMNA DERECHA — INTERACTIVE MOCKUP SWITCHER
+               ──────────────────────────────────────────────────────────────── *@
+            <div class="relative lg:col-span-7 flex flex-col items-center scroll-animate delay-200">
+
+                @* ==========================================
+                   1. MOBILE MOCKUP (Visible on mobile only)
+                   ========================================== *@
+                <div class="flex md:hidden relative mx-auto border-slate-800 bg-slate-800 border-[10px] rounded-[2.5rem] h-[550px] w-[300px] shadow-2xl z-10 overflow-hidden">
+                    @* Dynamic Island / Notch *@
+                    <div class="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-30 flex items-center justify-between px-2">
+                        <div class="w-2 h-2 rounded-full bg-slate-800/50"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-blue-900/80"></div>
+                    </div>
+                    
+                    @* Phone Screen Area *@
+                    <div class="relative w-full h-full bg-white overflow-hidden rounded-[2rem] flex flex-col">
+                        <div class="flex-1 relative">
+                            @MockupContent
+                        </div>
+
+                        @* MOBILE DOCK (Stacked Icons, Inside Phone) *@
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-40 flex justify-between w-[92%] p-1.5 bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-700/50">
+                            <button @onclick="() => SetActiveTab(0)" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl transition-all duration-300 border @GetTabClass(0)">
+                                <span class="material-symbols-outlined text-[20px]">my_location</span>
+                                <span class="text-[9px] font-bold mt-0.5">Rastreo</span>
+                            </button>
+                            <button @onclick="() => SetActiveTab(1)" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl transition-all duration-300 border @GetTabClass(1)">
+                                <span class="material-symbols-outlined text-[20px]">notifications_active</span>
+                                <span class="text-[9px] font-bold mt-0.5">Alertas</span>
+                            </button>
+                            <button @onclick="() => SetActiveTab(2)" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl transition-all duration-300 border @GetTabClass(2)">
+                                <span class="material-symbols-outlined text-[20px]">build_circle</span>
+                                <span class="text-[9px] font-bold mt-0.5">Taller</span>
+                            </button>
+                            <button @onclick="() => SetActiveTab(3)" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl transition-all duration-300 border @GetTabClass(3)">
+                                <span class="material-symbols-outlined text-[20px]">route</span>
+                                <span class="text-[9px] font-bold mt-0.5">Rutas</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                @* ==========================================
+                   2. DESKTOP BROWSER MOCKUP (Visible on Desktop only)
+                   ========================================== *@
+                <div class="hidden md:flex w-full rounded-2xl border border-slate-200/80 bg-white shadow-2xl overflow-hidden flex-col relative z-10">
+                    @* Fake Chrome Top Bar *@
+                    <div class="flex items-center bg-slate-50/80 backdrop-blur-md px-4 py-3 border-b border-slate-200 gap-4">
+                        <div class="flex gap-1.5">
+                            <div class="h-3 w-3 rounded-full bg-slate-300"></div>
+                            <div class="h-3 w-3 rounded-full bg-slate-300"></div>
+                            <div class="h-3 w-3 rounded-full bg-slate-300"></div>
+                        </div>
+                        <div class="flex-1 flex justify-center">
+                            <div class="flex h-6 w-64 items-center justify-center rounded-md
+                                        bg-slate-200/50 px-2 text-[11px] text-slate-500 font-medium font-mono">
+                                <span class="material-symbols-outlined text-[14px] mr-1">lock</span>
+                                app.spiderfleet.com/@GetCurrentRoute()
+                            </div>
+                        </div>
+                        <div class="w-10"></div>
+                    </div>
+
+                    @* ÁREA DINÁMICA DE VISTA *@
+                    <div class="relative h-[500px] w-full bg-slate-50 overflow-hidden">
+                        @MockupContent
+
+                        @* DESKTOP DOCK (Horizontal layout, Inside Browser) *@
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 flex gap-2 p-2 bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-700/50 w-max">
+                            <button @onclick="() => SetActiveTab(0)" class="flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 border @GetTabClass(0)">
+                                <span class="material-symbols-outlined text-[20px]">my_location</span>
+                                <span class="text-[13px] font-bold">Rastreo</span>
+                            </button>
+                            <button @onclick="() => SetActiveTab(1)" class="flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 border @GetTabClass(1)">
+                                <span class="material-symbols-outlined text-[20px]">notifications_active</span>
+                                <span class="text-[13px] font-bold">Alertas</span>
+                            </button>
+                            <button @onclick="() => SetActiveTab(2)" class="flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 border @GetTabClass(2)">
+                                <span class="material-symbols-outlined text-[20px]">build_circle</span>
+                                <span class="text-[13px] font-bold">Taller</span>
+                            </button>
+                            <button @onclick="() => SetActiveTab(3)" class="flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 border @GetTabClass(3)">
+                                <span class="material-symbols-outlined text-[20px]">route</span>
+                                <span class="text-[13px] font-bold">Rutas</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private int activeTab = 0;
+
+    private void SetActiveTab(int tabIndex)
+    {
+        activeTab = tabIndex;
+    }
+
+    private string GetTabClass(int tabIndex)
+    {
+        // Active gets white border and subtle fill. Inactive is just text.
+        return activeTab == tabIndex 
+            ? "bg-white/10 border-white/40 text-white shadow-inner" 
+            : "border-transparent text-slate-400 hover:text-white hover:bg-white/5";
+    }
+
+    private string GetCurrentRoute()
+    {
+        return activeTab switch
+        {
+            0 => "mapa",
+            1 => "notificaciones",
+            2 => "mantenimiento",
+            3 => "rutas",
+            _ => "dashboard"
+        };
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("initScrollAnimations");
+        }
+    }
+
+    // ────────────────────────────────────────────────────────────────────────
+    // RENDER FRAGMENT: This injects the exact same UI inside the Phone OR the Browser
+    // ────────────────────────────────────────────────────────────────────────
+    private RenderFragment MockupContent => @<text>
+        <div @key="activeTab" class="absolute inset-0 animate-mockup h-full">
+            @if (activeTab == 0)
+            {
+                @* RASTREO — Imagen real del mapa con vehículos *@
+                <div class="absolute inset-0 bg-slate-900">
+                    <img src="Assets/MOBILE-CAR.png" alt="Mapa de rastreo GPS con vehículos" class="w-full h-full object-cover md:hidden" />
+                    <img src="Assets/MAP-CARS-2.png" alt="Mapa de rastreo GPS con vehículos" class="w-full h-full object-cover hidden md:block" />
+                </div>
+            }
+            else if (activeTab == 1)
+            {
+                <div class="absolute inset-0 bg-slate-50 p-6 flex flex-col gap-3 pt-12 sm:pt-6 pb-24">
+                    <h3 class="text-sm font-bold text-slate-800 mb-2">Alertas y Vencimientos</h3>
+                    
+                    <div class="bg-white border-l-4 border-red-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3">
+                        <span class="material-symbols-outlined text-red-500 mt-0.5 text-[20px]">warning</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900">Seguro por vencer: S-205</p>
+                            <p class="text-[10px] text-slate-500">Póliza vence en 3 días.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-l-4 border-amber-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3">
+                        <span class="material-symbols-outlined text-amber-500 mt-0.5 text-[20px]">car_repair</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900">Mantenimiento</p>
+                            <p class="text-[10px] text-slate-500">Unidad A-101 (10k km).</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-l-4 border-green-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3 opacity-60">
+                        <span class="material-symbols-outlined text-green-500 mt-0.5 text-[20px]">verified</span>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900">Licencia renovada</p>
+                            <p class="text-[10px] text-slate-500">Documento archivado.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (activeTab == 2)
+            {
+                <div class="absolute inset-0 bg-slate-50 p-6 pt-12 sm:pt-6 pb-24">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-sm font-bold text-slate-800">Control de Gastos</h3>
+                        <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded">YTD 2026</span>
+                    </div>
+                    
+                    <div class="flex items-end gap-2 h-24 mb-6 border-b border-slate-200 pb-1">
+                        <div class="w-full bg-blue-200 rounded-t h-12 relative"><span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] text-slate-400">Ene</span></div>
+                        <div class="w-full bg-blue-200 rounded-t h-16 relative"><span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] text-slate-400">Feb</span></div>
+                        <div class="w-full bg-indigo-500 rounded-t h-20 relative"><span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] font-bold text-indigo-600">Mar</span></div>
+                        <div class="w-full bg-slate-100 rounded-t h-8 relative"><span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] text-slate-400">Abr</span></div>
+                    </div>
+
+                    <div class="bg-white rounded border border-slate-200 overflow-hidden text-[10px]">
+                        <div class="grid grid-cols-3 bg-slate-100 p-2 font-bold text-slate-600">
+                            <div>Concepto</div><div>Unidad</div><div class="text-right">Costo</div>
+                        </div>
+                        <div class="grid grid-cols-3 p-2 border-b border-slate-100 text-slate-700">
+                            <div>Aceite</div><div>A-101</div><div class="text-right text-red-600">-$1,200</div>
+                        </div>
+                        <div class="grid grid-cols-3 p-2 text-slate-700">
+                            <div>Balatas</div><div>C-302</div><div class="text-right text-red-600">-$850</div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (activeTab == 3)
+            {
+                @* RUTAS — Imagen real del mapa con ruta optimizada *@
+                <div class="absolute inset-0 bg-slate-900">
+                    <img src="Assets/MOBILE-ROUTE.png" alt="Mapa de optimización de rutas" class="w-full h-full object-cover md:hidden" />
+                    <img src="Assets/Map-routes-2.png" alt="Mapa de optimización de rutas" class="w-full h-full object-cover hidden md:block" />
+                </div>
+            }
+        </div>
+    </text>;
+}
+
+<style>
+    /* ANIMACIÓN ESTILO SCOTCH POS */
+    .animate-mockup {
+        animation: mockupAppears 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    @@keyframes mockupAppears {
+        0% { opacity: 0; transform: translateY(10px) scale(0.97); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    
+    @@keyframes dash {
+        to { stroke-dashoffset: -100; }
+    }
+</style>

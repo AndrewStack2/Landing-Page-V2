@@ -1,0 +1,371 @@
+html,
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+h1:focus {
+    outline: none;
+}
+
+
+a,
+.btn-link {
+    color: #0071c1;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+
+.content {
+    padding-top: 1.1rem;
+}
+
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+
+.invalid {
+    outline: 1px solid red;
+}
+
+
+.validation-message {
+    color: red;
+}
+
+
+#blazor-error-ui {
+    color-scheme: light only;
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    padding: 1rem 1rem 1rem 3.7rem;
+    color: white;
+}
+
+
+.blazor-error-boundary::after {
+    content: "An error has occurred."
+}
+
+
+.loading-progress {
+    position: absolute;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    inset: 20vh 0 auto 0;
+    margin: 0 auto 0 auto;
+}
+
+
+.loading-progress circle {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+
+
+.loading-progress circle:last-child {
+    stroke: #1b6ec2;
+    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+    transition: stroke-dasharray 0.05s ease-in-out;
+}
+
+
+.loading-progress-text {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+}
+
+
+.loading-progress-text:after {
+    content: var(--blazor-load-percentage-text, "Loading");
+}
+
+
+code {
+    color: #c02d76;
+}
+
+
+.form-floating>.form-control-plaintext::placeholder,
+.form-floating>.form-control::placeholder {
+    color: var(--bs-secondary-color);
+    text-align: end;
+}
+
+
+.form-floating>.form-control-plaintext:focus::placeholder,
+.form-floating>.form-control:focus::placeholder {
+    text-align: start;
+}
+
+
+/* Custom utility classes from original HTML */
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+
+.preserve-3d {
+    transform-style: preserve-3d;
+}
+
+
+.backface-hidden {
+    backface-visibility: hidden;
+}
+
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.data-flow-line {
+    background: linear-gradient(90deg, transparent 0%, #1364ed 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: moveGradient 2s linear infinite;
+}
+
+
+@keyframes moveGradient {
+    0% {
+        background-position: 100% 0;
+    }
+
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+
+.tilt-container:hover .tilt-element {
+    transform: rotateX(5deg) rotateY(-5deg) scale(1.02);
+}
+
+
+.tilt-element {
+    transition: transform 0.3s ease-out;
+}
+
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ===== SCROLL ANIMATIONS ===== */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.scroll-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+.delay-100 {
+    transition-delay: 150ms;
+}
+
+.delay-200 {
+    transition-delay: 300ms;
+}
+
+.delay-300 {
+    transition-delay: 450ms;
+}
+
+.delay-400 {
+    transition-delay: 600ms;
+}
+
+.delay-500 {
+    transition-delay: 750ms;
+}
+
+
+/* ===== SPRING ANIMATIONS (Navbar / Dropdowns) ===== */
+.transition-spring {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+.dropdown-enter {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.95);
+}
+
+
+.dropdown-enter-active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================= */
+/* CSS GLOBE ILLUSION                        */
+/* ========================================= */
+
+.css-globe-container {
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    background-color: #0b4ebd;
+    box-shadow: inset -40px -40px 60px rgba(0, 0, 0, 0.7),
+        inset 10px 10px 40px rgba(255, 255, 255, 0.4),
+        0 0 40px rgba(19, 100, 237, 0.3);
+}
+
+.globe-map {
+    position: absolute;
+    width: 180%;
+    top: 50%;
+    left: -10%;
+    transform: translateY(-50%);
+    filter: invert(100%) opacity(0.35);
+    pointer-events: none;
+    max-width: none;
+}
+
+.globe-pin {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.globe-pin .pin-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px 2px rgba(255, 255, 255, 1);
+    z-index: 2;
+}
+
+.globe-pin .pin-pulse {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 153, 225, 0.8);
+    border-radius: 50%;
+    animation: pingGlobe 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    z-index: 1;
+}
+
+@keyframes pingGlobe {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    75%,
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+
+/* ===== DOCK MOBILE — Espacio inferior ===== */
+@media (max-width: 767px) {
+    body {
+        padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+/* ── Back-to-Top: posición base (desktop) ── */
+.back-to-top-btn {
+    bottom: 1.5rem;
+    /* equivale a bottom-6, igual que antes */
+}
+
+/* ── Back-to-Top: en mobile, sube por encima del dock ── */
+@media (max-width: 767px) {
+    .back-to-top-btn {
+        bottom: calc(92px + 12px + env(safe-area-inset-bottom, 0px));
+        /* 92px = altura del dock  |  12px = margen visual entre ambos */
+    }
+}

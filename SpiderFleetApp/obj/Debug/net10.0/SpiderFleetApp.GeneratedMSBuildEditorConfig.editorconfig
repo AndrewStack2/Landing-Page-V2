@@ -1,0 +1,153 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.VerifyReferenceTrimCompatibility = 
+build_property.VerifyReferenceAotCompatibility = 
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = SpiderFleetApp
+build_property.RootNamespace = SpiderFleetApp
+build_property.ProjectDir = C:\Users\Andrew Work\Documents\Landing Page V2\SpiderFleetApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Andrew Work\Documents\Landing Page V2\SpiderFleetApp
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Layout/EmptyLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XEVtcHR5TGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Layout/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/AboutUs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWJvdXRVcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/CtaBannerFinal.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xDdGFCYW5uZXJGaW5hbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/FeaturesMode.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xGZWF0dXJlc01vZGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/Hero.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xIZXJvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/NavbarMenuItem.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xOYXZiYXJNZW51SXRlbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/NavbarProductItem.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xOYXZiYXJQcm9kdWN0SXRlbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/PainVsDream.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xQYWluVnNEcmVhbS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/PricingCarousel.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xQcmljaW5nQ2Fyb3VzZWwucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/SignUp.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xTaWduVXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/StickyFooter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xTdGlja3lGb290ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/TestimonialsGrid.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xUZXN0aW1vbmlhbHNHcmlkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/VideoFeature.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xWaWRlb0ZlYXR1cmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Contact.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29udGFjdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/FAQ.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRkFRLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Gestion-documental.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvbi1kb2N1bWVudGFsLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Maintenance.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbnRlbmFuY2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/NotFound.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm90Rm91bmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Pricing.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpY2luZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/RouteOptimization.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm91dGVPcHRpbWl6YXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/TrackingGps.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhY2tpbmdHcHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2VhdGhlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-0sr86qk4li
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-rqswkxelzc
+
+[C:/Users/Andrew Work/Documents/Landing Page V2/SpiderFleetApp/Pages/Components/NavbarMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xOYXZiYXJNZW51LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-gtsnj64uu3
