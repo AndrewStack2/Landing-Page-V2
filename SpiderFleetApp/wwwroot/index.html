@@ -20,7 +20,6 @@
 
     <!-- ═══════════════════════════════════
          SEO — OPEN GRAPH
-         WhatsApp, LinkedIn, Facebook, Slack
     ═══════════════════════════════════ -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://spiderfleet.mx/" />
@@ -36,7 +35,6 @@
 
     <!-- ═══════════════════════════════════
          SEO — TWITTER CARD
-         X (Twitter), Discord, Telegram
     ═══════════════════════════════════ -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Spider Fleet — Inteligencia de Flota para México" />
@@ -47,8 +45,6 @@
 
     <!-- ═══════════════════════════════════
          SEO — SCHEMA.ORG JSON-LD
-         Para Google Rich Results y bots de IA
-         (ChatGPT Search, Perplexity, Gemini)
     ═══════════════════════════════════ -->
     <script type="application/ld+json">
     {
@@ -189,11 +185,6 @@
 
 <body>
     <div id="app">
-        <!-- ══════════════════════════════════════
-             SPIDER FLEET — PREMIUM LOADING SCREEN
-             Shown while Blazor WASM bundle loads.
-             Auto-hidden by Blazor when ready.
-        ══════════════════════════════════════ -->
         <div id="sf-splash" style="
             position: fixed; inset: 0;
             display: flex; flex-direction: column;
@@ -202,7 +193,6 @@
             z-index: 9999;
             font-family: 'DM Sans', sans-serif;
         ">
-            <!-- Logo -->
             <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
                 <img src="Assets/logoazul.png" alt="Spider Fleet"
                     style="height: 44px; width: auto; opacity: 0; animation: sf-logo-in 0.6s 0.2s ease-out forwards;" />
@@ -213,7 +203,6 @@
                 ">Cargando plataforma...</span>
             </div>
 
-            <!-- Pulse Dots -->
             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <div
                     style="height:18px;width:18px;border-radius:50%;background-color:#b3d4fc;animation:sf-pulse 1.5s infinite ease-in-out;animation-delay:-0.3s;">
@@ -270,8 +259,13 @@
 
     <script src="_framework/blazor.webassembly.js"></script>
 
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         SPIDERFLEET — JS INTEROP FUNCTIONS
+         PASTE LOCATION: after blazor.webassembly.js, before </body>
+         DO NOT add any other <script> blocks below this one.
+    ═══════════════════════════════════════════════════════════════════════ -->
     <script>
-        // ─── Navbar scroll listener ───────────────────────────────────────────────
+        // ─── Navbar scroll listener ───────────────────────────────────────────
         window.SpiderFleet = window.SpiderFleet || {};
 
         window.SpiderFleet.registerScrollListener = function (dotNetRef) {
@@ -285,16 +279,22 @@
             window._spiderScrollHandler();
         };
 
-        // ─── Pricing carousel scroll ─────────────────────────────────────────────
+        // ─── Pricing carousel scroll ──────────────────────────────────────────
         function scrollPricing(direction) {
             const container = document.getElementById('pricing-carousel');
             if (container) {
-                const scrollAmount = container.clientWidth * 0.8;
-                container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+                container.scrollBy({ left: direction * container.clientWidth * 0.8, behavior: 'smooth' });
             }
         }
 
-        // ─── Pricing carousel drag ───────────────────────────────────────────────
+        function scrollPricingBusiness(direction) {
+            const container = document.getElementById('pricing-carousel-business');
+            if (container) {
+                container.scrollBy({ left: direction * container.clientWidth * 0.8, behavior: 'smooth' });
+            }
+        }
+
+        // ─── Pricing carousel drag ────────────────────────────────────────────
         window.initializeCarouselDrag = function () {
             const carousel = document.getElementById('pricing-carousel');
             if (!carousel) return;
@@ -327,51 +327,81 @@
                 if (!isDown) return;
                 e.preventDefault();
                 const x = e.pageX - newCarousel.offsetLeft;
-                const walk = (x - startX) * 2;
-                newCarousel.scrollLeft = scrollLeft - walk;
+                newCarousel.scrollLeft = scrollLeft - (x - startX) * 2;
             });
         };
 
-        // ─── Back-to-top visibility ──────────────────────────────────────────────
+        // ─── Back-to-top visibility ───────────────────────────────────────────
         window.handleBackToTopVisibility = function () {
-            const backToTopBtn = document.getElementById('back-to-top');
-            if (!backToTopBtn) return;
-
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
-                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
-                    backToTopBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                    btn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-10');
+                    btn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
                 } else {
-                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
-                    backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+                    btn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-10');
+                    btn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
                 }
             });
         };
 
-        // ─── Scroll entrance animations (ONE-WAY — never removes is-visible)
+        // ─── Scroll entrance animations ───────────────────────────────────────
+        //
+        // WHY double-RAF:
+        //   Blazor WASM patches the DOM synchronously, then fires OnAfterRenderAsync.
+        //   Without double-RAF the IntersectionObserver registers BEFORE the browser
+        //   has painted the opacity:0 initial state. The observer fires immediately,
+        //   adds is-visible before the first paint, and the browser sees no transition.
+        //
+        //   RAF-1: yields to the browser to schedule a paint.
+        //   RAF-2: yields again AFTER that paint has been committed to screen.
+        //   Only then does the observer register → elements are already painted
+        //   as invisible → transition fires correctly on scroll.
+        //
+        // WHY singleton _sfScrollObserver:
+        //   FeaturesMode.razor calls initScrollAnimations on every toggle switch.
+        //   Without disconnect() + singleton, each toggle stacks a new observer
+        //   on every element → duplicate callbacks → animation flicker.
+        //
+        // WHY unobserve after trigger:
+        //   Once is-visible is added, the element never needs to be observed again.
+        //   Unobserving immediately frees memory and prevents ghost callbacks.
+        //
         window.initScrollAnimations = function () {
-            if (window._sfScrollObserver) {
-                window._sfScrollObserver.disconnect();
-            }
-
-            window._sfScrollObserver = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        window._sfScrollObserver.unobserve(entry.target);
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    if (window._sfScrollObserver) {
+                        window._sfScrollObserver.disconnect();
                     }
-                });
-            }, {
-                threshold: 0.08,
-                rootMargin: '0px 0px -60px 0px'
-            });
 
-            document.querySelectorAll('.scroll-animate:not(.is-visible)').forEach(function (el) {
-                window._sfScrollObserver.observe(el);
+                    window._sfScrollObserver = new IntersectionObserver(function (entries) {
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('is-visible');
+                                window._sfScrollObserver.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        threshold: 0.08,
+                        rootMargin: '0px 0px -50px 0px'
+                    });
+
+                    document.querySelectorAll('.scroll-animate:not(.is-visible)').forEach(function (el) {
+                        window._sfScrollObserver.observe(el);
+                    });
+                });
             });
         };
 
-        // ─── Video autoplay — iOS Safari + Android Chrome ────────────────────────
+        // ─── Compatibility alias ──────────────────────────────────────────────
+        // TrackingGps.razor, Maintenance.razor, GestionDocumental.razor and
+        // RouteOptimization.razor call "initializeScrollAnimations" (capital S).
+        // This alias forwards those calls to the canonical function above
+        // without touching any .razor file.
+        window.initializeScrollAnimations = window.initScrollAnimations;
+
+        // ─── Video autoplay — iOS Safari + Android Chrome ─────────────────────
         window.initVideoAutoplay = function (id) {
             var video = document.getElementById(id);
             if (!video) return;
@@ -396,7 +426,7 @@
             attemptPlay();
         };
 
-        // ─── Restart video (Personal mode tab switch) ────────────────────────────
+        // ─── Restart video (Personal mode tab switch) ─────────────────────────
         window.restartVideo = function (id) {
             var video = document.getElementById(id);
             if (video) {
