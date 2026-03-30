@@ -347,27 +347,6 @@
         };
 
         // ─── Scroll entrance animations ───────────────────────────────────────
-        //
-        // WHY double-RAF:
-        //   Blazor WASM patches the DOM synchronously, then fires OnAfterRenderAsync.
-        //   Without double-RAF the IntersectionObserver registers BEFORE the browser
-        //   has painted the opacity:0 initial state. The observer fires immediately,
-        //   adds is-visible before the first paint, and the browser sees no transition.
-        //
-        //   RAF-1: yields to the browser to schedule a paint.
-        //   RAF-2: yields again AFTER that paint has been committed to screen.
-        //   Only then does the observer register → elements are already painted
-        //   as invisible → transition fires correctly on scroll.
-        //
-        // WHY singleton _sfScrollObserver:
-        //   FeaturesMode.razor calls initScrollAnimations on every toggle switch.
-        //   Without disconnect() + singleton, each toggle stacks a new observer
-        //   on every element → duplicate callbacks → animation flicker.
-        //
-        // WHY unobserve after trigger:
-        //   Once is-visible is added, the element never needs to be observed again.
-        //   Unobserving immediately frees memory and prevents ghost callbacks.
-        //
         window.initScrollAnimations = function () {
             requestAnimationFrame(function () {
                 requestAnimationFrame(function () {
@@ -395,11 +374,86 @@
         };
 
         // ─── Compatibility alias ──────────────────────────────────────────────
-        // TrackingGps.razor, Maintenance.razor, GestionDocumental.razor and
-        // RouteOptimization.razor call "initializeScrollAnimations" (capital S).
-        // This alias forwards those calls to the canonical function above
-        // without touching any .razor file.
         window.initializeScrollAnimations = window.initScrollAnimations;
+
+        // ─── Count-Up Animation ───────────────────────────────────────────────
+        //
+        // USO EN RAZOR:
+        //   <span data-countup="5" data-suffix="k+" data-duration="2000">0</span>
+        //   <span data-countup="98" data-suffix="%" data-duration="1500">0</span>
+        //   <span data-countup="32" data-suffix="" data-duration="1200">0</span>
+        //
+        // ATRIBUTOS:
+        //   data-countup   → número destino (float permitido)
+        //   data-prefix    → texto antes del número  (opcional, ej: "$")
+        //   data-suffix    → texto después del número (opcional, ej: "k+", "%")
+        //   data-decimals  → decimales a mostrar      (opcional, default: 0)
+        //   data-duration  → duración en ms           (opcional, default: 1600)
+        //
+        // El observer usa threshold:0.5 — el número solo arranca cuando
+        // el 50% del elemento es visible, evitando disparos prematuros.
+        // data-counted previene que el mismo número cuente dos veces
+        // si initCountUp es llamado varias veces (ej: toggle de FeaturesMode).
+        //
+        window.initCountUp = function () {
+            requestAnimationFrame(function () {
+                requestAnimationFrame(function () {
+                    if (window._sfCountObserver) {
+                        window._sfCountObserver.disconnect();
+                    }
+
+                    window._sfCountObserver = new IntersectionObserver(function (entries) {
+                        entries.forEach(function (entry) {
+                            if (!entry.isIntersecting) return;
+
+                            var el = entry.target;
+                            if (el.getAttribute('data-counted') === 'true') return;
+
+                            el.setAttribute('data-counted', 'true');
+                            window._sfCountObserver.unobserve(el);
+
+                            var target = parseFloat(el.getAttribute('data-countup'));
+                            var duration = parseInt(el.getAttribute('data-duration') || '1600');
+                            var prefix = el.getAttribute('data-prefix') || '';
+                            var suffix = el.getAttribute('data-suffix') || '';
+                            var decimals = parseInt(el.getAttribute('data-decimals') || '0');
+
+                            var startTime = null;
+
+                            function animate(currentTime) {
+                                if (!startTime) startTime = currentTime;
+
+                                var progress = Math.min((currentTime - startTime) / duration, 1);
+                                // Ease-out cubic — rápido al inicio, desacelera al llegar al valor final
+                                var eased = 1 - Math.pow(1 - progress, 3);
+                                var current = target * eased;
+
+                                el.textContent = prefix +
+                                    (decimals > 0 ? current.toFixed(decimals) : Math.floor(current)) +
+                                    suffix;
+
+                                if (progress < 1) {
+                                    requestAnimationFrame(animate);
+                                } else {
+                                    // Garantizar que el valor final sea exacto
+                                    el.textContent = prefix +
+                                        (decimals > 0 ? target.toFixed(decimals) : Math.floor(target)) +
+                                        suffix;
+                                }
+                            }
+
+                            requestAnimationFrame(animate);
+                        });
+                    }, {
+                        threshold: 0.5
+                    });
+
+                    document.querySelectorAll('[data-countup]:not([data-counted])').forEach(function (el) {
+                        window._sfCountObserver.observe(el);
+                    });
+                });
+            });
+        };
 
         // ─── Video autoplay — iOS Safari + Android Chrome ─────────────────────
         window.initVideoAutoplay = function (id) {

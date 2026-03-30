@@ -214,19 +214,27 @@
                     </ul>
 
                     <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100">
-                        <div class="flex flex-col">
-                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">&lt; 3s</span>
-                            <span class="text-xs text-slate-500 font-medium">Tiempo de respuesta</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">24/7</span>
-                            <span class="text-xs text-slate-500 font-medium">Disponibilidad</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">100%</span>
-                            <span class="text-xs text-slate-500 font-medium">Seguro y encriptado</span>
-                        </div>
-                    </div>
+
+    <div class="flex flex-col">
+        <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">&lt; 3s</span>
+        @* ratio de tiempo — NO lleva count-up *@
+        <span class="text-xs text-slate-500 font-medium">Tiempo de respuesta</span>
+    </div>
+
+    <div class="flex flex-col">
+        <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">24/7</span>
+        @* disponibilidad — NO lleva count-up *@
+        <span class="text-xs text-slate-500 font-medium">Disponibilidad</span>
+    </div>
+
+    <div class="flex flex-col">
+        <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">
+            <span data-countup="100" data-suffix="%" data-duration="1500">0</span>
+        </span>
+        <span class="text-xs text-slate-500 font-medium">Seguro y encriptado</span>
+    </div>
+
+</div>
                 </div>
 
                 @* Columna derecha: video — 9:16 mobile, 1:1 desktop via .motor-video-wrapper *@
@@ -299,17 +307,15 @@
     private bool IsPersonalMode { get; set; } = false;
 
     private async Task SetMode(bool isPersonal)
-    {
-        IsPersonalMode = isPersonal;
-        StateHasChanged();
-        await Task.Delay(50);
-        await JS.InvokeVoidAsync("initScrollAnimations");
-
-        if (isPersonal)
-        {
-            await JS.InvokeVoidAsync("restartVideo", "motorVideo");
-        }
-    }
+{
+    IsPersonalMode = isPersonal;
+    StateHasChanged();
+    await Task.Delay(50);
+    await JS.InvokeVoidAsync("initScrollAnimations");
+    await JS.InvokeVoidAsync("initCountUp");   // ← agregar esta línea
+    if (isPersonal)
+        await JS.InvokeVoidAsync("restartVideo", "motorVideo");
+}
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
