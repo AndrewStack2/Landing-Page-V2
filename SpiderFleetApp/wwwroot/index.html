@@ -377,24 +377,6 @@
         window.initializeScrollAnimations = window.initScrollAnimations;
 
         // ─── Count-Up Animation ───────────────────────────────────────────────
-        //
-        // USO EN RAZOR:
-        //   <span data-countup="5" data-suffix="k+" data-duration="2000">0</span>
-        //   <span data-countup="98" data-suffix="%" data-duration="1500">0</span>
-        //   <span data-countup="32" data-suffix="" data-duration="1200">0</span>
-        //
-        // ATRIBUTOS:
-        //   data-countup   → número destino (float permitido)
-        //   data-prefix    → texto antes del número  (opcional, ej: "$")
-        //   data-suffix    → texto después del número (opcional, ej: "k+", "%")
-        //   data-decimals  → decimales a mostrar      (opcional, default: 0)
-        //   data-duration  → duración en ms           (opcional, default: 1600)
-        //
-        // El observer usa threshold:0.5 — el número solo arranca cuando
-        // el 50% del elemento es visible, evitando disparos prematuros.
-        // data-counted previene que el mismo número cuente dos veces
-        // si initCountUp es llamado varias veces (ej: toggle de FeaturesMode).
-        //
         window.initCountUp = function () {
             requestAnimationFrame(function () {
                 requestAnimationFrame(function () {
@@ -445,7 +427,7 @@
                             requestAnimationFrame(animate);
                         });
                     }, {
-                        threshold: 0.5
+                        threshold: 0.08
                     });
 
                     document.querySelectorAll('[data-countup]:not([data-counted])').forEach(function (el) {
