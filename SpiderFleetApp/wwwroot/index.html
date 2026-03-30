@@ -366,7 +366,7 @@
                         rootMargin: '0px 0px -50px 0px'
                     });
 
-                    document.querySelectorAll('.scroll-animate:not(.is-visible)').forEach(function (el) {
+                    document.querySelectorAll('.scroll-animate:not(.is-visible), .scroll-animate-left:not(.is-visible), .scroll-animate-right:not(.is-visible)').forEach(function (el) {
                         window._sfScrollObserver.observe(el);
                     });
                 });
