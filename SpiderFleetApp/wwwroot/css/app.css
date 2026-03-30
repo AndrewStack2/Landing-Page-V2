@@ -209,32 +209,31 @@ code {
 
 /* ===== SCROLL ANIMATIONS ===== */
 /*
-  Especificidad:
-  - "body .scroll-animate:not(.is-visible)" = (0,2,1)
-  - Tailwind CDN genera clases con especificidad (0,1,0)
-  - Con :not() ganamos el cascade SIN importar el orden de inyección del CDN.
-  - will-change promueve cada elemento a capa GPU → 60fps real.
-  - cubic-bezier(0.34, 1.56, 0.64, 1) tiene y2=1.56 → overshoot físico = spring.
+  :not(.is-visible) tiene especificidad (0,2,1) — siempre gana a Tailwind CDN (0,1,0).
+  Opacity y transform usan easings separados:
+    - opacity → ease-out puro (0.55s): fade limpio sin overshoot
+    - transform → spring real (0.7s, cubic-bezier con y > 1): movimiento con bounce
+  Sin scale() en el estado inicial — evita conflictos con hover:scale-* de Tailwind.
+  will-change activa compositing GPU → 60fps garantizado.
 */
 
 body .scroll-animate:not(.is-visible) {
     opacity: 0;
-    transform: translateY(30px) scale(0.97);
+    transform: translateY(28px);
 }
 
 body .scroll-animate {
     transition-property: opacity, transform;
-    transition-duration: 0.7s;
-    transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition-duration: 0.55s, 0.7s;
+    transition-timing-function: ease-out, cubic-bezier(0.34, 1.56, 0.64, 1);
     will-change: opacity, transform;
 }
 
 body .scroll-animate.is-visible {
     opacity: 1 !important;
-    transform: translateY(0px) scale(1) !important;
+    transform: translateY(0) !important;
 }
 
-/* Stagger delays — definidos aquí porque Tailwind v3 CDN no genera delay-400 ni delay-600 */
 body .scroll-animate.delay-75 {
     transition-delay: 75ms;
 }

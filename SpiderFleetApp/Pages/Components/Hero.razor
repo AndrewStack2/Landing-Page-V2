@@ -2,7 +2,7 @@
 
 @* ──────────────────────────────────────────────────────────────────────────
    Hero.razor — Responsive Switcher (Mobile Phone / Desktop Browser)
-   ────────────────────────────────────────────────────────────────────────── *@
+   ─────────────────────────────────────────────────────────────────────────── *@
 
 <section id="inicio"
          class="relative flex w-full min-h-screen flex-col items-center justify-center
@@ -74,14 +74,14 @@
                         <div class="w-2 h-2 rounded-full bg-slate-800/50"></div>
                         <div class="w-1.5 h-1.5 rounded-full bg-blue-900/80"></div>
                     </div>
-                    
+
                     @* Phone Screen Area *@
                     <div class="relative w-full h-full bg-white overflow-hidden rounded-[2rem] flex flex-col">
                         <div class="flex-1 relative">
                             @MockupContent
                         </div>
 
-                        @* MOBILE DOCK (Stacked Icons, Inside Phone) *@
+                        @* MOBILE DOCK *@
                         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-40 flex justify-between w-[92%] p-1.5 bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-700/50">
                             <button @onclick="() => SetActiveTab(0)" class="flex-1 flex flex-col items-center justify-center py-2 rounded-xl transition-all duration-300 border @GetTabClass(0)">
                                 <span class="material-symbols-outlined text-[20px]">my_location</span>
@@ -128,7 +128,7 @@
                     <div class="relative h-[500px] w-full bg-slate-50 overflow-hidden">
                         @MockupContent
 
-                        @* DESKTOP DOCK (Horizontal layout, Inside Browser) *@
+                        @* DESKTOP DOCK *@
                         <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 flex gap-2 p-2 bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-xl border border-slate-700/50 w-max">
                             <button @onclick="() => SetActiveTab(0)" class="flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all duration-300 border @GetTabClass(0)">
                                 <span class="material-symbols-outlined text-[20px]">my_location</span>
@@ -149,7 +149,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -165,9 +164,8 @@
 
     private string GetTabClass(int tabIndex)
     {
-        // Active gets white border and subtle fill. Inactive is just text.
-        return activeTab == tabIndex 
-            ? "bg-white/10 border-white/40 text-white shadow-inner" 
+        return activeTab == tabIndex
+            ? "bg-white/10 border-white/40 text-white shadow-inner"
             : "border-transparent text-slate-400 hover:text-white hover:bg-white/5";
     }
 
@@ -183,22 +181,16 @@
         };
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-        }
-    }
+    @* OnAfterRenderAsync ELIMINADO intencionalmente.
+       Home.razor es el componente raíz y llama initScrollAnimations
+       para TODOS los hijos en una sola pasada limpia.
+       Tener dos llamadas (Hero + Home) creaba un double-observer:
+       Hero disparaba a T≈33ms, Home lo desconectaba a T≈133ms. *@
 
-    // ────────────────────────────────────────────────────────────────────────
-    // RENDER FRAGMENT: This injects the exact same UI inside the Phone OR the Browser
-    // ────────────────────────────────────────────────────────────────────────
     private RenderFragment MockupContent => @<text>
         <div @key="activeTab" class="absolute inset-0 animate-mockup h-full">
             @if (activeTab == 0)
             {
-                @* RASTREO — Imagen real del mapa con vehículos *@
                 <div class="absolute inset-0 bg-slate-900">
                     <img src="Assets/MOBILE-CAR.png" alt="Mapa de rastreo GPS con vehículos" class="w-full h-full object-cover md:hidden" />
                     <img src="Assets/MAP-CARS-2.png" alt="Mapa de rastreo GPS con vehículos" class="w-full h-full object-cover hidden md:block" />
@@ -208,7 +200,7 @@
             {
                 <div class="absolute inset-0 bg-slate-50 p-6 flex flex-col gap-3 pt-12 sm:pt-6 pb-24">
                     <h3 class="text-sm font-bold text-slate-800 mb-2">Alertas y Vencimientos</h3>
-                    
+
                     <div class="bg-white border-l-4 border-red-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3">
                         <span class="material-symbols-outlined text-red-500 mt-0.5 text-[20px]">warning</span>
                         <div>
@@ -241,7 +233,7 @@
                         <h3 class="text-sm font-bold text-slate-800">Control de Gastos</h3>
                         <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-0.5 rounded">YTD 2026</span>
                     </div>
-                    
+
                     <div class="flex items-end gap-2 h-24 mb-6 border-b border-slate-200 pb-1">
                         <div class="w-full bg-blue-200 rounded-t h-12 relative"><span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] text-slate-400">Ene</span></div>
                         <div class="w-full bg-blue-200 rounded-t h-16 relative"><span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] text-slate-400">Feb</span></div>
@@ -264,7 +256,6 @@
             }
             else if (activeTab == 3)
             {
-                @* RUTAS — Imagen real del mapa con ruta optimizada *@
                 <div class="absolute inset-0 bg-slate-900">
                     <img src="Assets/MOBILE-ROUTE.png" alt="Mapa de optimización de rutas" class="w-full h-full object-cover md:hidden" />
                     <img src="Assets/Map-routes-2.png" alt="Mapa de optimización de rutas" class="w-full h-full object-cover hidden md:block" />
@@ -275,16 +266,15 @@
 }
 
 <style>
-    /* ANIMACIÓN ESTILO SCOTCH POS */
     .animate-mockup {
         animation: mockupAppears 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    
+
     @@keyframes mockupAppears {
-        0% { opacity: 0; transform: translateY(10px) scale(0.97); }
-        100% { opacity: 1; transform: translateY(0) scale(1); }
+        0%   { opacity: 0; transform: translateY(10px) scale(0.97); }
+        100% { opacity: 1; transform: translateY(0)    scale(1);    }
     }
-    
+
     @@keyframes dash {
         to { stroke-dashoffset: -100; }
     }

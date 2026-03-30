@@ -28,11 +28,16 @@
 @code {
     [Inject] IJSRuntime JS { get; set; } = default!;
 
-   protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await Task.Delay(100);
+            @* Sin Task.Delay — el double-RAF dentro de initScrollAnimations
+               garantiza que el browser haya pintado el estado opacity:0
+               antes de que el IntersectionObserver dispare.
+               Task.Delay(100) + double-RAF = 133ms → llegaba demasiado tarde
+               y entraba en conflicto con la llamada que Hero.razor hacía
+               por su cuenta, creando dos observers simultáneos. *@
             await JS.InvokeVoidAsync("initScrollAnimations");
         }
     }
