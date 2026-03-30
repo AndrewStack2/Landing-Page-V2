@@ -41,6 +41,9 @@ bin/wwwroot/appsettings.Preprod.json
 obj/wwwroot/appsettings.Preprod.json
 bin/wwwroot/appsettings.Production.json
 obj/wwwroot/appsettings.Production.json
+obj/wwwroot/bin
+obj/wwwroot/obj
+
 
 # User-specific files
 *.user
