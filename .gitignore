@@ -17,3 +17,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.DotSettings.user
+
+# Archivos de proyecto
+tree.txt
+proyecto.txt
