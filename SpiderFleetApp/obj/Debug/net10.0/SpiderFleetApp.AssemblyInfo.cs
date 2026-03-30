@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpiderFleetApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f53407e8f5718a257ae6dbe1efeea1a0d90d037a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfdd180f0757988f0cba133b4ce1afca4339efd2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpiderFleetApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpiderFleetApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

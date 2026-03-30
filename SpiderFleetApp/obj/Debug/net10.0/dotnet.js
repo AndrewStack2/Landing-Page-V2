@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "SpiderFleetApp",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-0v952DNz0SpWDA0UlsSy05bnV8wa9ijkhnLV+lQKvbA=",
+    "hash": "sha256-MhVOUUZslUkJufZ3KHYa2ThjJrBIK4HVguUT1xHOfi0=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.ykrnppwhq2.js"
@@ -1242,16 +1242,16 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "SpiderFleetApp.wasm",
-        "name": "SpiderFleetApp.tnzjv1y3lo.wasm",
-        "integrity": "sha256-t8GMJeNMVc7HP9q4XPqJWraoL6Vg+DXJblahPfgtvJA=",
+        "name": "SpiderFleetApp.02sedi48wm.wasm",
+        "integrity": "sha256-iHrNtpp939Muwe/lVJXzFgVyrMXaQ9W76JZaG225AcA=",
         "cache": "force-cache"
       }
     ],
     "pdb": [
       {
         "virtualPath": "SpiderFleetApp.pdb",
-        "name": "SpiderFleetApp.aykd3y7oal.pdb",
-        "integrity": "sha256-UsZ9S8TN/7Eydx8vc1VPtII+pGxgceG6QZMSxVnQnOo=",
+        "name": "SpiderFleetApp.tt0s3ho520.pdb",
+        "integrity": "sha256-z4WHe4lDLUfshj7FrAiWyulJq+e6I8wAypQ7K+ndnOE=",
         "cache": "force-cache"
       }
     ],
