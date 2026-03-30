@@ -11,16 +11,20 @@
                 sm:py-24
                 md:py-32">
 
-   @* ── Orbs decorativos con Parallax ── *@
-<div data-parallax="0.18" data-parallax-dir="up"
-     class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/60 rounded-full blur-3xl -z-10 will-change-transform">
-</div>
-<div data-parallax="0.12" data-parallax-dir="down"
-     class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100/40 rounded-full blur-3xl -z-10 will-change-transform">
-</div>
-<div data-parallax="0.08" data-parallax-dir="up"
-     class="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl -z-10 will-change-transform">
-</div>
+    @* ── Orbs decorativos con Parallax ── *@
+    <div data-parallax="0.18" data-parallax-dir="up"
+         class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/60 rounded-full blur-3xl -z-10 will-change-transform">
+    </div>
+    <div data-parallax="0.12" data-parallax-dir="down"
+         class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100/40 rounded-full blur-3xl -z-10 will-change-transform">
+    </div>
+    <div data-parallax="0.08" data-parallax-dir="up"
+         class="absolute top-1/2 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/5 rounded-full blur-3xl -z-10 will-change-transform">
+    </div>
+
+    @* ── CONTENEDOR PRINCIPAL — fue eliminado al pegar los orbs ── *@
+    <div class="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-8 lg:px-16">
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
 
             @* ────────────────────────────────────────────────────────────────
                COLUMNA IZQUIERDA — Copy B2B
@@ -154,8 +158,13 @@
                     </div>
                 </div>
             </div>
+            @* ── Fin columna derecha ── *@
+
         </div>
+        @* ── Fin grid ── *@
     </div>
+    @* ── Fin contenedor principal ── *@
+
 </section>
 
 @code {
