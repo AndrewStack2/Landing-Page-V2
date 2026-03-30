@@ -532,6 +532,55 @@
                 if (initialized || retries >= 10) clearInterval(interval);
             }, 500);
         })();
+        // ===== MAGNETIC HOVER EN BOTONES CTA =====
+        window.initMagneticButtons = function () {
+            if (window.matchMedia('(hover: none)').matches) return;
+
+            var buttons = document.querySelectorAll('.magnetic-btn');
+            if (!buttons.length) return;
+
+            buttons.forEach(function (btn) {
+                if (btn._magneticBound) return;
+                btn._magneticBound = true;
+
+                btn.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+
+                btn.addEventListener('mousemove', function (e) {
+                    var rect = btn.getBoundingClientRect();
+                    var centerX = rect.left + rect.width / 2;
+                    var centerY = rect.top + rect.height / 2;
+                    var deltaX = e.clientX - centerX;
+                    var deltaY = e.clientY - centerY;
+                    var maxShift = parseFloat(btn.getAttribute('data-magnetic-strength')) || 10;
+                    var moveX = (deltaX / (rect.width / 2)) * maxShift;
+                    var moveY = (deltaY / (rect.height / 2)) * maxShift;
+                    btn.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
+                });
+
+                btn.addEventListener('mouseleave', function () {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+        };
+
+        // Auto-init magnético — mismo patrón que parallax
+        (function () {
+            var magInit = false;
+            function tryMag() {
+                if (magInit) return;
+                var btns = document.querySelectorAll('.magnetic-btn');
+                if (btns.length > 0) {
+                    magInit = true;
+                    window.initMagneticButtons();
+                }
+            }
+            var magRetries = 0;
+            var magInterval = setInterval(function () {
+                tryMag();
+                magRetries++;
+                if (magInit || magRetries >= 10) clearInterval(magInterval);
+            }, 500);
+        })();
     </script>
 
 </body>
