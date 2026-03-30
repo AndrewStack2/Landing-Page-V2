@@ -1,2 +1,19 @@
-/proyecto.txt
-/tree.txt
+## .gitignore para Blazor WASM / .NET 10
+
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+.vs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Rider / VS Code / VS
+.idea/
+.vscode/
+*.DotSettings.user

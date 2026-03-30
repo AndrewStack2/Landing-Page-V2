@@ -114,7 +114,7 @@
          BASE & RESOURCES (sin cambios)
     ═══════════════════════════════════ -->
     <base href="/" />
-    <link href="_framework/dotnet.8rlp26rz0o.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-nDsRj/sBLqH1AsO3yApx19pmYnxeYoy61eDwFg9kHCk=" />
+    <link href="_framework/dotnet.butrlgcy7f.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-04SEo2C3w7pRBN62C/v6+xh/h8O79i3kLUdIKp8Si04=" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -371,37 +371,53 @@
         };
     </script>
     <script>
+        // Scroll-triggered entrance animations
+        window.initScrollAnimations = function () {
+            var elements = document.querySelectorAll('.scroll-animate');
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            elements.forEach(function (el) { observer.observe(el); });
+        };
+
+        // Video autoplay for real mobile devices (iOS Safari + Android Chrome)
         window.initVideoAutoplay = function (id) {
             var video = document.getElementById(id);
             if (!video) return;
-
             video.muted = true;
             video.playsInline = true;
-
             var attemptPlay = function () {
                 var promise = video.play();
                 if (promise !== undefined) {
                     promise.catch(function () {
-                        // iOS blocked it — wait for first finger touch
-                        var unlockOnTouch = function () {
-                            video.play().catch(function (e) { console.warn('Video blocked:', e); });
-                            document.removeEventListener('touchstart', unlockOnTouch);
-                            document.removeEventListener('click', unlockOnTouch);
+                        var unlock = function () {
+                            video.play().catch(function (e) {
+                                console.warn('Video blocked after gesture:', e);
+                            });
+                            document.removeEventListener('touchstart', unlock);
+                            document.removeEventListener('click', unlock);
                         };
-                        document.addEventListener('touchstart', unlockOnTouch, { once: true });
-                        document.addEventListener('click', unlockOnTouch, { once: true });
+                        document.addEventListener('touchstart', unlock, { once: true });
+                        document.addEventListener('click', unlock, { once: true });
                     });
                 }
             };
             attemptPlay();
         };
 
+        // Restart video from beginning (called when tab switches back to Personal)
         window.restartVideo = function (id) {
             var video = document.getElementById(id);
             if (video) {
                 video.currentTime = 0;
                 video.muted = true;
-                video.play().catch(function (e) { console.warn('Restart blocked:', e); });
+                video.play().catch(function (e) {
+                    console.warn('Restart blocked:', e);
+                });
             }
         };
     </script>

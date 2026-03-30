@@ -32,6 +32,7 @@
     {
         if (firstRender)
         {
+            await Task.Delay(100);
             await JS.InvokeVoidAsync("initScrollAnimations");
         }
     }

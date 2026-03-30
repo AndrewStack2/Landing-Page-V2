@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es-MX" style="scroll-behavior: smooth;">
 
 <head>
     <meta charset="utf-8" />
@@ -111,7 +111,7 @@
     </script>
 
     <!-- ═══════════════════════════════════
-         BASE & RESOURCES (sin cambios)
+         BASE & RESOURCES
     ═══════════════════════════════════ -->
     <base href="/" />
     <link rel="preload" id="webassembly" />
@@ -268,7 +268,10 @@
         <span class="dismiss">🗙</span>
     </div>
 
+    <script src="_framework/blazor.webassembly.js"></script>
+
     <script>
+        // ─── Navbar scroll listener ───────────────────────────────────────────────
         window.SpiderFleet = window.SpiderFleet || {};
 
         window.SpiderFleet.registerScrollListener = function (dotNetRef) {
@@ -281,13 +284,8 @@
             window.addEventListener('scroll', window._spiderScrollHandler, { passive: true });
             window._spiderScrollHandler();
         };
-    </script>
 
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script src="lib/bootstrap/dist/js/scrollAnimations.js"></script>
-    <script src="js/scrollAnimations.js"></script>
-
-    <script>
+        // ─── Pricing carousel scroll ─────────────────────────────────────────────
         function scrollPricing(direction) {
             const container = document.getElementById('pricing-carousel');
             if (container) {
@@ -296,6 +294,7 @@
             }
         }
 
+        // ─── Pricing carousel drag ───────────────────────────────────────────────
         window.initializeCarouselDrag = function () {
             const carousel = document.getElementById('pricing-carousel');
             if (!carousel) return;
@@ -333,28 +332,7 @@
             });
         };
 
-        window.initializeScrollAnimations = function () {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const el = entry.target;
-                    if (entry.isIntersecting) {
-                        el.classList.add('is-visible');
-                    } else {
-                        el.classList.remove('is-visible');
-                    }
-                });
-            }, observerOptions);
-
-            const scrollElements = document.querySelectorAll('.scroll-animate');
-            scrollElements.forEach(el => observer.observe(el));
-        };
-
+        // ─── Back-to-top visibility ──────────────────────────────────────────────
         window.handleBackToTopVisibility = function () {
             const backToTopBtn = document.getElementById('back-to-top');
             if (!backToTopBtn) return;
@@ -369,43 +347,66 @@
                 }
             });
         };
-    </script>
-    <script>
+
+        // ─── Scroll entrance animations (ONE-WAY — never removes is-visible) ────
+        // Called from Home.razor OnAfterRenderAsync and FeaturesMode SetMode().
+        // Uses a single shared observer stored on window to prevent duplicates.
+        window.initScrollAnimations = function () {
+            if (window._sfScrollObserver) {
+                window._sfScrollObserver.disconnect();
+            }
+
+            window._sfScrollObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        window._sfScrollObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('.scroll-animate:not(.is-visible)').forEach(function (el) {
+                window._sfScrollObserver.observe(el);
+            });
+        };
+
+        // ─── Video autoplay — iOS Safari + Android Chrome ────────────────────────
         window.initVideoAutoplay = function (id) {
             var video = document.getElementById(id);
             if (!video) return;
-
             video.muted = true;
             video.playsInline = true;
-
             var attemptPlay = function () {
                 var promise = video.play();
                 if (promise !== undefined) {
                     promise.catch(function () {
-                        // iOS blocked it — wait for first finger touch
-                        var unlockOnTouch = function () {
-                            video.play().catch(function (e) { console.warn('Video blocked:', e); });
-                            document.removeEventListener('touchstart', unlockOnTouch);
-                            document.removeEventListener('click', unlockOnTouch);
+                        var unlock = function () {
+                            video.play().catch(function (e) {
+                                console.warn('Video blocked after gesture:', e);
+                            });
+                            document.removeEventListener('touchstart', unlock);
+                            document.removeEventListener('click', unlock);
                         };
-                        document.addEventListener('touchstart', unlockOnTouch, { once: true });
-                        document.addEventListener('click', unlockOnTouch, { once: true });
+                        document.addEventListener('touchstart', unlock, { once: true });
+                        document.addEventListener('click', unlock, { once: true });
                     });
                 }
             };
             attemptPlay();
         };
 
+        // ─── Restart video (Personal mode tab switch) ────────────────────────────
         window.restartVideo = function (id) {
             var video = document.getElementById(id);
             if (video) {
                 video.currentTime = 0;
                 video.muted = true;
-                video.play().catch(function (e) { console.warn('Restart blocked:', e); });
+                video.play().catch(function (e) {
+                    console.warn('Restart blocked:', e);
+                });
             }
         };
     </script>
-
 
 </body>
 
