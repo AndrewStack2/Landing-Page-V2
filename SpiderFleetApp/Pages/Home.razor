@@ -32,6 +32,10 @@
     {
         if (firstRender)
         {
+            // 300ms — tiempo suficiente para que todos los componentes
+            // hijos (Hero, FeaturesMode, PainVsDream, etc.) terminen
+            // de montar su DOM antes de que el observer los registre.
+            await Task.Delay(300);
             await JS.InvokeVoidAsync("initScrollAnimations");
             await JS.InvokeVoidAsync("initCountUp");
             await JS.InvokeVoidAsync("initMagneticButtons");

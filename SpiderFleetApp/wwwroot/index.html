@@ -350,30 +350,60 @@
         window.initScrollAnimations = function () {
             requestAnimationFrame(function () {
                 requestAnimationFrame(function () {
-                    if (window._sfScrollObserver) {
-                        window._sfScrollObserver.disconnect();
+
+                    if (window.sfScrollObserver) {
+                        window.sfScrollObserver.disconnect();
                     }
 
-                    window._sfScrollObserver = new IntersectionObserver(function (entries) {
+                    window.sfScrollObserver = new IntersectionObserver(function (entries) {
                         entries.forEach(function (entry) {
                             if (entry.isIntersecting) {
                                 entry.target.classList.add('is-visible');
-                                window._sfScrollObserver.unobserve(entry.target);
+                                window.sfScrollObserver.unobserve(entry.target);
                             }
                         });
                     }, {
-                        threshold: 0.08,
-                        rootMargin: '0px 0px -50px 0px'
+                        threshold: 0.05,
+                        rootMargin: '0px 0px 0px 0px'  // sin margen negativo
                     });
 
-                    document.querySelectorAll('.scroll-animate:not(.is-visible), .scroll-animate-left:not(.is-visible), .scroll-animate-right:not(.is-visible)').forEach(function (el) {
-                        window._sfScrollObserver.observe(el);
+                    var elements = document.querySelectorAll(
+                        '.scroll-animate:not(.is-visible), ' +
+                        '.scroll-animate-left:not(.is-visible), ' +
+                        '.scroll-animate-right:not(.is-visible)'
+                    );
+
+                    elements.forEach(function (el) {
+                        window.sfScrollObserver.observe(el);
                     });
+
+                    // FIX CRÍTICO: forzar check inmediato para elementos
+                    // que ya están en el viewport al momento de la llamada.
+                    // IntersectionObserver es async — no dispara síncronamente
+                    // para elementos ya visibles en Blazor WASM.
+                    setTimeout(function () {
+                        elements.forEach(function (el) {
+                            var rect = el.getBoundingClientRect();
+                            var inViewport = (
+                                rect.top < window.innerHeight &&
+                                rect.bottom > 0 &&
+                                rect.left < window.innerWidth &&
+                                rect.right > 0
+                            );
+                            if (inViewport) {
+                                el.classList.add('is-visible');
+                                if (window.sfScrollObserver) {
+                                    window.sfScrollObserver.unobserve(el);
+                                }
+                            }
+                        });
+                    }, 100);
+
                 });
             });
         };
 
-        // ─── Compatibility alias ──────────────────────────────────────────────
+        // Alias de compatibilidad
         window.initializeScrollAnimations = window.initScrollAnimations;
 
         // ─── Count-Up Animation ───────────────────────────────────────────────

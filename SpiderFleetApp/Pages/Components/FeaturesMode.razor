@@ -58,11 +58,33 @@
             max-width: 460px;
         }
     }
+
+    /* ===== TOGGLE TRANSITION — reemplaza hidden/flex ===== */
+    /* display:none no se puede animar. Usamos opacity + pointer-events.  */
+    /* .mode-panel es el contenedor de cada modo (empresa / personal).    */
+    .mode-panel {
+        transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+    }
+    .mode-panel.mode-hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(10px);
+        position: absolute;
+        visibility: hidden;
+    }
+    .mode-panel.mode-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+        position: relative;
+        visibility: visible;
+    }
 </style>
 
 <section id="caracteristicas" class="bg-white py-24 relative overflow-hidden">
 
-    <!-- Parallax Orbs — decorativos, no afectan layout -->
+    <!-- Parallax Orbs -->
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <div data-parallax="0.10" data-parallax-dir="up"
              class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl will-change-transform">
@@ -91,236 +113,218 @@
             </div>
         </div>
 
-        @* ===================== MODO EMPRESA ===================== *@
-        <div class="flex-col gap-16 @(!IsPersonalMode ? "flex" : "hidden")">
+        @* Wrapper relativo para que position:absolute de mode-hidden no rompa el layout *@
+        <div class="relative">
 
-            <div class="grid lg:grid-cols-2 gap-12 items-center scroll-animate delay-100">
-                <div class="order-2 lg:order-1">
-                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-primary mb-6">
-                        <span class="material-symbols-outlined text-2xl">location_on</span>
+            @* ===================== MODO EMPRESA ===================== *@
+            <div class="mode-panel flex flex-col gap-16 @(!IsPersonalMode ? "mode-visible" : "mode-hidden")">
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center scroll-animate delay-100">
+                    <div class="order-2 lg:order-1">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-primary mb-6">
+                            <span class="material-symbols-outlined text-2xl">location_on</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4">No preguntes dónde están. Míralo tú mismo.</h3>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            Rastreo GPS en vivo con actualizaciones cada 10 segundos. Monitorea toda tu flota en un mapa dinámico, recibe alertas de paradas no autorizadas y controla cada kilómetro en tiempo real.
+                        </p>
+                        <ul class="space-y-3 text-slate-700 font-medium">
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">done</span> Monitoreo 24/7</li>
+                            <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">done</span> Botón de pánico integrado</li>
+                        </ul>
                     </div>
-                    <h3 class="text-3xl font-bold text-slate-900 mb-4">No preguntes dónde están. Míralo tú mismo.</h3>
-                    <p class="text-lg text-slate-600 leading-relaxed mb-6">
-                        Rastreo GPS en vivo con actualizaciones cada 10 segundos. Monitorea toda tu flota en un mapa dinámico, recibe alertas de paradas no autorizadas y controla cada kilómetro en tiempo real.
-                    </p>
-                    <ul class="space-y-3 text-slate-700 font-medium">
-                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">done</span> Monitoreo 24/7</li>
-                        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">done</span> Botón de pánico integrado</li>
-                    </ul>
-                </div>
-                <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-6 h-[350px] flex items-center justify-center border border-slate-200 shadow-inner">
-                    <span class="text-slate-400 font-medium flex flex-col items-center">
-                        <span class="material-symbols-outlined text-5xl mb-2">map</span> Mockup Mapa GPS
-                    </span>
-                </div>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-12 items-center scroll-animate delay-200">
-                <div class="bg-indigo-50 rounded-3xl p-6 h-[350px] flex items-center justify-center border border-indigo-100 shadow-inner">
-                    <span class="text-indigo-300 font-medium flex flex-col items-center">
-                        <span class="material-symbols-outlined text-5xl mb-2">alt_route</span> Mockup Rutas IA
-                    </span>
-                </div>
-                <div>
-                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 mb-6">
-                        <span class="material-symbols-outlined text-2xl">route</span>
+                    <div class="order-1 lg:order-2 bg-slate-50 rounded-3xl p-6 h-[350px] flex items-center justify-center border border-slate-200 shadow-inner">
+                        <span class="text-slate-400 font-medium flex flex-col items-center">
+                            <span class="material-symbols-outlined text-5xl mb-2">map</span> Mockup Mapa GPS
+                        </span>
                     </div>
-                    <h3 class="text-3xl font-bold text-slate-900 mb-4">Rutas que ahorran gasolina por ti.</h3>
-                    <p class="text-lg text-slate-600 leading-relaxed mb-6">
-                        Algoritmos de IA que reducen hasta un 30% en costos de combustible. Planificación automática considerando tráfico y múltiples paradas.
-                    </p>
                 </div>
-            </div>
 
-            @* -- PARCHE: grid cerrado CORRECTAMENTE, cards DENTRO -- *@
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-green-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-left delay-100">
-                    <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500/60 to-transparent"></div>
-                    <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-green-50 text-green-600 mb-4">
-                        <span class="material-symbols-outlined text-2xl">verified_user</span>
+                <div class="grid lg:grid-cols-2 gap-12 items-center scroll-animate delay-200">
+                    <div class="bg-indigo-50 rounded-3xl p-6 h-[350px] flex items-center justify-center border border-indigo-100 shadow-inner">
+                        <span class="text-indigo-300 font-medium flex flex-col items-center">
+                            <span class="material-symbols-outlined text-5xl mb-2">alt_route</span> Mockup Rutas IA
+                        </span>
                     </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-2">Cumplimiento de Flota</h4>
-                    <div class="mt-auto">
-                        <div class="card-body pt-2">
-                            <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                                Gestión automática de Carta Porte y seguros. Evita multas y mantén tu flota operando legalmente sin esfuerzo.
-                            </p>
+                    <div>
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 mb-6">
+                            <span class="material-symbols-outlined text-2xl">route</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-slate-900 mb-4">Rutas que ahorran gasolina por ti.</h3>
+                        <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                            Algoritmos de IA que reducen hasta un 30% en costos de combustible. Planificación automática considerando tráfico y múltiples paradas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mt-8">
+                    <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-green-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-left delay-100">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500/60 to-transparent"></div>
+                        <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-green-50 text-green-600 mb-4">
+                            <span class="material-symbols-outlined text-2xl">verified_user</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Cumplimiento de Flota</h4>
+                        <div class="mt-auto">
+                            <div class="card-body pt-2">
+                                <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Gestión automática de Carta Porte y seguros. Evita multas y mantén tu flota operando legalmente sin esfuerzo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-amber-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-200">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
+                        <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-amber-50 text-amber-600 mb-4">
+                            <span class="material-symbols-outlined text-2xl">assignment_turned_in</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Gestión de Taller</h4>
+                        <div class="mt-auto">
+                            <div class="card-body pt-2">
+                                <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Centraliza mantenimientos preventivos y vencimientos de pólizas. Te avisamos antes de que una pieza falle.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-rose-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-right delay-300">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500/60 to-transparent"></div>
+                        <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-rose-50 text-rose-600 mb-4">
+                            <span class="material-symbols-outlined text-2xl">whatshot</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Mapa de Calor Analítico</h4>
+                        <div class="mt-auto">
+                            <div class="card-body pt-2">
+                                <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Visualiza las zonas de mayor actividad y detecta patrones de operación para tomar decisiones estratégicas basadas en datos.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-amber-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-200">
-                    <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
-                    <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-amber-50 text-amber-600 mb-4">
-                        <span class="material-symbols-outlined text-2xl">assignment_turned_in</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-2">Gestión de Taller</h4>
-                    <div class="mt-auto">
-                        <div class="card-body pt-2">
-                            <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                                Centraliza mantenimientos preventivos y vencimientos de pólizas. Te avisamos antes de que una pieza falle.
-                            </p>
+            </div>
+            @* -- Fin MODO EMPRESA -- *@
+
+            @* =================== MODO PERSONAL =================== *@
+            <div class="mode-panel flex flex-col gap-16 @(IsPersonalMode ? "mode-visible" : "mode-hidden")">
+
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center scroll-animate delay-100">
+
+                    <div class="order-2 lg:order-1 flex flex-col justify-center">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-[#0d6efd] mb-6">
+                            <span class="material-symbols-outlined text-2xl">power_settings_new</span>
+                        </div>
+                        <h3 class="text-3xl lg:text-5xl font-extrabold text-slate-900 mb-5 leading-tight">
+                            Apaga tu auto<br class="hidden lg:block" /> desde el celular.
+                        </h3>
+                        <p class="text-lg lg:text-xl text-slate-600 leading-relaxed mb-8">
+                            En caso de emergencia o robo, toma el control total. Corta la corriente del motor en segundos directamente desde tu aplicación móvil, sin importar dónde estés.
+                        </p>
+                        <ul class="space-y-5 mb-10">
+                            <li class="flex items-start gap-3">
+                                <div class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-[#0d6efd]">
+                                    <span class="material-symbols-outlined text-[18px]">bolt</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm lg:text-base font-bold text-slate-800">Respuesta en menos de 3 segundos</p>
+                                    <p class="text-sm lg:text-base text-slate-500">La señal llega al dispositivo instalado en tu vehículo en tiempo real.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <div class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-[#0d6efd]">
+                                    <span class="material-symbols-outlined text-[18px]">history</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm lg:text-base font-bold text-slate-800">Registro de eventos con timestamp</p>
+                                    <p class="text-sm lg:text-base text-slate-500">Cada acción queda registrada con fecha, hora y ubicación GPS.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100">
+                            <div class="flex flex-col">
+                                <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">&lt; 3s</span>
+                                <span class="text-xs text-slate-500 font-medium">Tiempo de respuesta</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">24/7</span>
+                                <span class="text-xs text-slate-500 font-medium">Disponibilidad</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">
+                                    <span data-countup="100" data-suffix="%" data-duration="1500">0</span>
+                                </span>
+                                <span class="text-xs text-slate-500 font-medium">Seguro y encriptado</span>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="order-1 lg:order-2 flex items-center justify-center py-4">
+                        <div class="motor-video-wrapper relative bg-black rounded-[2rem] shadow-2xl overflow-hidden">
+                            <video id="motorVideo"
+                                   class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
+                                   autoplay loop muted playsinline preload="auto">
+                                <source src="Assets/MOTOR-MOCKUP.mp4" type="video/mp4" />
+                            </video>
+                            <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2rem] pointer-events-none"></div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-rose-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-right delay-300">
-                    <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500/60 to-transparent"></div>
-                    <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-rose-50 text-rose-600 mb-4">
-                        <span class="material-symbols-outlined text-2xl">whatshot</span>
+                <div class="grid md:grid-cols-3 gap-6 mt-8">
+                    <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-left delay-100">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
+                        <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
+                            <span class="material-symbols-outlined text-2xl">notifications_active</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Alertas y Geocercas</h4>
+                        <div class="mt-auto">
+                            <div class="card-body pt-2">
+                                <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Recibe notificaciones instantáneas si tu auto sale de la ciudad, de una zona segura o se mueve en la madrugada.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-2">Mapa de Calor Analítico</h4>
-                    <div class="mt-auto">
-                        <div class="card-body pt-2">
-                            <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                                Visualiza las zonas de mayor actividad y detecta patrones de operación para tomar decisiones estratégicas basadas en datos.
-                            </p>
+
+                    <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-200">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
+                        <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
+                            <span class="material-symbols-outlined text-2xl">history</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Historial de Viajes</h4>
+                        <div class="mt-auto">
+                            <div class="card-body pt-2">
+                                <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Revisa detalladamente todas las rutas, ubicaciones, velocidades y paradas que ha realizado tu vehículo en los últimos meses.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-right delay-300">
+                        <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
+                        <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
+                            <span class="material-symbols-outlined text-2xl">fact_check</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-2">Recordatorios</h4>
+                        <div class="mt-auto">
+                            <div class="card-body pt-2">
+                                <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                                    Calendariza verificaciones, servicios mecánicos y pago de seguro. Gestiona tus documentos y nunca pierdas una fecha.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
-            @* -- Fin grid empresa -- *@
+            @* -- Fin MODO PERSONAL -- *@
 
         </div>
-        @* -- Fin MODO EMPRESA -- *@
-
-        @* =================== MODO PERSONAL =================== *@
-        <div class="flex-col gap-16 @(IsPersonalMode ? "flex" : "hidden")">
-
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center scroll-animate delay-100">
-
-                @* Columna izquierda: texto *@
-                <div class="order-2 lg:order-1 flex flex-col justify-center">
-
-                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-[#0d6efd] mb-6">
-                        <span class="material-symbols-outlined text-2xl">power_settings_new</span>
-                    </div>
-
-                    <h3 class="text-3xl lg:text-5xl font-extrabold text-slate-900 mb-5 leading-tight">
-                        Apaga tu auto<br class="hidden lg:block" /> desde el celular.
-                    </h3>
-
-                    <p class="text-lg lg:text-xl text-slate-600 leading-relaxed mb-8">
-                        En caso de emergencia o robo, toma el control total. Corta la corriente del motor en segundos directamente desde tu aplicación móvil, sin importar dónde estés.
-                    </p>
-
-                    <ul class="space-y-5 mb-10">
-                        <li class="flex items-start gap-3">
-                            <div class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-[#0d6efd]">
-                                <span class="material-symbols-outlined text-[18px]">bolt</span>
-                            </div>
-                            <div>
-                                <p class="text-sm lg:text-base font-bold text-slate-800">Respuesta en menos de 3 segundos</p>
-                                <p class="text-sm lg:text-base text-slate-500">La señal llega al dispositivo instalado en tu vehículo en tiempo real.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-[#0d6efd]">
-                                <span class="material-symbols-outlined text-[18px]">history</span>
-                            </div>
-                            <div>
-                                <p class="text-sm lg:text-base font-bold text-slate-800">Registro de eventos con timestamp</p>
-                                <p class="text-sm lg:text-base text-slate-500">Cada acción queda registrada con fecha, hora y ubicación GPS.</p>
-                            </div>
-                        </li>
-                    </ul>
-
-                    @* -- PARCHE: grid cerrado CORRECTAMENTE, stats DENTRO -- *@
-                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100">
-
-                        <div class="flex flex-col">
-                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">&lt; 3s</span>
-                            <span class="text-xs text-slate-500 font-medium">Tiempo de respuesta</span>
-                        </div>
-
-                        <div class="flex flex-col">
-                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">24/7</span>
-                            <span class="text-xs text-slate-500 font-medium">Disponibilidad</span>
-                        </div>
-
-                        <div class="flex flex-col">
-                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">
-                                <span data-countup="100" data-suffix="%" data-duration="1500">0</span>
-                            </span>
-                            <span class="text-xs text-slate-500 font-medium">Seguro y encriptado</span>
-                        </div>
-
-                    </div>
-                    @* -- Fin grid stats -- *@
-
-                </div>
-                @* -- Fin columna izquierda -- *@
-
-                @* Columna derecha: video *@
-                <div class="order-1 lg:order-2 flex items-center justify-center py-4">
-                    <div class="motor-video-wrapper relative bg-black rounded-[2rem] shadow-2xl overflow-hidden">
-                        <video id="motorVideo"
-                               class="absolute top-0 left-0 w-full h-full object-cover pointer-events-none"
-                               autoplay loop muted playsinline preload="auto">
-                            <source src="Assets/MOTOR-MOCKUP.mp4" type="video/mp4" />
-                        </video>
-                        <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2rem] pointer-events-none"></div>
-                    </div>
-                </div>
-
-            </div>
-            @* -- Fin grid hero personal -- *@
-
-            @* -- PARCHE: grid cerrado CORRECTAMENTE, cards DENTRO -- *@
-            <div class="grid md:grid-cols-3 gap-6 mt-8">
-
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-left delay-100">
-                    <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
-                    <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
-                        <span class="material-symbols-outlined text-2xl">notifications_active</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-2">Alertas y Geocercas</h4>
-                    <div class="mt-auto">
-                        <div class="card-body pt-2">
-                            <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                                Recibe notificaciones instantáneas si tu auto sale de la ciudad, de una zona segura o se mueve en la madrugada.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-200">
-                    <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
-                    <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
-                        <span class="material-symbols-outlined text-2xl">history</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-2">Historial de Viajes</h4>
-                    <div class="mt-auto">
-                        <div class="card-body pt-2">
-                            <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                                Revisa detalladamente todas las rutas, ubicaciones, velocidades y paradas que ha realizado tu vehículo en los últimos meses.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate-right delay-300">
-                    <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
-                    <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
-                        <span class="material-symbols-outlined text-2xl">fact_check</span>
-                    </div>
-                    <h4 class="text-xl font-bold text-slate-900 mb-2">Recordatorios</h4>
-                    <div class="mt-auto">
-                        <div class="card-body pt-2">
-                            <p class="text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
-                                Calendariza verificaciones, servicios mecánicos y pago de seguro. Gestiona tus documentos y nunca pierdas una fecha.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            @* -- Fin grid cards personal -- *@
-
-        </div>
-        @* -- Fin MODO PERSONAL -- *@
+        @* -- Fin wrapper relativo -- *@
 
     </div>
 </section>
@@ -332,9 +336,10 @@
     {
         IsPersonalMode = isPersonal;
         StateHasChanged();
-        await Task.Delay(50);
+        await Task.Delay(80);
         await JS.InvokeVoidAsync("initScrollAnimations");
         await JS.InvokeVoidAsync("initCountUp");
+        await JS.InvokeVoidAsync("initMagneticButtons");
         if (isPersonal)
             await JS.InvokeVoidAsync("restartVideo", "motorVideo");
     }
@@ -343,10 +348,8 @@
     {
         if (firstRender)
         {
-            await Task.Delay(150);
-            await JS.InvokeVoidAsync("initScrollAnimations");
-            await JS.InvokeVoidAsync("initCountUp");
             await JS.InvokeVoidAsync("initVideoAutoplay", "motorVideo");
+            // initScrollAnimations NO se llama aquí — Home.razor lo centraliza
         }
     }
 }
