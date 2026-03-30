@@ -208,40 +208,63 @@ code {
 
 
 /* ===== SCROLL ANIMATIONS ===== */
-.scroll-animate {
+/*
+  Usando "body .scroll-animate" (especificidad 0,1,1) en lugar de
+  ".scroll-animate" (especificidad 0,1,0) para que SIEMPRE gane
+  sobre cualquier utilidad de Tailwind CDN (0,1,0).
+  will-change activa compositing por GPU para animaciones sin jank.
+*/
+body .scroll-animate {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(28px);
+    transition-property: opacity, transform;
+    transition-duration: 0.65s;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
 }
 
-
-.scroll-animate.is-visible {
+body .scroll-animate.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Stagger delays — definidos aquí para no depender de Tailwind */
+/* Tailwind v3 no genera delay-400 ni delay-600, los demás son iguales */
+body .scroll-animate.delay-75 {
+    transition-delay: 75ms;
+}
 
-.delay-100 {
+body .scroll-animate.delay-100 {
     transition-delay: 100ms;
 }
 
-.delay-200 {
+body .scroll-animate.delay-150 {
+    transition-delay: 150ms;
+}
+
+body .scroll-animate.delay-200 {
     transition-delay: 200ms;
 }
 
-.delay-300 {
+body .scroll-animate.delay-300 {
     transition-delay: 300ms;
 }
 
-.delay-400 {
+body .scroll-animate.delay-400 {
     transition-delay: 400ms;
 }
 
-.delay-500 {
+body .scroll-animate.delay-500 {
     transition-delay: 500ms;
 }
 
+body .scroll-animate.delay-600 {
+    transition-delay: 600ms;
+}
+
+body .scroll-animate.delay-700 {
+    transition-delay: 700ms;
+}
 
 /* ===== SPRING ANIMATIONS (Navbar / Dropdowns) ===== */
 .transition-spring {

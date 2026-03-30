@@ -348,9 +348,7 @@
             });
         };
 
-        // ─── Scroll entrance animations (ONE-WAY — never removes is-visible) ────
-        // Called from Home.razor OnAfterRenderAsync and FeaturesMode SetMode().
-        // Uses a single shared observer stored on window to prevent duplicates.
+        // ─── Scroll entrance animations (ONE-WAY — never removes is-visible)
         window.initScrollAnimations = function () {
             if (window._sfScrollObserver) {
                 window._sfScrollObserver.disconnect();
@@ -363,7 +361,10 @@
                         window._sfScrollObserver.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            }, {
+                threshold: 0.08,
+                rootMargin: '0px 0px -60px 0px'
+            });
 
             document.querySelectorAll('.scroll-animate:not(.is-visible)').forEach(function (el) {
                 window._sfScrollObserver.observe(el);

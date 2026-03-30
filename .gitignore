@@ -1,6 +1,8 @@
 ## .gitignore para Blazor WASM / .NET 10
 
 # Build outputs
+bin/Debug/net10.0
+obj/Debug/net10.0
 bin/
 obj/
 
