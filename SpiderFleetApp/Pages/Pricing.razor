@@ -1,6 +1,8 @@
 @page "/precios"
-<PageTitle>Planes y Precios | Spider Fleet</PageTitle>
 @inject IJSRuntime JS
+<PageTitle>Planes y Precios | Spider Fleet</PageTitle>
+
+</HeadContent>
 <HeadContent>
     <meta name="description" content="Planes flexibles para conductores independientes y flotas empresariales. Comienza gratis sin tarjeta de crédito. Spider Fleet México." />
     <link rel="canonical" href="https://spiderfleet.mx/precios" />
@@ -996,13 +998,14 @@
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    await base.OnAfterRenderAsync(firstRender);
+    if (firstRender)
     {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-            await JS.InvokeVoidAsync("initCountUp");
-        }
+        await JS.InvokeVoidAsync("initScrollAnimations");
+        await JS.InvokeVoidAsync("initCountUp");
     }
+}
 
     private string SliderStyle  => IsPersonalMode ? "transform:translateX(0)"     : "transform:translateX(100%)";
     private string BtnPersonal  => IsPersonalMode ? "text-indigo-600 font-bold"   : "text-slate-500 font-semibold";
