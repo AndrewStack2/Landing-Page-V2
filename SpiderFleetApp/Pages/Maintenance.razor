@@ -7,6 +7,7 @@
     <meta property="og:description" content="Alertas automáticas, inspecciones fotográficas y calendario de servicios para tu flota." />
     <meta property="og:url" content="https://spiderfleet.mx/mantenimiento" />
 </HeadContent>
+
 <style>
     .feature-card {
         min-height: 260px;
@@ -55,12 +56,15 @@
         transform: scale(1.1);
     }
 </style>
+
 @inject IJSRuntime JS
 @inject NavigationManager NavigationManager
 
-
 <div class="bg-white">
-    <!-- Hero Section -->
+
+    <!-- ═══════════════════════════════════════
+         HERO SECTION
+    ═══════════════════════════════════════ -->
     <section class="relative overflow-hidden pt-20 pb-16 md:pt-32 md:pb-32">
         <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"></div>
         <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-blue-400/5 rounded-full blur-3xl"></div>
@@ -82,28 +86,37 @@
                     <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"></div>
                 </button>
             </div>
-
         </div>
     </section>
 
-    <!-- Toggle Section -->
+    <!-- ═══════════════════════════════════════
+         TOGGLE SECTION
+    ═══════════════════════════════════════ -->
     <section class="py-16 bg-slate-50">
         <div class="mx-auto max-w-7xl px-6">
+
             <div class="flex justify-center mb-16 scroll-animate">
                 <div class="bg-slate-100 p-1.5 rounded-full flex relative isolate border border-slate-200 shadow-inner w-full max-w-[340px]">
-                    <div class="absolute left-1.5 top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white rounded-full shadow transition-all duration-300 ease-in-out z-0 border border-slate-200" style="transform: translateX(@(IsPersonalMode ? "0" : "100%"));"></div>
-                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-primary font-bold" : "text-slate-500 font-semibold hover:text-slate-800")" @onclick="() => SetMode(true)">
+                    <div class="absolute left-1.5 top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-white rounded-full shadow transition-all duration-300 ease-in-out z-0 border border-slate-200"
+                         style="transform: translateX(@(IsPersonalMode ? "0" : "100%"));"></div>
+                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-primary font-bold" : "text-slate-500 font-semibold hover:text-slate-800")"
+                            @onclick="() => SetMode(true)">
                         Uso Personal
                     </button>
-                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-slate-500 font-semibold hover:text-slate-800" : "text-primary font-bold")" @onclick="() => SetMode(false)">
+                    <button class="flex-1 relative z-10 py-2.5 rounded-full text-sm transition-colors duration-300 text-center @(IsPersonalMode ? "text-slate-500 font-semibold hover:text-slate-800" : "text-primary font-bold")"
+                            @onclick="() => SetMode(false)">
                         Para Flotas
                     </button>
                 </div>
             </div>
 
+            @* ══════════════════ MODO PERSONAL ══════════════════ *@
             <div class="flex-col gap-16 @(IsPersonalMode ? "flex" : "hidden")">
+
+                @* Staggered Cards Personal *@
                 <div class="grid gap-6 md:grid-cols-3">
-                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer sf-anim-left-1 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
                         <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
                         <div class="relative z-10 p-8 flex flex-col h-full">
                             <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
@@ -118,7 +131,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-100 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer sf-anim-2 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
                         <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
                         <div class="relative z-10 p-8 flex flex-col h-full">
                             <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
@@ -133,7 +147,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-200 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer sf-anim-right-1 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
                         <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
                         <div class="relative z-10 p-8 flex flex-col h-full">
                             <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
@@ -148,6 +163,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 @* Funcionalidades Detalle Personal *@
@@ -197,12 +213,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- MODO FLOTA -->
+            </div>
+            @* ══════════════════ FIN MODO PERSONAL ══════════════════ *@
+
+            @* ══════════════════ MODO FLOTA ══════════════════ *@
             <div class="flex-col gap-16 @(!IsPersonalMode ? "flex" : "hidden")">
+
+                @* Staggered Cards Flota *@
                 <div class="grid gap-6 md:grid-cols-3">
-                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer sf-anim-left-1 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
                         <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
                         <div class="relative z-10 p-8 flex flex-col h-full">
                             <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
@@ -217,7 +238,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-100 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer sf-anim-2 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
                         <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
                         <div class="relative z-10 p-8 flex flex-col h-full">
                             <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
@@ -232,7 +254,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer scroll-animate delay-200 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
+
+                    <div class="feature-card relative rounded-2xl bg-white cursor-pointer sf-anim-right-1 border border-slate-200 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10 overflow-hidden">
                         <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/60 to-transparent rounded-t-2xl"></div>
                         <div class="relative z-10 p-8 flex flex-col h-full">
                             <div class="card-icon-b mb-5 inline-flex h-14 w-14 items-center justify-center rounded-xl">
@@ -247,9 +270,10 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
-                @* Funcionalidades Detalle Flota (Z-Pattern) *@
+                @* Funcionalidades Detalle Flota — Z-Pattern *@
                 <div class="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-24 scroll-animate delay-100">
                     <div class="md:w-1/2">
                         <div class="inline-flex items-center gap-2 text-primary font-bold mb-4 uppercase tracking-widest text-sm">
@@ -273,13 +297,13 @@
                     </div>
                     <div class="md:w-1/2">
                         <div class="rounded-3xl border border-slate-200 bg-white p-8 text-slate-900 shadow-2xl relative overflow-hidden group">
-                           <div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl transition-transform group-hover:scale-150 duration-700"></div>
-                           <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-primary">
-                               <span class="material-symbols-outlined">schedule</span>
-                           </div>
-                           <h4 class="text-xl font-bold mb-4 italic text-slate-900">"Tu Ford Transit requiere servicio en 250 KM"</h4>
-                           <p class="text-slate-600 text-sm leading-relaxed mb-8">Notificación generada automáticamente al detectar el odómetro actualizado vía GPS.</p>
-                           <button class="w-full rounded-full border border-slate-200 bg-slate-50 py-3 text-sm font-bold text-slate-700 hover:bg-slate-100 hover:border-primary/20 hover:text-primary transition-all">Configurar Alerta</button>
+                            <div class="absolute -top-12 -right-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl transition-transform group-hover:scale-150 duration-700"></div>
+                            <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+                                <span class="material-symbols-outlined">schedule</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-4 italic text-slate-900">"Tu Ford Transit requiere servicio en 250 KM"</h4>
+                            <p class="text-slate-600 text-sm leading-relaxed mb-8">Notificación generada automáticamente al detectar el odómetro actualizado vía GPS.</p>
+                            <button class="w-full rounded-full border border-slate-200 bg-slate-50 py-3 text-sm font-bold text-slate-700 hover:bg-slate-100 hover:border-primary/20 hover:text-primary transition-all">Configurar Alerta</button>
                         </div>
                     </div>
                 </div>
@@ -337,11 +361,16 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+            @* ══════════════════ FIN MODO FLOTA ══════════════════ *@
+
         </div>
     </section>
 
-    <!-- Final CTA -->
+    <!-- ═══════════════════════════════════════
+         FINAL CTA
+    ═══════════════════════════════════════ -->
     <section class="py-24 bg-primary text-white relative overflow-hidden text-center mx-6 my-12 rounded-[2.5rem] md:mx-auto md:max-w-7xl">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-900 -z-10"></div>
         <div class="absolute inset-0 z-0 bg-grid-white/[0.05]"></div>
@@ -355,9 +384,9 @@
             <button @onclick='() => NavigationManager.NavigateTo("/signup")' class="rounded-full bg-white px-12 py-5 text-lg font-bold text-primary shadow-xl transition-all hover:bg-slate-50 hover:scale-105 active:scale-95">
                 Empezar ahora gratis
             </button>
-
         </div>
     </section>
+
 </div>
 
 @code {
@@ -368,7 +397,7 @@
         IsPersonalMode = isPersonal;
         StateHasChanged();
         await Task.Delay(50);
-        await JS.InvokeVoidAsync("initScrollAnimations");
+        await JS.InvokeVoidAsync("initCountUp");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
