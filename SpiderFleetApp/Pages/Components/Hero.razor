@@ -1,62 +1,78 @@
 @inject IJSRuntime JS
 
 @* ──────────────────────────────────────────────────────────────────────────
-   Hero.razor — Responsive Switcher (Mobile Phone / Desktop Browser)
+   Hero.razor — Ultrawide-ready: 16:9 / 16:10 / 21:9 / 32:9
+   Usa el sistema sf-* definido en app.css
    ─────────────────────────────────────────────────────────────────────────── *@
 
 <section id="inicio"
-         class="sf-hero relative flex w-full flex-col items-center justify-center overflow-hidden bg-white sf-shell">
+         class="sf-hero sf-shell relative flex w-full flex-col items-center justify-center overflow-hidden bg-white">
 
-    @* ── Orbs decorativos con Parallax ── *@
+    @* ── Orbs decorativos con Parallax — escalan con vw para ultrawide ── *@
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <div data-parallax="0.18" data-parallax-dir="up"
-             class="absolute -top-20 -right-20 w-[600px] h-[600px] bg-blue-200/50 rounded-full blur-3xl will-change-transform">
+             class="absolute -top-20 -right-20 w-[min(700px,30vw)] h-[min(700px,30vw)] bg-blue-200/50 rounded-full blur-3xl will-change-transform">
         </div>
         <div data-parallax="0.12" data-parallax-dir="down"
-             class="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-indigo-200/40 rounded-full blur-3xl will-change-transform">
+             class="absolute -bottom-20 -left-20 w-[min(600px,26vw)] h-[min(600px,26vw)] bg-indigo-200/40 rounded-full blur-3xl will-change-transform">
         </div>
         <div data-parallax="0.08" data-parallax-dir="up"
-             class="absolute top-1/3 left-1/4 w-[350px] h-[350px] bg-primary/10 rounded-full blur-3xl will-change-transform">
+             class="absolute top-1/3 left-1/4 w-[min(400px,18vw)] h-[min(400px,18vw)] bg-primary/10 rounded-full blur-3xl will-change-transform">
+        </div>
+        @* Orb extra para llenar espacio en ultrawide *@
+        <div class="absolute top-1/4 right-1/4 w-[min(320px,14vw)] h-[min(320px,14vw)] bg-sky-100/60 rounded-full blur-3xl will-change-transform">
         </div>
     </div>
 
-    @* ── CONTENEDOR PRINCIPAL ── *@
-   <div class="relative z-10 sf-container-ultra w-full">
-    <div class="sf-hero-grid">
+    @* ── CONTENEDOR PRINCIPAL — usa sf-container-ultra para ultrawide ── *@
+    <div class="relative z-10 sf-container-ultra w-full">
+        <div class="sf-hero-grid">
 
             @* ────────────────────────────────────────────────────────────────
                COLUMNA IZQUIERDA — Copy B2B
                ──────────────────────────────────────────────────────────────── *@
             <div class="sf-hero-copy flex flex-col items-start scroll-animate">
 
-    <div class="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600 mb-6 shadow-sm">
-        <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-primary"></span>
-        Conoce el sistema que entiende tu flota
-    </div>
+                @* Badge *@
+                <div class="inline-flex items-center rounded-full border border-slate-200
+                            bg-white px-3 py-1 text-xs font-semibold text-slate-600 mb-6 shadow-sm">
+                    <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-primary"></span>
+                    Conoce el sistema que entiende tu flota
+                </div>
 
-    <h1 class="sf-hero-title sf-text-balance text-5xl md:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.02] text-slate-900 mb-6 drop-shadow-sm">
-        La inteligencia que mueve tu flota hacia
-        <span class="text-primary block">adelante.</span>
-    </h1>
+                @* Título Principal *@
+                <h1 class="sf-hero-title text-5xl md:text-6xl xl:text-[4.5rem] 2xl:text-[5rem]
+                           font-extrabold tracking-tight leading-[1.02]
+                           text-slate-900 mb-6 drop-shadow-sm">
+                    La inteligencia que mueve tu flota hacia
+                    <span class="text-primary block">adelante.</span>
+                </h1>
 
-    <p class="sf-hero-body text-lg xl:text-[1.15rem] text-slate-600 leading-relaxed mb-8">
-        Mucho más que un simple GPS. SpiderFleet es el sistema operativo integral
-        diseñado para mantener tus vehículos en ruta, tus documentos al día y tus costos bajo control.
-    </p>
+                @* Cuerpo *@
+                <p class="sf-hero-body text-lg xl:text-[1.15rem] text-slate-600 leading-relaxed mb-8">
+                    Mucho más que un simple GPS. SpiderFleet es el sistema operativo integral
+                    diseñado para mantener tus vehículos en ruta, tus documentos al día y tus costos bajo control.
+                </p>
 
-    <div class="flex flex-col sm:flex-row items-start gap-4 w-full mt-2">
-        <a href="/SignUp"
-           class="magnetic-btn flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/30 w-full sm:w-auto hover:bg-blue-700">
-            Empieza Gratis Ahora
-            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-        </a>
+                @* CTA *@
+                <div class="flex flex-col sm:flex-row items-start gap-4 w-full mt-2">
+                    <a href="/SignUp"
+                       class="magnetic-btn flex items-center justify-center gap-2 rounded-xl
+                              bg-primary px-6 py-3.5 text-sm font-bold text-white
+                              shadow-lg shadow-primary/30 w-full sm:w-auto
+                              hover:bg-blue-700">
+                        Empieza Gratis Ahora
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </a>
+                    <a href="/precios"
+                       class="magnetic-btn flex items-center justify-center gap-2 rounded-xl border
+                              bg-white border-slate-200 px-6 py-3.5 text-sm font-bold text-slate-700
+                              shadow-sm w-full sm:w-auto hover:bg-slate-50">
+                        Ver Precios
+                    </a>
+                </div>
 
-        <a href="/precios"
-           class="magnetic-btn flex items-center justify-center gap-2 rounded-xl border bg-white border-slate-200 px-6 py-3.5 text-sm font-bold text-slate-700 shadow-sm w-full sm:w-auto hover:bg-slate-50">
-            Ver Precios
-        </a>
-    </div>
-</div>
+            </div>
             @* ── Fin columna izquierda ── *@
 
             @* ────────────────────────────────────────────────────────────────
@@ -65,9 +81,10 @@
             <div class="sf-hero-visual relative scroll-animate delay-200">
 
                 @* ==========================================
-                   1. MOBILE MOCKUP (Visible on mobile only)
+                   1. MOBILE MOCKUP (Solo visible en móvil)
                    ========================================== *@
-                <div class="flex md:hidden relative mx-auto border-slate-800 bg-slate-800 border-[10px] rounded-[2.5rem] h-[550px] w-[min(300px,82vw)] shadow-2xl z-10 overflow-hidden">
+                <div class="flex md:hidden relative mx-auto border-slate-800 bg-slate-800 border-[10px]
+                            rounded-[2.5rem] h-[550px] w-[min(300px,82vw)] shadow-2xl z-10 overflow-hidden">
                     @* Dynamic Island / Notch *@
                     <div class="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-30 flex items-center justify-between px-2">
                         <div class="w-2 h-2 rounded-full bg-slate-800/50"></div>
@@ -103,11 +120,12 @@
                 </div>
 
                 @* ==========================================
-                   2. DESKTOP BROWSER MOCKUP (Visible on Desktop only)
+                   2. DESKTOP BROWSER MOCKUP (Desktop/Ultrawide)
                    ========================================== *@
                 <div class="hidden md:flex sf-media-stage w-full rounded-2xl border border-slate-200/80 bg-white shadow-2xl overflow-hidden flex-col relative z-10">
+
                     @* Fake Chrome Top Bar *@
-                    <div class="flex items-center bg-slate-50/80 backdrop-blur-md px-4 py-3 border-b border-slate-200 gap-4">
+                    <div class="flex items-center bg-slate-50/80 backdrop-blur-md px-4 py-3 border-b border-slate-200 gap-4 shrink-0">
                         <div class="flex gap-1.5">
                             <div class="h-3 w-3 rounded-full bg-slate-300"></div>
                             <div class="h-3 w-3 rounded-full bg-slate-300"></div>
@@ -123,7 +141,7 @@
                         <div class="w-10"></div>
                     </div>
 
-                    @* ÁREA DINÁMICA DE VISTA *@
+                    @* ÁREA DINÁMICA — altura fluida, no fija *@
                     <div class="relative flex-1 w-full bg-slate-50 overflow-hidden min-h-[420px]">
                         @MockupContent
 
@@ -153,9 +171,9 @@
             @* ── Fin columna derecha ── *@
 
         </div>
-        @* ── Fin grid ── *@
+        @* ── Fin sf-hero-grid ── *@
     </div>
-    @* ── Fin contenedor principal ── *@
+    @* ── Fin sf-container-ultra ── *@
 
 </section>
 
@@ -187,10 +205,7 @@
     }
 
     @* OnAfterRenderAsync ELIMINADO intencionalmente.
-       Home.razor es el componente raíz y llama initScrollAnimations
-       para TODOS los hijos en una sola pasada limpia.
-       Tener dos llamadas (Hero + Home) creaba un double-observer:
-       Hero disparaba a T≈33ms, Home lo desconectaba a T≈133ms. *@
+       Home.razor llama initScrollAnimations para todos los hijos en una sola pasada. *@
 
     private RenderFragment MockupContent => @<text>
         <div @key="activeTab" class="absolute inset-0 animate-mockup h-full">
