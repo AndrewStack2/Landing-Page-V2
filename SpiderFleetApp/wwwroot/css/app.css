@@ -751,8 +751,7 @@ body .scroll-animate-right.delay-700 {
 
 /* ─────────────────────────────────────────────────────────
    WIDTH-ONLY FAILSAFE
-   IMPORTANTE: este bloque va ANTES de los aspect-ratio
-   para que los queries de ratio puedan sobreescribirlo.
+   Va ANTES de los aspect-ratio para que sean sobreescritos.
    ───────────────────────────────────────────────────────── */
 @media (min-width: 1600px) {
     .sf-container-wide {
@@ -772,17 +771,17 @@ body .scroll-animate-right.delay-700 {
 
 /* ─────────────────────────────────────────────────────────
    ASPECT-RATIO ADAPTATIONS v3
-   Estos van AL FINAL — ganan en cascada sobre el failsafe.
+   Van AL FINAL — ganan en cascada sobre el failsafe.
    ───────────────────────────────────────────────────────── */
 
-/* 16:10 — laptops Retina, workstations */
+/* 16:10 — laptops Retina */
 @media (min-aspect-ratio: 16/10) and (max-aspect-ratio: 21/9) {
     .sf-container-ultra {
         width: min(94vw, 1480px);
     }
 }
 
-/* QHD / 1440p — 2560x1440 (no ultrawide) */
+/* QHD / 1440p — 2560x1440 */
 @media (min-width: 2200px) and (max-aspect-ratio: 20/9) {
     .sf-container-ultra {
         width: min(90vw, 2000px);
@@ -846,7 +845,7 @@ body .scroll-animate-right.delay-700 {
     }
 }
 
-/* Muy ancha y baja — dual-FHD (3840x1080), precursor 32:9 */
+/* Muy ancha y baja — dual-FHD precursor */
 @media (min-aspect-ratio: 2/1) and (max-height: 900px) {
     .sf-hero {
         padding-top: clamp(88px, 6vw, 112px);
@@ -948,5 +947,95 @@ body .scroll-animate-right.delay-700 {
     .sf-hero-body {
         font-size: clamp(1.2rem, 1.4vw, 1.9rem);
         max-width: 44ch;
+    }
+}
+
+
+/* =========================================================
+   HERO INTERNALS — Elementos que Tailwind no puede escalar
+   Badge · Botones CTA · Stack gaps · Orbs decorativos
+   ========================================================= */
+
+/* ─── Badge eyebrow ─── */
+.sf-eyebrow-text {
+    font-size: clamp(0.7rem, 0.9vw, 1rem);
+}
+
+/* ─── Botones hero — reemplaza px-6 py-3.5 text-sm rounded-xl ─── */
+.sf-btn-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 1vw, 16px) clamp(20px, 2vw, 36px);
+    font-size: clamp(0.85rem, 1vw, 1.1rem);
+    border-radius: clamp(8px, 1vw, 14px);
+}
+
+/* ─── Stack interno del copy — controla gaps entre badge/h1/p/botones ─── */
+.sf-hero-copy-stack {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.2vh, 40px);
+}
+
+/* ─── Orb helper (opcional — para orbs que usen esta clase) ─── */
+.sf-hero-bg-orb {
+    width: clamp(480px, 45vw, 900px);
+    height: clamp(480px, 45vw, 900px);
+}
+
+/* ─── 21:9: botones y stack más holgados ─── */
+@media (min-aspect-ratio: 21/9) {
+    .sf-btn-hero {
+        padding: clamp(12px, 1.2vw, 20px) clamp(28px, 2.5vw, 52px);
+        font-size: clamp(0.95rem, 1.1vw, 1.3rem);
+    }
+
+    .sf-hero-copy-stack {
+        gap: clamp(20px, 2.8vh, 52px);
+    }
+
+    .sf-hero-bg-orb {
+        width: clamp(600px, 40vw, 1100px);
+        height: clamp(600px, 40vw, 1100px);
+    }
+}
+
+/* ─── 32:9 / Dual FHD: más espacio vertical ─── */
+@media (min-aspect-ratio: 32/9) {
+    .sf-btn-hero {
+        padding: clamp(14px, 1.4vw, 24px) clamp(32px, 3vw, 64px);
+        font-size: clamp(1rem, 1.2vw, 1.5rem);
+    }
+
+    .sf-hero-copy-stack {
+        gap: clamp(24px, 3.5vh, 64px);
+    }
+
+    .sf-hero-bg-orb {
+        width: clamp(700px, 38vw, 1400px);
+        height: clamp(700px, 38vw, 1400px);
+    }
+}
+
+/* ─── 5K: todo a escala real ─── */
+@media (min-width: 4200px) {
+    .sf-btn-hero {
+        padding: clamp(18px, 1.6vw, 32px) clamp(40px, 3.5vw, 80px);
+        font-size: clamp(1.2rem, 1.4vw, 1.8rem);
+        border-radius: clamp(12px, 1.2vw, 20px);
+    }
+
+    .sf-eyebrow-text {
+        font-size: clamp(0.9rem, 1.1vw, 1.4rem);
+    }
+
+    .sf-hero-copy-stack {
+        gap: clamp(32px, 4vh, 80px);
+    }
+
+    .sf-hero-bg-orb {
+        width: clamp(900px, 36vw, 1800px);
+        height: clamp(900px, 36vw, 1800px);
     }
 }

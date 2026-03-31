@@ -1,14 +1,15 @@
 @inject IJSRuntime JS
 
 @* ──────────────────────────────────────────────────────────────────────────
-   Hero.razor — Ultrawide-ready: 16:9 / 16:10 / 21:9 / 32:9
+   Hero.razor — Ultrawide-ready: 16:9 / 16:10 / 21:9 / 32:9 / 5K
    Usa el sistema sf-* definido en app.css
+   v4 — sf-hero-copy-stack para gaps fluidos + sf-btn-hero escalable
    ─────────────────────────────────────────────────────────────────────────── *@
 
 <section id="inicio"
          class="sf-hero sf-shell relative flex w-full flex-col items-center justify-center overflow-hidden bg-white">
 
-    @* ── Orbs decorativos con Parallax — escalan con vw para ultrawide ── *@
+    @* ── Orbs decorativos con Parallax ── *@
     <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <div data-parallax="0.18" data-parallax-dir="up"
              class="absolute -top-20 -right-20 w-[min(700px,30vw)] h-[min(700px,30vw)] bg-blue-200/50 rounded-full blur-3xl will-change-transform">
@@ -19,12 +20,11 @@
         <div data-parallax="0.08" data-parallax-dir="up"
              class="absolute top-1/3 left-1/4 w-[min(400px,18vw)] h-[min(400px,18vw)] bg-primary/10 rounded-full blur-3xl will-change-transform">
         </div>
-        @* Orb extra para llenar espacio en ultrawide *@
         <div class="absolute top-1/4 right-1/4 w-[min(320px,14vw)] h-[min(320px,14vw)] bg-sky-100/60 rounded-full blur-3xl will-change-transform">
         </div>
     </div>
 
-    @* ── CONTENEDOR PRINCIPAL — usa sf-container-ultra para ultrawide ── *@
+    @* ── CONTENEDOR PRINCIPAL ── *@
     <div class="relative z-10 sf-container-ultra w-full">
         <div class="sf-hero-grid">
 
@@ -33,44 +33,49 @@
                ──────────────────────────────────────────────────────────────── *@
             <div class="sf-hero-copy flex flex-col items-start scroll-animate">
 
-                @* Badge *@
-                <div class="inline-flex items-center rounded-full border border-slate-200
-                            bg-white px-3 py-1 text-xs font-semibold text-slate-600 mb-6 shadow-sm">
-                    <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-primary"></span>
-                    Conoce el sistema que entiende tu flota
+                @* sf-hero-copy-stack controla todos los gaps internos con clamp() *@
+                <div class="sf-hero-copy-stack w-full">
+
+                    @* Badge eyebrow *@
+                    <div class="inline-flex items-center rounded-full border border-slate-200
+                                bg-white px-3 py-1 font-semibold text-slate-600 shadow-sm w-fit">
+                        <span class="mr-2 h-2 w-2 animate-pulse rounded-full bg-primary shrink-0"></span>
+                        <span class="sf-eyebrow-text">Conoce el sistema que entiende tu flota</span>
+                    </div>
+
+                    @* Título Principal *@
+                    <h1 class="sf-hero-title font-extrabold tracking-tight leading-[1.02]
+                               text-slate-900 drop-shadow-sm">
+                        La inteligencia que mueve tu flota hacia
+                        <span class="text-primary block">adelante.</span>
+                    </h1>
+
+                    @* Cuerpo *@
+                    <p class="sf-hero-body text-slate-600 leading-relaxed">
+                        Mucho más que un simple GPS. SpiderFleet es el sistema operativo integral
+                        diseñado para mantener tus vehículos en ruta, tus documentos al día y tus costos bajo control.
+                    </p>
+
+                    @* CTAs *@
+                    <div class="flex flex-col sm:flex-row items-start gap-4 w-full">
+                        <a href="/SignUp"
+                           class="magnetic-btn sf-btn-hero inline-flex items-center justify-center gap-2
+                                  bg-primary font-bold text-white
+                                  shadow-lg shadow-primary/30 w-full sm:w-auto
+                                  hover:bg-blue-700 transition-all duration-150">
+                            Empieza Gratis Ahora
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                        </a>
+                        <a href="/precios"
+                           class="magnetic-btn sf-btn-hero inline-flex items-center justify-center gap-2
+                                  border bg-white border-slate-200 font-bold text-slate-700
+                                  shadow-sm w-full sm:w-auto hover:bg-slate-50 transition-all duration-150">
+                            Ver Precios
+                        </a>
+                    </div>
+
                 </div>
-
-                @* Título Principal *@
-                <h1 class="sf-hero-title text-5xl md:text-6xl xl:text-[4.5rem] 2xl:text-[5rem]
-                           font-extrabold tracking-tight leading-[1.02]
-                           text-slate-900 mb-6 drop-shadow-sm">
-                    La inteligencia que mueve tu flota hacia
-                    <span class="text-primary block">adelante.</span>
-                </h1>
-
-                @* Cuerpo *@
-                <p class="sf-hero-body text-lg xl:text-[1.15rem] text-slate-600 leading-relaxed mb-8">
-                    Mucho más que un simple GPS. SpiderFleet es el sistema operativo integral
-                    diseñado para mantener tus vehículos en ruta, tus documentos al día y tus costos bajo control.
-                </p>
-
-                @* CTA *@
-                <div class="flex flex-col sm:flex-row items-start gap-4 w-full mt-2">
-                    <a href="/SignUp"
-                       class="magnetic-btn flex items-center justify-center gap-2 rounded-xl
-                              bg-primary px-6 py-3.5 text-sm font-bold text-white
-                              shadow-lg shadow-primary/30 w-full sm:w-auto
-                              hover:bg-blue-700">
-                        Empieza Gratis Ahora
-                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-                    </a>
-                    <a href="/precios"
-                       class="magnetic-btn flex items-center justify-center gap-2 rounded-xl border
-                              bg-white border-slate-200 px-6 py-3.5 text-sm font-bold text-slate-700
-                              shadow-sm w-full sm:w-auto hover:bg-slate-50">
-                        Ver Precios
-                    </a>
-                </div>
+                @* ── Fin sf-hero-copy-stack ── *@
 
             </div>
             @* ── Fin columna izquierda ── *@
@@ -141,7 +146,7 @@
                         <div class="w-10"></div>
                     </div>
 
-                    @* ÁREA DINÁMICA — altura fluida, no fija *@
+                    @* ÁREA DINÁMICA *@
                     <div class="relative flex-1 w-full bg-slate-50 overflow-hidden min-h-[420px]">
                         @MockupContent
 
@@ -203,9 +208,6 @@
             _ => "dashboard"
         };
     }
-
-    @* OnAfterRenderAsync ELIMINADO intencionalmente.
-       Home.razor llama initScrollAnimations para todos los hijos en una sola pasada. *@
 
     private RenderFragment MockupContent => @<text>
         <div @key="activeTab" class="absolute inset-0 animate-mockup h-full">
