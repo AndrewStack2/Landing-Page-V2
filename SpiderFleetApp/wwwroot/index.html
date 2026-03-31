@@ -611,6 +611,75 @@
                 if (magInit || magRetries >= 10) clearInterval(magInterval);
             }, 500);
         })();
+
+        // ============================================
+        //  CUSTOM SPIDER CURSOR
+        // ============================================
+        window.initCustomCursor = function () {
+            const dot = document.getElementById('spider-cursor-dot');
+            const ring = document.getElementById('spider-cursor-ring');
+            if (!dot || !ring) return;
+
+            if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return;
+
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let ringX = mouseX;
+            let ringY = mouseY;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.left = mouseX + 'px';
+                dot.style.top = mouseY + 'px';
+            });
+
+            function lerp(a, b, t) { return a + (b - a) * t; }
+
+            function animateRing() {
+                ringX = lerp(ringX, mouseX, 0.12);
+                ringY = lerp(ringY, mouseY, 0.12);
+                ring.style.left = ringX + 'px';
+                ring.style.top = ringY + 'px';
+                requestAnimationFrame(animateRing);
+            }
+            animateRing();
+
+            const interactiveSelectors = 'a, button, [data-cursor-hover], .feature-card, label, input, select';
+
+            document.addEventListener('mouseover', (e) => {
+                if (e.target.closest(interactiveSelectors)) {
+                    dot.classList.add('cursor-hover');
+                    ring.classList.add('cursor-hover');
+                }
+            });
+
+            document.addEventListener('mouseout', (e) => {
+                if (e.target.closest(interactiveSelectors)) {
+                    dot.classList.remove('cursor-hover');
+                    ring.classList.remove('cursor-hover');
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                dot.classList.add('cursor-hidden');
+                ring.classList.add('cursor-hidden');
+            });
+
+            document.addEventListener('mouseenter', () => {
+                dot.classList.remove('cursor-hidden');
+                ring.classList.remove('cursor-hidden');
+            });
+
+            document.addEventListener('mousedown', () => {
+                dot.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            });
+
+            document.addEventListener('mouseup', () => {
+                dot.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        };
+
     </script>
 
 </body>

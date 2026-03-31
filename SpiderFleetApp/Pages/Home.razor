@@ -4,25 +4,48 @@
 
 @using SpiderFleetApp.Pages.Components
 
-@* 1. THE HOOK: Atraer la atención y mostrar el producto interactivo *@
+@* ===== CAPA 5: SPIDER CURSOR — position:fixed, va aquí por ser global a toda la página ===== *@
+<div id="spider-cursor-dot" aria-hidden="true">
+    <svg viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M600 400 C450 400 350 500 350 600 C350 700 450 800 600 800
+                 C750 800 850 700 850 600 C850 500 750 400 600 400 Z
+                 M450 550 L550 550 L550 650 L450 650 Z
+                 M650 550 L750 550 L750 650 L650 650 Z"
+              fill="#FFFFFF" stroke="#FFFFFF" stroke-width="20" stroke-linejoin="round"/>
+        <path d="M350 550 L250 450 L200 500" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M300 600 L200 650 L150 600" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M850 550 L950 450 L1000 500" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M900 600 L1000 650 L1050 600" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M350 650 L250 750 L200 700" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M300 700 L200 750 L150 700" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M850 650 L950 750 L1000 700" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M900 700 L1000 750 L1050 700" fill="none" stroke="#FFFFFF" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M480 500 Q520 550 480 600 Q520 650 480 700
+                 M620 500 Q580 550 620 600 Q580 650 620 700"
+              fill="none" stroke="#E63946" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+<div id="spider-cursor-ring" aria-hidden="true"></div>
+
+@* 1. THE HOOK *@
 <Hero />
 
-@* 2. THE PAIN: Mostrar empatía con los problemas logísticos actuales *@
+@* 2. THE PAIN *@
 <PainVsDream />
 
-@* 3. THE FIX: Explicar cómo funciona detalladamente (Z-Pattern) *@
+@* 3. THE FIX *@
 <FeaturesMode />
 
-@* 4. THE PROOF (Visual): Verlo en acción retiene a los dudosos *@
+@* 4. THE PROOF (Visual) *@
 <VideoFeature />
 
-@* 5. THE PROOF (Social): Testimonios validan la compra *@
+@* 5. THE PROOF (Social) *@
 <TestimonialsGrid />
 
-@* 6. OBJECTIONS: Resolver dudas antes de pedir la compra *@
+@* 6. OBJECTIONS *@
 <FAQ />
 
-@* 7. CLIMAX: El llamado a la acción final *@
+@* 7. CLIMAX *@
 <CtaBannerFinal />
 
 @code {
@@ -32,13 +55,11 @@
     {
         if (firstRender)
         {
-            // 300ms — tiempo suficiente para que todos los componentes
-            // hijos (Hero, FeaturesMode, PainVsDream, etc.) terminen
-            // de montar su DOM antes de que el observer los registre.
             await Task.Delay(300);
             await JS.InvokeVoidAsync("initScrollAnimations");
             await JS.InvokeVoidAsync("initCountUp");
             await JS.InvokeVoidAsync("initMagneticButtons");
+            await JS.InvokeVoidAsync("initCustomCursor"); // ← CAPA 5
         }
     }
 }
