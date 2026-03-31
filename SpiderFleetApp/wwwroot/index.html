@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="es-MX" style="scroll-behavior: smooth;">
 
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 
     <!-- ═══════════════════════════════════
          SEO — TÍTULO Y DESCRIPCIÓN BASE
@@ -17,6 +19,7 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#1364ed" />
     <link rel="canonical" href="https://spiderfleet.mx/" />
+
 
     <!-- ═══════════════════════════════════
          SEO — OPEN GRAPH
@@ -33,6 +36,7 @@
     <meta property="og:image:alt" content="Spider Fleet — Panel de control de flota en tiempo real" />
     <meta property="og:locale" content="es_MX" />
 
+
     <!-- ═══════════════════════════════════
          SEO — TWITTER CARD
     ═══════════════════════════════════ -->
@@ -42,6 +46,7 @@
         content="Rastreo GPS en tiempo real, rutas con IA y gestión documental para flotas y vehículos personales en México." />
     <meta name="twitter:image" content="https://spiderfleet.mx/Assets/og-image.jpg" />
     <meta name="twitter:image:alt" content="Spider Fleet — Dashboard de flota en tiempo real" />
+
 
     <!-- ═══════════════════════════════════
          SEO — SCHEMA.ORG JSON-LD
@@ -105,6 +110,7 @@
       ]
     }
     </script>
+
 
     <!-- ═══════════════════════════════════
          BASE & RESOURCES
@@ -181,7 +187,110 @@
             },
         }
     </script>
+
+    <!-- ═══════════════════════════════════
+         GPS PIN CURSOR
+    ═══════════════════════════════════ -->
+    <style>
+        * {
+            cursor: none !important;
+        }
+
+        #spider-cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #1364ED;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease,
+                width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.3s ease;
+            will-change: transform;
+            box-shadow: 0 0 0 0 rgba(19, 100, 237, 0.4);
+        }
+
+        #spider-cursor-dot svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #spider-cursor-dot.cursor-hover {
+            width: 50px;
+            height: 50px;
+            background-color: #0d52c1;
+            animation: gps-pulse 1.2s ease-out infinite;
+        }
+
+        #spider-cursor-dot.cursor-hover svg {
+            transform: translateY(2px) scale(1.1);
+        }
+
+        #spider-cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            border: 2px solid rgba(19, 100, 237, 0.45);
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                opacity 0.3s ease;
+            will-change: transform;
+        }
+
+        #spider-cursor-ring.cursor-hover {
+            width: 86px;
+            height: 86px;
+            border-color: rgba(19, 100, 237, 0.75);
+        }
+
+        #spider-cursor-ring.cursor-hidden,
+        #spider-cursor-dot.cursor-hidden {
+            opacity: 0;
+        }
+
+        @keyframes gps-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(19, 100, 237, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 12px rgba(19, 100, 237, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(19, 100, 237, 0);
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            * {
+                cursor: auto !important;
+            }
+
+            #spider-cursor-dot,
+            #spider-cursor-ring {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
+
 
 <body>
     <div id="app">
@@ -203,6 +312,7 @@
                 ">Cargando plataforma...</span>
             </div>
 
+
             <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <div
                     style="height:18px;width:18px;border-radius:50%;background-color:#b3d4fc;animation:sf-pulse 1.5s infinite ease-in-out;animation-delay:-0.3s;">
@@ -215,6 +325,7 @@
                 </div>
             </div>
         </div>
+
 
         <style>
             @keyframes sf-pulse {
@@ -251,21 +362,21 @@
         </style>
     </div>
 
+
     <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
 
+
     <script src="_framework/blazor.webassembly.js"></script>
+
 
     <!-- ═══════════════════════════════════════════════════════════════════════
          SPIDERFLEET — JS INTEROP FUNCTIONS
-         PASTE LOCATION: after blazor.webassembly.js, before </body>
-         DO NOT add any other <script> blocks below this one.
     ═══════════════════════════════════════════════════════════════════════ -->
     <script>
-        // ─── Navbar scroll listener ───────────────────────────────────────────
         window.SpiderFleet = window.SpiderFleet || {};
 
         window.SpiderFleet.registerScrollListener = function (dotNetRef) {
@@ -279,7 +390,6 @@
             window._spiderScrollHandler();
         };
 
-        // ─── Pricing carousel scroll ──────────────────────────────────────────
         function scrollPricing(direction) {
             const container = document.getElementById('pricing-carousel');
             if (container) {
@@ -294,18 +404,14 @@
             }
         }
 
-        // ─── Pricing carousel drag ────────────────────────────────────────────
         window.initializeCarouselDrag = function () {
             const carousel = document.getElementById('pricing-carousel');
             if (!carousel) return;
-
             let isDown = false;
             let startX;
             let scrollLeft;
-
             const newCarousel = carousel.cloneNode(true);
             carousel.parentNode.replaceChild(newCarousel, carousel);
-
             newCarousel.addEventListener('mousedown', (e) => {
                 isDown = true;
                 newCarousel.classList.add('cursor-grabbing');
@@ -331,7 +437,6 @@
             });
         };
 
-        // ─── Back-to-top visibility ───────────────────────────────────────────
         window.handleBackToTopVisibility = function () {
             const btn = document.getElementById('back-to-top');
             if (!btn) return;
@@ -346,15 +451,12 @@
             });
         };
 
-        // ─── Scroll entrance animations ───────────────────────────────────────
         window.initScrollAnimations = function () {
             requestAnimationFrame(function () {
                 requestAnimationFrame(function () {
-
                     if (window.sfScrollObserver) {
                         window.sfScrollObserver.disconnect();
                     }
-
                     window.sfScrollObserver = new IntersectionObserver(function (entries) {
                         entries.forEach(function (entry) {
                             if (entry.isIntersecting) {
@@ -362,25 +464,16 @@
                                 window.sfScrollObserver.unobserve(entry.target);
                             }
                         });
-                    }, {
-                        threshold: 0.05,
-                        rootMargin: '0px 0px 0px 0px'  // sin margen negativo
-                    });
+                    }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
 
                     var elements = document.querySelectorAll(
                         '.scroll-animate:not(.is-visible), ' +
                         '.scroll-animate-left:not(.is-visible), ' +
                         '.scroll-animate-right:not(.is-visible)'
                     );
-
                     elements.forEach(function (el) {
                         window.sfScrollObserver.observe(el);
                     });
-
-                    // FIX CRÍTICO: forzar check inmediato para elementos
-                    // que ya están en el viewport al momento de la llamada.
-                    // IntersectionObserver es async — no dispara síncronamente
-                    // para elementos ya visibles en Blazor WASM.
                     setTimeout(function () {
                         elements.forEach(function (el) {
                             var rect = el.getBoundingClientRect();
@@ -398,68 +491,50 @@
                             }
                         });
                     }, 100);
-
                 });
             });
         };
 
-        // Alias de compatibilidad
         window.initializeScrollAnimations = window.initScrollAnimations;
 
-        // ─── Count-Up Animation ───────────────────────────────────────────────
         window.initCountUp = function () {
             requestAnimationFrame(function () {
                 requestAnimationFrame(function () {
                     if (window._sfCountObserver) {
                         window._sfCountObserver.disconnect();
                     }
-
                     window._sfCountObserver = new IntersectionObserver(function (entries) {
                         entries.forEach(function (entry) {
                             if (!entry.isIntersecting) return;
-
                             var el = entry.target;
                             if (el.getAttribute('data-counted') === 'true') return;
-
                             el.setAttribute('data-counted', 'true');
                             window._sfCountObserver.unobserve(el);
-
                             var target = parseFloat(el.getAttribute('data-countup'));
                             var duration = parseInt(el.getAttribute('data-duration') || '1600');
                             var prefix = el.getAttribute('data-prefix') || '';
                             var suffix = el.getAttribute('data-suffix') || '';
                             var decimals = parseInt(el.getAttribute('data-decimals') || '0');
-
                             var startTime = null;
-
                             function animate(currentTime) {
                                 if (!startTime) startTime = currentTime;
-
                                 var progress = Math.min((currentTime - startTime) / duration, 1);
-                                // Ease-out cubic — rápido al inicio, desacelera al llegar al valor final
                                 var eased = 1 - Math.pow(1 - progress, 3);
                                 var current = target * eased;
-
                                 el.textContent = prefix +
                                     (decimals > 0 ? current.toFixed(decimals) : Math.floor(current)) +
                                     suffix;
-
                                 if (progress < 1) {
                                     requestAnimationFrame(animate);
                                 } else {
-                                    // Garantizar que el valor final sea exacto
                                     el.textContent = prefix +
                                         (decimals > 0 ? target.toFixed(decimals) : Math.floor(target)) +
                                         suffix;
                                 }
                             }
-
                             requestAnimationFrame(animate);
                         });
-                    }, {
-                        threshold: 0.08
-                    });
-
+                    }, { threshold: 0.08 });
                     document.querySelectorAll('[data-countup]:not([data-counted])').forEach(function (el) {
                         window._sfCountObserver.observe(el);
                     });
@@ -467,7 +542,6 @@
             });
         };
 
-        // ─── Video autoplay — iOS Safari + Android Chrome ─────────────────────
         window.initVideoAutoplay = function (id) {
             var video = document.getElementById(id);
             if (!video) return;
@@ -492,7 +566,6 @@
             attemptPlay();
         };
 
-        // ─── Restart video (Personal mode tab switch) ─────────────────────────
         window.restartVideo = function (id) {
             var video = document.getElementById(id);
             if (video) {
@@ -503,13 +576,11 @@
                 });
             }
         };
-        // ===== PARALLAX ORBS =====
+
         window.initParallaxOrbs = function () {
             var orbs = document.querySelectorAll('[data-parallax]');
             if (!orbs.length) return;
-
             var ticking = false;
-
             function applyParallax() {
                 var scrollY = window.scrollY || window.pageYOffset;
                 orbs.forEach(function (orb) {
@@ -521,23 +592,18 @@
                 });
                 ticking = false;
             }
-
             function onScroll() {
                 if (!ticking) {
                     window.requestAnimationFrame(applyParallax);
                     ticking = true;
                 }
             }
-
             window.removeEventListener('scroll', window._sfParallaxHandler);
             window._sfParallaxHandler = onScroll;
             window.addEventListener('scroll', window._sfParallaxHandler, { passive: true });
             applyParallax();
         };
 
-        // Auto-init parallax cuando Blazor termina de montar el DOM
-        // Se usa MutationObserver para detectar cuando los orbs con data-parallax
-        // aparecen en el DOM (Blazor los inyecta después de que el script carga).
         (function () {
             var initialized = false;
             function tryInit() {
@@ -548,13 +614,11 @@
                     window.initParallaxOrbs();
                 }
             }
-            // Intenta inmediatamente y también al hacer scroll por primera vez
             document.addEventListener('DOMContentLoaded', tryInit);
             window.addEventListener('scroll', function onFirstScroll() {
                 tryInit();
                 if (initialized) window.removeEventListener('scroll', onFirstScroll);
             }, { passive: true });
-            // Fallback: retry cada 500ms hasta encontrar orbs (max 5s)
             var retries = 0;
             var interval = setInterval(function () {
                 tryInit();
@@ -562,19 +626,15 @@
                 if (initialized || retries >= 10) clearInterval(interval);
             }, 500);
         })();
-        // ===== MAGNETIC HOVER EN BOTONES CTA =====
+
         window.initMagneticButtons = function () {
             if (window.matchMedia('(hover: none)').matches) return;
-
             var buttons = document.querySelectorAll('.magnetic-btn');
             if (!buttons.length) return;
-
             buttons.forEach(function (btn) {
                 if (btn._magneticBound) return;
                 btn._magneticBound = true;
-
                 btn.style.transition = 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
-
                 btn.addEventListener('mousemove', function (e) {
                     var rect = btn.getBoundingClientRect();
                     var centerX = rect.left + rect.width / 2;
@@ -586,14 +646,12 @@
                     var moveY = (deltaY / (rect.height / 2)) * maxShift;
                     btn.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
                 });
-
                 btn.addEventListener('mouseleave', function () {
                     btn.style.transform = 'translate(0px, 0px)';
                 });
             });
         };
 
-        // Auto-init magnético — mismo patrón que parallax
         (function () {
             var magInit = false;
             function tryMag() {
@@ -613,7 +671,7 @@
         })();
 
         // ============================================
-        //  CUSTOM SPIDER CURSOR
+        //  CAPA 5 — CUSTOM GPS PIN CURSOR
         // ============================================
         window.initCustomCursor = function () {
             const dot = document.getElementById('spider-cursor-dot');
@@ -682,6 +740,8 @@
 
     </script>
 
+
 </body>
+
 
 </html>
