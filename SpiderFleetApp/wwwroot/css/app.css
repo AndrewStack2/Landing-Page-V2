@@ -601,3 +601,278 @@ body .scroll-animate-right.delay-700 {
         display: none !important;
     }
 }
+
+/* =========================================================
+   SPIDERFLEET — RESPONSIVE WIDTH & ASPECT RATIO SYSTEM
+   Soporte: 16:9 / 16:10 / 21:9 / 32:9
+   Pegar al final de app.css
+   ========================================================= */
+
+:root {
+    --sf-gutter-x: clamp(16px, 2.2vw, 32px);
+    --sf-gutter-x-wide: clamp(24px, 2.4vw, 40px);
+
+    --sf-section-y: clamp(56px, 8vw, 120px);
+    --sf-section-y-tight: clamp(32px, 5vw, 72px);
+
+    --sf-container: 1280px;
+    --sf-container-wide: 1440px;
+    --sf-container-ultra: 1600px;
+    --sf-container-reading: 72ch;
+
+    --sf-hero-min-height: min(100svh, 980px);
+    --sf-hero-media-height: clamp(480px, 52vw, 760px);
+    --sf-hero-copy-max: 640px;
+    --sf-hero-media-max: 860px;
+
+    --sf-grid-gap: clamp(24px, 3vw, 56px);
+    --sf-card-gap: clamp(16px, 2vw, 28px);
+}
+
+/* ─────────────────────────────────────────
+   CONTENEDORES GLOBALES
+   ───────────────────────────────────────── */
+.sf-shell {
+    width: 100%;
+    padding-inline: var(--sf-gutter-x);
+}
+
+.sf-shell-wide {
+    width: 100%;
+    padding-inline: var(--sf-gutter-x-wide);
+}
+
+.sf-container {
+    width: min(100%, var(--sf-container));
+    margin-inline: auto;
+}
+
+.sf-container-wide {
+    width: min(100%, var(--sf-container-wide));
+    margin-inline: auto;
+}
+
+.sf-container-ultra {
+    width: min(100%, var(--sf-container-ultra));
+    margin-inline: auto;
+}
+
+.sf-reading {
+    width: min(100%, var(--sf-container-reading));
+}
+
+.sf-section {
+    padding-block: var(--sf-section-y);
+}
+
+.sf-section-tight {
+    padding-block: var(--sf-section-y-tight);
+}
+
+/* ─────────────────────────────────────────
+   GRID FLUIDO REUTILIZABLE
+   ───────────────────────────────────────── */
+.sf-auto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--sf-card-gap);
+}
+
+.sf-auto-grid-lg {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: var(--sf-grid-gap);
+}
+
+/* ─────────────────────────────────────────
+   SAFETY RULES PARA ULTRAWIDE
+   ───────────────────────────────────────── */
+.sf-text-balance {
+    text-wrap: balance;
+}
+
+.sf-copy-limit {
+    max-width: var(--sf-hero-copy-max);
+}
+
+.sf-media-stage {
+    width: 100%;
+    max-width: var(--sf-hero-media-max);
+    min-height: var(--sf-hero-media-height);
+}
+
+.sf-media-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sf-media-contain {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Evita que backgrounds decorativos se queden chicos en pantallas muy anchas */
+.sf-bleed-orb {
+    transform-origin: center;
+}
+
+/* ─────────────────────────────────────────
+   HERO SYSTEM
+   ───────────────────────────────────────── */
+.sf-hero {
+    min-height: var(--sf-hero-min-height);
+    padding-top: clamp(92px, 9vw, 132px);
+    padding-bottom: clamp(48px, 8vw, 112px);
+}
+
+.sf-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--sf-grid-gap);
+}
+
+.sf-hero-copy {
+    width: 100%;
+    max-width: var(--sf-hero-copy-max);
+}
+
+.sf-hero-title {
+    max-width: 12ch;
+    text-wrap: balance;
+}
+
+.sf-hero-body {
+    max-width: 60ch;
+}
+
+.sf-hero-visual {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Desktop base */
+@media (min-width: 1024px) {
+    .sf-hero-grid {
+        grid-template-columns: minmax(480px, 0.92fr) minmax(560px, 1.08fr);
+    }
+}
+
+/* ─────────────────────────────────────────
+   ASPECT-RATIO ADAPTATIONS
+   ───────────────────────────────────────── */
+
+/* 16:10 y pantallas un poco más anchas */
+@media (min-aspect-ratio: 16/10) {
+    :root {
+        --sf-container: 1320px;
+        --sf-container-wide: 1480px;
+        --sf-hero-media-height: clamp(500px, 46vw, 740px);
+        --sf-hero-copy-max: 660px;
+    }
+}
+
+/* 21:9 ultrawide */
+@media (min-aspect-ratio: 21/9) {
+    :root {
+        --sf-gutter-x: clamp(24px, 2.3vw, 44px);
+        --sf-container: 1440px;
+        --sf-container-wide: 1600px;
+        --sf-container-ultra: 1720px;
+        --sf-hero-min-height: min(92svh, 920px);
+        --sf-hero-media-height: clamp(520px, 38vw, 760px);
+        --sf-hero-copy-max: 700px;
+        --sf-hero-media-max: 980px;
+    }
+
+    .sf-hero-grid {
+        grid-template-columns: minmax(520px, 0.9fr) minmax(680px, 1.1fr);
+        gap: clamp(32px, 3vw, 72px);
+    }
+
+    .sf-hero-title {
+        max-width: 11ch;
+    }
+}
+
+/* 32:9 super ultrawide */
+@media (min-aspect-ratio: 32/9) {
+    :root {
+        --sf-gutter-x: clamp(28px, 2.5vw, 56px);
+        --sf-container: 1520px;
+        --sf-container-wide: 1720px;
+        --sf-container-ultra: 1920px;
+        --sf-hero-min-height: min(86svh, 880px);
+        --sf-hero-media-height: clamp(540px, 31vw, 760px);
+        --sf-hero-copy-max: 720px;
+        --sf-hero-media-max: 1080px;
+    }
+
+    .sf-hero-grid {
+        grid-template-columns: minmax(560px, 0.86fr) minmax(760px, 1.14fr);
+        gap: clamp(40px, 3vw, 84px);
+    }
+
+    .sf-hero-title {
+        max-width: 10.5ch;
+    }
+}
+
+/* Muy ancha pero no tan alta: evita sensación de hero aplastado */
+@media (min-aspect-ratio: 2/1) and (max-height: 920px) {
+    .sf-hero {
+        align-items: center;
+        padding-top: clamp(88px, 6vw, 116px);
+        padding-bottom: clamp(40px, 5vw, 80px);
+    }
+}
+
+/* ─────────────────────────────────────────
+   WIDTH-ONLY FAILSAFE
+   ───────────────────────────────────────── */
+@media (min-width: 1600px) {
+    .sf-container-wide {
+        width: min(100%, var(--sf-container-wide));
+    }
+
+    .sf-container-ultra {
+        width: min(100%, var(--sf-container-ultra));
+    }
+}
+
+@media (min-width: 2200px) {
+    .sf-container-ultra {
+        width: min(100%, 1920px);
+    }
+}
+
+/* ─────────────────────────────────────────
+   MOBILE / SMALL HEIGHT SAFETY
+   ───────────────────────────────────────── */
+@media (max-width: 767px) {
+    :root {
+        --sf-gutter-x: 20px;
+        --sf-section-y: clamp(48px, 10vw, 72px);
+        --sf-hero-media-height: 550px;
+    }
+
+    .sf-hero-title {
+        max-width: 12ch;
+    }
+
+    .sf-hero-body {
+        max-width: 100%;
+    }
+}
+
+@media (max-height: 740px) and (min-width: 768px) {
+    .sf-hero {
+        min-height: auto;
+        padding-top: 110px;
+        padding-bottom: 64px;
+    }
+}
