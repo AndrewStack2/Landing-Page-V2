@@ -6,25 +6,11 @@
     @Body
 </div>
 
-@* ===== GPS PIN CURSOR ===== *@
-<div id="spider-cursor-dot" aria-hidden="true">
-    <svg viewBox="0 0 52 80" xmlns="http://www.w3.org/2000/svg" width="28" height="44">
-        <circle cx="26" cy="22" r="20" fill="#1364ED"/>
-        <circle cx="19" cy="15" r="6" fill="rgba(255,255,255,0.25)"/>
-        <circle cx="26" cy="22" r="5" fill="white"/>
-        <line x1="26" y1="42" x2="26" y2="76"
-              stroke="#4A5568" stroke-width="3.5"
-              stroke-linecap="round"/>
-    </svg>
-</div>
-@* Ring eliminado — no se necesita con el pushpin *@
-
 @code {
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("initCustomCursor"); // ✅ Activa el cursor en Login y SignUp
         }
     }
 }
