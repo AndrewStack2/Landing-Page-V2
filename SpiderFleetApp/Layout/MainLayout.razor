@@ -1,4 +1,5 @@
 @inherits LayoutComponentBase
+@inject IJSRuntime JS
 
 <div class="relative flex min-h-screen w-full flex-col bg-white text-slate-900 font-display antialiased selection:bg-primary selection:text-white overflow-x-hidden scroll-smooth">
 
@@ -18,8 +19,6 @@
 </div>
 
 @code {
-    [Inject] IJSRuntime JS { get; set; } = default!;
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

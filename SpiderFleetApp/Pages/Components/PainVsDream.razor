@@ -2,15 +2,17 @@
 
 <section class="bg-slate-50 py-24 relative overflow-hidden border-t border-slate-100">
     <div class="mx-auto max-w-7xl px-6 relative z-10">
-        
-        @* Header & Toggle *@
+
+        @* ══════════════════
+           Header & Toggle
+        ══════════════════ *@
         <div class="text-center mb-16 scroll-animate">
             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 transition-all duration-300">
                 @(IsPersonalMode ? "No dejes la seguridad de tu auto al azar." : "La logística no debería ser un caos.")
             </h2>
             <p class="text-lg text-slate-600 max-w-2xl mx-auto transition-all duration-300">
-                @(IsPersonalMode 
-                    ? "La tranquilidad de saber dónde está tu vehículo y tener el control total, sin depender de alarmas tradicionales." 
+                @(IsPersonalMode
+                    ? "La tranquilidad de saber dónde está tu vehículo y tener el control total, sin depender de alarmas tradicionales."
                     : "Decirle adiós a los procesos manuales y hojas de cálculo es el primer paso para hacer crecer tu operación.")
             </p>
 
@@ -18,7 +20,6 @@
                 <div class="bg-white p-1.5 rounded-full flex relative isolate border border-slate-200 shadow-sm w-full max-w-[340px]">
                     <div class="absolute left-1.5 top-1.5 bottom-1.5 w-[calc(50%-6px)] bg-slate-100 rounded-full transition-transform duration-300 z-0"
                          style='transform: translateX(@(IsPersonalMode ? "0" : "100%"));'></div>
-                         
                     <button class="flex-1 relative z-10 py-2.5 text-sm transition-colors duration-300 @(IsPersonalMode ? "text-[#0d6efd] font-bold" : "text-slate-500 font-medium")"
                             @onclick="() => SetMode(true)">Uso Personal</button>
                     <button class="flex-1 relative z-10 py-2.5 text-sm transition-colors duration-300 @(IsPersonalMode ? "text-slate-500 font-medium" : "text-primary font-bold")"
@@ -27,13 +28,13 @@
             </div>
         </div>
 
-        @* ==========================================
+        @* ══════════════════════════════════════════
            MODO PERSONAL (Dolor + Solución)
-           ========================================== *@
+        ══════════════════════════════════════════ *@
         <div class="@(IsPersonalMode ? "grid" : "hidden") md:grid-cols-2 gap-8 items-stretch">
-            
+
             @* THE OLD WAY *@
-            <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 scroll-animate delay-100 relative overflow-hidden group">
+            <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 sf-anim-left-1 relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-full h-1 bg-red-400"></div>
                 <div class="mb-6 flex items-center gap-3">
                     <div class="flex items-center justify-center w-10 h-10 rounded-full bg-red-100 text-red-500">
@@ -64,7 +65,7 @@
             </div>
 
             @* THE SPIDERFLEET WAY *@
-            <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-8 sm:p-12 scroll-animate delay-200 relative overflow-hidden">
+            <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-8 sm:p-12 sf-anim-right-1 relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1 bg-[#0d6efd]"></div>
                 <div class="mb-6 flex items-center gap-3">
                     <div class="flex items-center justify-center w-10 h-10 rounded-full text-white shadow-lg bg-[#0d6efd] shadow-indigo-500/30">
@@ -97,15 +98,16 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
-        @* ==========================================
+        @* ══════════════════════════════════════════
            MODO EMPRESA (Dolor + Solución)
-           ========================================== *@
+        ══════════════════════════════════════════ *@
         <div class="@(!IsPersonalMode ? "grid" : "hidden") md:grid-cols-2 gap-8 items-stretch">
-            
+
             @* THE OLD WAY *@
-            <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 scroll-animate delay-100 relative overflow-hidden group">
+            <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 sf-anim-left-1 relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-full h-1 bg-red-400"></div>
                 <div class="mb-6 flex items-center gap-3">
                     <div class="flex items-center justify-center w-10 h-10 rounded-full bg-red-100 text-red-500">
@@ -136,7 +138,7 @@
             </div>
 
             @* THE SPIDERFLEET WAY *@
-            <div class="bg-blue-50 border border-blue-100 rounded-3xl p-8 sm:p-12 scroll-animate delay-200 relative overflow-hidden">
+            <div class="bg-blue-50 border border-blue-100 rounded-3xl p-8 sm:p-12 sf-anim-right-1 relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
                 <div class="mb-6 flex items-center gap-3">
                     <div class="flex items-center justify-center w-10 h-10 rounded-full text-white shadow-lg bg-primary shadow-blue-500/30">
@@ -169,6 +171,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -182,7 +185,7 @@
         IsPersonalMode = isPersonal;
         StateHasChanged();
         await Task.Delay(50);
-        await JS.InvokeVoidAsync("initScrollAnimations");
+        await JS.InvokeVoidAsync("initCountUp");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

@@ -3,24 +3,20 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-
 h1:focus {
     outline: none;
 }
-
 
 a,
 .btn-link {
     color: #0071c1;
 }
 
-
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
-
 
 .btn:focus,
 .btn:active:focus,
@@ -30,26 +26,21 @@ a,
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-
 .content {
     padding-top: 1.1rem;
 }
-
 
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
 
-
 .invalid {
     outline: 1px solid red;
 }
 
-
 .validation-message {
     color: red;
 }
-
 
 #blazor-error-ui {
     color-scheme: light only;
@@ -65,7 +56,6 @@ a,
     z-index: 1000;
 }
 
-
 #blazor-error-ui .dismiss {
     cursor: pointer;
     position: absolute;
@@ -73,18 +63,15 @@ a,
     top: 0.5rem;
 }
 
-
 .blazor-error-boundary {
     background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
     padding: 1rem 1rem 1rem 3.7rem;
     color: white;
 }
 
-
 .blazor-error-boundary::after {
     content: "An error has occurred."
 }
-
 
 .loading-progress {
     position: absolute;
@@ -95,7 +82,6 @@ a,
     margin: 0 auto 0 auto;
 }
 
-
 .loading-progress circle {
     fill: none;
     stroke: #e0e0e0;
@@ -104,13 +90,11 @@ a,
     transform: rotate(-90deg);
 }
 
-
 .loading-progress circle:last-child {
     stroke: #1b6ec2;
     stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
     transition: stroke-dasharray 0.05s ease-in-out;
 }
-
 
 .loading-progress-text {
     position: absolute;
@@ -119,16 +103,13 @@ a,
     inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
 }
 
-
 .loading-progress-text:after {
     content: var(--blazor-load-percentage-text, "Loading");
 }
 
-
 code {
     color: #c02d76;
 }
-
 
 .form-floating>.form-control-plaintext::placeholder,
 .form-floating>.form-control::placeholder {
@@ -136,28 +117,23 @@ code {
     text-align: end;
 }
 
-
 .form-floating>.form-control-plaintext:focus::placeholder,
 .form-floating>.form-control:focus::placeholder {
     text-align: start;
 }
 
-
-/* Custom utility classes from original HTML */
+/* Custom utility classes */
 .perspective-1000 {
     perspective: 1000px;
 }
-
 
 .preserve-3d {
     transform-style: preserve-3d;
 }
 
-
 .backface-hidden {
     backface-visibility: hidden;
 }
-
 
 .glass-card {
     background: rgba(255, 255, 255, 0.7);
@@ -166,121 +142,149 @@ code {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-
 .data-flow-line {
     background: linear-gradient(90deg, transparent 0%, #1364ed 50%, transparent 100%);
     background-size: 200% 100%;
     animation: moveGradient 2s linear infinite;
 }
 
-
 @keyframes moveGradient {
     0% {
         background-position: 100% 0;
     }
-
 
     100% {
         background-position: -100% 0;
     }
 }
 
-
 .tilt-container:hover .tilt-element {
     transform: rotateX(5deg) rotateY(-5deg) scale(1.02);
 }
 
-
 .tilt-element {
     transition: transform 0.3s ease-out;
 }
-
 
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
 }
 
-
-/* ===== SCROLL ANIMATIONS ===== */
-.scroll-animate {
+/* ===== SCROLL ANIMATIONS — BASE ===== */
+body .scroll-animate:not(.is-visible) {
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(24px);
 }
 
-
-.scroll-animate.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+body .scroll-animate {
+    transition-property: opacity, transform;
+    transition-duration: 0.55s, 0.7s;
+    transition-timing-function: ease-out, cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
 }
 
+body .scroll-animate.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
 
-.delay-100 {
+body .scroll-animate-left:not(.is-visible) {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+body .scroll-animate-left {
+    transition-property: opacity, transform;
+    transition-duration: 0.55s, 0.7s;
+    transition-timing-function: ease-out, cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+}
+
+body .scroll-animate-left.is-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+body .scroll-animate-right:not(.is-visible) {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+body .scroll-animate-right {
+    transition-property: opacity, transform;
+    transition-duration: 0.55s, 0.7s;
+    transition-timing-function: ease-out, cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: opacity, transform;
+}
+
+body .scroll-animate-right.is-visible {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* ===== DELAYS ===== */
+body .scroll-animate.delay-75,
+body .scroll-animate-left.delay-75,
+body .scroll-animate-right.delay-75 {
+    transition-delay: 75ms;
+}
+
+body .scroll-animate.delay-100,
+body .scroll-animate-left.delay-100,
+body .scroll-animate-right.delay-100 {
+    transition-delay: 100ms;
+}
+
+body .scroll-animate.delay-150,
+body .scroll-animate-left.delay-150,
+body .scroll-animate-right.delay-150 {
     transition-delay: 150ms;
 }
 
-.delay-200 {
+body .scroll-animate.delay-200,
+body .scroll-animate-left.delay-200,
+body .scroll-animate-right.delay-200 {
+    transition-delay: 200ms;
+}
+
+body .scroll-animate.delay-300,
+body .scroll-animate-left.delay-300,
+body .scroll-animate-right.delay-300 {
     transition-delay: 300ms;
 }
 
-.delay-300 {
-    transition-delay: 450ms;
+body .scroll-animate.delay-400,
+body .scroll-animate-left.delay-400,
+body .scroll-animate-right.delay-400 {
+    transition-delay: 400ms;
 }
 
-.delay-400 {
+body .scroll-animate.delay-500,
+body .scroll-animate-left.delay-500,
+body .scroll-animate-right.delay-500 {
+    transition-delay: 500ms;
+}
+
+body .scroll-animate.delay-600,
+body .scroll-animate-left.delay-600,
+body .scroll-animate-right.delay-600 {
     transition-delay: 600ms;
 }
 
-.delay-500 {
-    transition-delay: 750ms;
-}
-
-
-/* ===== SPRING ANIMATIONS (Navbar / Dropdowns) ===== */
-.transition-spring {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-
-.dropdown-enter {
-    opacity: 0;
-    transform: translateX(-50%) translateY(10px) scale(0.95);
-}
-
-
-.dropdown-enter-active {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.animate-fade-in-up {
-    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+body .scroll-animate.delay-700,
+body .scroll-animate-left.delay-700,
+body .scroll-animate-right.delay-700 {
+    transition-delay: 700ms;
 }
 
 /* ========================================= */
 /* CSS GLOBE ILLUSION                        */
 /* ========================================= */
-
 .css-globe-container {
     width: 450px;
     height: 450px;
@@ -348,24 +352,589 @@ code {
     }
 }
 
-
-/* ===== DOCK MOBILE — Espacio inferior ===== */
+/* ===== DOCK MOBILE ===== */
 @media (max-width: 767px) {
     body {
         padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
     }
 }
 
-/* ── Back-to-Top: posición base (desktop) ── */
 .back-to-top-btn {
     bottom: 1.5rem;
-    /* equivale a bottom-6, igual que antes */
 }
 
-/* ── Back-to-Top: en mobile, sube por encima del dock ── */
 @media (max-width: 767px) {
     .back-to-top-btn {
         bottom: calc(92px + 12px + env(safe-area-inset-bottom, 0px));
-        /* 92px = altura del dock  |  12px = margen visual entre ambos */
+    }
+}
+
+/* ===== KEYFRAMES SF ===== */
+@keyframes sfFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sfFadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes sfFadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes sfFadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sf-panel {
+    display: none;
+}
+
+.sf-panel.active {
+    display: block;
+}
+
+.sf-anim-1 {
+    animation: sfFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.sf-anim-2 {
+    animation: sfFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.sf-anim-3 {
+    animation: sfFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+.sf-anim-4 {
+    animation: sfFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+.sf-anim-5 {
+    animation: sfFadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+
+.sf-anim-left-1 {
+    animation: sfFadeInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.10s both;
+}
+
+.sf-anim-left-2 {
+    animation: sfFadeInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both;
+}
+
+.sf-anim-right-1 {
+    animation: sfFadeInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.10s both;
+}
+
+.sf-anim-right-2 {
+    animation: sfFadeInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both;
+}
+
+.sf-anim-header {
+    animation: sfFadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.00s both;
+}
+
+/* =========================================================
+   SPIDERFLEET — RESPONSIVE WIDTH & ASPECT RATIO SYSTEM
+   v3 — Soporte: mobile · 16:9 · 16:10 · 21:9 · 32:9 · 5K
+   ========================================================= */
+
+/* ─── TOKENS GLOBALES ─── */
+:root {
+    --sf-gutter-x: clamp(16px, 2.2vw, 32px);
+    --sf-gutter-x-wide: clamp(24px, 2.4vw, 40px);
+    --sf-section-y: clamp(56px, 8vw, 120px);
+    --sf-section-y-tight: clamp(32px, 5vw, 72px);
+    --sf-container: 1280px;
+    --sf-container-wide: 1440px;
+    --sf-container-ultra: 1600px;
+    --sf-container-reading: 72ch;
+    --sf-hero-min-height: min(100svh, 980px);
+    --sf-hero-media-height: clamp(480px, 52vw, 760px);
+    --sf-hero-copy-max: 640px;
+    --sf-hero-media-max: 860px;
+    --sf-grid-gap: clamp(24px, 3vw, 56px);
+    --sf-card-gap: clamp(16px, 2vw, 28px);
+}
+
+/* ─── CONTENEDORES GLOBALES ─── */
+.sf-shell {
+    width: 100%;
+    padding-inline: var(--sf-gutter-x);
+}
+
+.sf-shell-wide {
+    width: 100%;
+    padding-inline: var(--sf-gutter-x-wide);
+}
+
+.sf-container {
+    width: min(100%, var(--sf-container));
+    margin-inline: auto;
+}
+
+.sf-container-wide {
+    width: min(100%, var(--sf-container-wide));
+    margin-inline: auto;
+}
+
+.sf-container-ultra {
+    width: min(100%, var(--sf-container-ultra));
+    margin-inline: auto;
+}
+
+.sf-reading {
+    width: min(100%, var(--sf-container-reading));
+}
+
+.sf-section {
+    padding-block: var(--sf-section-y);
+}
+
+.sf-section-tight {
+    padding-block: var(--sf-section-y-tight);
+}
+
+/* ─── GRIDS FLUIDOS ─── */
+.sf-auto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: var(--sf-card-gap);
+}
+
+.sf-auto-grid-lg {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    gap: var(--sf-grid-gap);
+}
+
+/* ─── HELPERS GENERALES ─── */
+.sf-text-balance {
+    text-wrap: balance;
+}
+
+.sf-copy-limit {
+    max-width: var(--sf-hero-copy-max);
+}
+
+.sf-media-stage {
+    width: 100%;
+    max-width: var(--sf-hero-media-max);
+    min-height: var(--sf-hero-media-height);
+}
+
+.sf-media-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sf-media-contain {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sf-bleed-orb {
+    transform-origin: center;
+}
+
+/* ─── HERO SYSTEM ─── */
+.sf-hero {
+    min-height: var(--sf-hero-min-height);
+    padding-top: clamp(92px, 9vw, 132px);
+    padding-bottom: clamp(48px, 8vw, 112px);
+}
+
+.sf-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--sf-grid-gap);
+}
+
+.sf-hero-copy {
+    width: 100%;
+    max-width: var(--sf-hero-copy-max);
+}
+
+.sf-hero-title {
+    max-width: 12ch;
+    text-wrap: balance;
+}
+
+.sf-hero-body {
+    max-width: 60ch;
+}
+
+.sf-hero-visual {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ─── DESKTOP BASE: grid proporcional (≥1024px) ─── */
+@media (min-width: 1024px) {
+    .sf-hero-grid {
+        grid-template-columns: 5fr 7fr;
+        align-items: center;
+    }
+
+    .sf-hero-copy {
+        max-width: none;
+        width: 100%;
+    }
+
+    .sf-hero-title {
+        max-width: 13ch;
+    }
+}
+
+/* ─── MOBILE SAFETY ─── */
+@media (max-width: 767px) {
+    :root {
+        --sf-gutter-x: 20px;
+        --sf-section-y: clamp(48px, 10vw, 72px);
+        --sf-hero-media-height: 550px;
+    }
+
+    .sf-hero-title {
+        max-width: 12ch;
+    }
+
+    .sf-hero-body {
+        max-width: 100%;
+    }
+}
+
+@media (max-height: 740px) and (min-width: 768px) {
+    .sf-hero {
+        min-height: auto;
+        padding-top: 110px;
+        padding-bottom: 64px;
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   WIDTH-ONLY FAILSAFE
+   Va ANTES de los aspect-ratio para que sean sobreescritos.
+   ───────────────────────────────────────────────────────── */
+@media (min-width: 1600px) {
+    .sf-container-wide {
+        width: min(100%, 1600px);
+    }
+
+    .sf-container-ultra {
+        width: min(100%, 1720px);
+    }
+}
+
+@media (min-width: 2200px) {
+    .sf-container-ultra {
+        width: min(100%, 1920px);
+    }
+}
+
+/* ─────────────────────────────────────────────────────────
+   ASPECT-RATIO ADAPTATIONS v3
+   Van AL FINAL — ganan en cascada sobre el failsafe.
+   ───────────────────────────────────────────────────────── */
+
+/* 16:10 — laptops Retina */
+@media (min-aspect-ratio: 16/10) and (max-aspect-ratio: 21/9) {
+    .sf-container-ultra {
+        width: min(94vw, 1480px);
+    }
+}
+
+/* QHD / 1440p — 2560x1440 */
+@media (min-width: 2200px) and (max-aspect-ratio: 20/9) {
+    .sf-container-ultra {
+        width: min(90vw, 2000px);
+    }
+
+    .sf-hero-title {
+        font-size: clamp(4rem, 3.8vw, 6.5rem);
+    }
+
+    .sf-hero-body {
+        font-size: clamp(1.1rem, 1.2vw, 1.5rem);
+        max-width: 50ch;
+    }
+}
+
+/* 21:9 — 3440x1440, 2560x1080 */
+@media (min-aspect-ratio: 21/9) {
+    :root {
+        --sf-gutter-x: clamp(28px, 2.4vw, 48px);
+        --sf-hero-min-height: min(92svh, 920px);
+        --sf-grid-gap: clamp(40px, 4vw, 96px);
+    }
+
+    .sf-container {
+        width: min(86vw, 1600px);
+    }
+
+    .sf-container-wide {
+        width: min(88vw, 1900px);
+    }
+
+    .sf-container-ultra {
+        width: 94vw;
+        max-width: none;
+    }
+
+    .sf-hero-grid {
+        grid-template-columns: 4.5fr 5.5fr;
+        gap: clamp(40px, 4vw, 96px);
+    }
+
+    .sf-hero-copy {
+        max-width: none;
+        width: 100%;
+    }
+
+    .sf-hero-title {
+        font-size: clamp(3.5rem, 3.8vw, 7rem);
+        max-width: 12ch;
+    }
+
+    .sf-hero-body {
+        font-size: clamp(1.1rem, 1.2vw, 1.6rem);
+        max-width: 48ch;
+    }
+
+    .sf-media-stage {
+        max-width: none;
+        width: 100%;
+        min-height: clamp(480px, 38vh, 800px);
+    }
+}
+
+/* Muy ancha y baja — dual-FHD precursor */
+@media (min-aspect-ratio: 2/1) and (max-height: 900px) {
+    .sf-hero {
+        padding-top: clamp(88px, 6vw, 112px);
+        padding-bottom: clamp(40px, 5vw, 72px);
+    }
+
+    .sf-hero-grid {
+        gap: clamp(32px, 3vw, 72px);
+    }
+}
+
+/* 32:9 — 5120x1440, 3840x1080 */
+@media (min-aspect-ratio: 32/9) {
+    :root {
+        --sf-gutter-x: clamp(32px, 2.6vw, 56px);
+        --sf-hero-min-height: min(88svh, 880px);
+    }
+
+    .sf-container {
+        width: min(88vw, 1800px);
+    }
+
+    .sf-container-wide {
+        width: min(90vw, 2200px);
+    }
+
+    .sf-container-ultra {
+        width: 96vw;
+        max-width: none;
+    }
+
+    .sf-hero-grid {
+        grid-template-columns: 4fr 6fr;
+        gap: clamp(40px, 4.5vw, 120px);
+    }
+
+    .sf-hero-copy {
+        max-width: none;
+        width: 100%;
+    }
+
+    .sf-hero-title {
+        font-size: clamp(3rem, 3.5vw, 6.5rem);
+        max-width: 12ch;
+    }
+
+    .sf-hero-body {
+        font-size: clamp(1rem, 1.15vw, 1.5rem);
+        max-width: 46ch;
+    }
+
+    .sf-media-stage {
+        max-width: none;
+        width: 100%;
+        min-height: clamp(400px, 72vh, 800px);
+    }
+
+    .sf-hero {
+        min-height: min(88svh, 820px);
+        padding-block: clamp(88px, 8vh, 120px);
+    }
+}
+
+/* 5K — 5120x2880 */
+@media (min-width: 4200px) and (max-aspect-ratio: 32/9) {
+    .sf-container-ultra {
+        width: 92vw;
+        max-width: none;
+    }
+
+    .sf-hero-grid {
+        grid-template-columns: 4.5fr 5.5fr;
+        gap: clamp(60px, 5vw, 200px);
+    }
+
+    .sf-hero-title {
+        font-size: clamp(5rem, 4.5vw, 10rem);
+        max-width: 12ch;
+    }
+
+    .sf-hero-body {
+        font-size: clamp(1.4rem, 1.6vw, 2.2rem);
+        max-width: 44ch;
+    }
+}
+
+/* 5K ultrawide — 5120x1440 */
+@media (min-width: 4200px) and (min-aspect-ratio: 32/9) {
+    .sf-container-ultra {
+        width: 96vw;
+        max-width: none;
+    }
+
+    .sf-hero-title {
+        font-size: clamp(4rem, 3.8vw, 8rem);
+        max-width: 11ch;
+    }
+
+    .sf-hero-body {
+        font-size: clamp(1.2rem, 1.4vw, 1.9rem);
+        max-width: 44ch;
+    }
+}
+
+
+/* =========================================================
+   HERO INTERNALS — Elementos que Tailwind no puede escalar
+   Badge · Botones CTA · Stack gaps · Orbs decorativos
+   ========================================================= */
+
+/* ─── Badge eyebrow ─── */
+.sf-eyebrow-text {
+    font-size: clamp(0.7rem, 0.9vw, 1rem);
+}
+
+/* ─── Botones hero — reemplaza px-6 py-3.5 text-sm rounded-xl ─── */
+.sf-btn-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(10px, 1vw, 16px) clamp(20px, 2vw, 36px);
+    font-size: clamp(0.85rem, 1vw, 1.1rem);
+    border-radius: clamp(8px, 1vw, 14px);
+}
+
+/* ─── Stack interno del copy — controla gaps entre badge/h1/p/botones ─── */
+.sf-hero-copy-stack {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2.2vh, 40px);
+}
+
+/* ─── Orb helper (opcional — para orbs que usen esta clase) ─── */
+.sf-hero-bg-orb {
+    width: clamp(480px, 45vw, 900px);
+    height: clamp(480px, 45vw, 900px);
+}
+
+/* ─── 21:9: botones y stack más holgados ─── */
+@media (min-aspect-ratio: 21/9) {
+    .sf-btn-hero {
+        padding: clamp(12px, 1.2vw, 20px) clamp(28px, 2.5vw, 52px);
+        font-size: clamp(0.95rem, 1.1vw, 1.3rem);
+    }
+
+    .sf-hero-copy-stack {
+        gap: clamp(20px, 2.8vh, 52px);
+    }
+
+    .sf-hero-bg-orb {
+        width: clamp(600px, 40vw, 1100px);
+        height: clamp(600px, 40vw, 1100px);
+    }
+}
+
+/* ─── 32:9 / Dual FHD: más espacio vertical ─── */
+@media (min-aspect-ratio: 32/9) {
+    .sf-btn-hero {
+        padding: clamp(14px, 1.4vw, 24px) clamp(32px, 3vw, 64px);
+        font-size: clamp(1rem, 1.2vw, 1.5rem);
+    }
+
+    .sf-hero-copy-stack {
+        gap: clamp(24px, 3.5vh, 64px);
+    }
+
+    .sf-hero-bg-orb {
+        width: clamp(700px, 38vw, 1400px);
+        height: clamp(700px, 38vw, 1400px);
+    }
+}
+
+/* ─── 5K: todo a escala real ─── */
+@media (min-width: 4200px) {
+    .sf-btn-hero {
+        padding: clamp(18px, 1.6vw, 32px) clamp(40px, 3.5vw, 80px);
+        font-size: clamp(1.2rem, 1.4vw, 1.8rem);
+        border-radius: clamp(12px, 1.2vw, 20px);
+    }
+
+    .sf-eyebrow-text {
+        font-size: clamp(0.9rem, 1.1vw, 1.4rem);
+    }
+
+    .sf-hero-copy-stack {
+        gap: clamp(32px, 4vh, 80px);
+    }
+
+    .sf-hero-bg-orb {
+        width: clamp(900px, 36vw, 1800px);
+        height: clamp(900px, 36vw, 1800px);
     }
 }

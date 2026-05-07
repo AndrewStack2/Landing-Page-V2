@@ -6,26 +6,27 @@
 @layout EmptyLayout
 @inject NavigationManager Navigation
 
-<div class="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-4 sm:p-8 relative overflow-hidden font-sans text-slate-900 py-10" style="font-family: 'DM Sans', sans-serif;">
+<div class="min-h-screen bg-slate-50 flex flex-col justify-center items-center p-4 sm:p-8 relative overflow-hidden font-sans text-slate-900 py-10"
+     style="font-family: 'DM Sans', sans-serif;">
 
     <main class="w-full max-w-md bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white p-6 sm:p-10 relative z-10 my-auto">
-        
+
         <div class="text-center mb-8">
             <img src="Assets/logoazul.png" alt="SpiderFleet Logo" class="h-9 sm:h-10 mx-auto mb-6" />
             <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Crea tu cuenta</h2>
             <p class="text-sm sm:text-base text-slate-500 mt-2">Únete a la nueva era del rastreo vehicular</p>
         </div>
 
-        @* TOGGLE: Personal vs Empresarial *@
+        @* ── TOGGLE: Personal vs Empresarial ── *@
         <div class="flex justify-center mb-8 w-full">
             <div class="bg-slate-100 p-1.5 rounded-full inline-flex relative border border-slate-200 shadow-inner w-full max-w-[320px]">
                 <div class="absolute top-1 bottom-1 w-[calc(50%-0.375rem)] bg-white rounded-full shadow-sm border border-slate-200/60 transition-transform duration-300 ease-out z-0 @(IsEnterprise ? "translate-x-full" : "translate-x-0")"></div>
-                
+
                 <button @onclick="() => SetAccountType(false)"
                         class="relative z-10 w-1/2 py-2 text-xs sm:text-sm font-bold rounded-full transition-colors duration-300 @(IsEnterprise ? "text-slate-500 hover:text-slate-700" : "text-primary")">
                     Personal
                 </button>
-                
+
                 <button @onclick="() => SetAccountType(true)"
                         class="relative z-10 w-1/2 py-2 text-xs sm:text-sm font-bold rounded-full transition-colors duration-300 @(IsEnterprise ? "text-primary" : "text-slate-500 hover:text-slate-700")">
                     Empresarial
@@ -33,6 +34,7 @@
             </div>
         </div>
 
+        @* ── ERROR MESSAGE ── *@
         @if (!string.IsNullOrEmpty(errorMessage))
         {
             <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm flex items-center gap-3">
@@ -41,15 +43,69 @@
             </div>
         }
 
+        @* ══════════════════════════════════════════════
+             SOCIAL LOGIN — Solo visible en Personal
+        ══════════════════════════════════════════════ *@
+        @if (!IsEnterprise)
+        {
+            <div class="space-y-3 mb-6">
+                @* Google *@
+                <button type="button"
+                        class="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 active:scale-[0.98] transition-all duration-150 shadow-sm text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                    <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    Registrarse con Google
+                </button>
+
+                @* Apple *@
+                <button type="button"
+                        class="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border border-slate-900 bg-slate-900 hover:bg-slate-800 active:scale-[0.98] transition-all duration-150 shadow-sm text-sm font-semibold text-white focus:outline-none focus:ring-2 focus:ring-slate-500/30">
+                    <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.37c1.29.07 2.18.74 2.93.8.88-.17 1.72-.87 2.6-.84 1.08.05 1.9.5 2.43 1.28-2.23 1.39-1.68 4.45.47 5.32-.55 1.5-1.28 3.0-2.43 4.35zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                    </svg>
+                    Registrarse con Apple
+                </button>
+            </div>
+
+            @* Separador *@
+            <div class="relative flex items-center mb-6">
+                <div class="flex-grow border-t border-slate-200"></div>
+                <span class="px-3 text-xs font-semibold text-slate-400 bg-white">O regístrate con tu correo</span>
+                <div class="flex-grow border-t border-slate-200"></div>
+            </div>
+        }
+
+        @* ══════════════════════════════════════════════
+             BADGE EMPRESARIAL — Info de tenant
+        ══════════════════════════════════════════════ *@
+        @if (IsEnterprise)
+        {
+            <div class="mb-6 p-4 rounded-xl bg-blue-50 border border-blue-200 flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary text-xl mt-0.5 shrink-0">domain</span>
+                <div>
+                    <p class="text-sm font-bold text-primary">Cuenta Empresarial</p>
+                    <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                        Tu cuenta quedará asociada a tu organización. Puedes usar cualquier correo electrónico para registrarte.
+                    </p>
+                </div>
+            </div>
+        }
+
+        @* ── CAMPOS DEL FORMULARIO ── *@
         <div class="space-y-4 sm:space-y-5">
-            
+
             <div>
                 <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nombre Completo</label>
                 <div class="relative group">
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
                         <span class="material-symbols-outlined text-xl">person</span>
                     </span>
-                    <input @bind="fullName" type="text" placeholder="Juan Pérez" class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
+                    <input @bind="fullName" type="text" placeholder="Juan Pérez"
+                           class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
                 </div>
             </div>
 
@@ -61,7 +117,8 @@
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
                             <span class="material-symbols-outlined text-xl">domain</span>
                         </span>
-                        <input @bind="companyName" type="text" placeholder="Logística S.A." class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
+                        <input @bind="companyName" type="text" placeholder="Logística S.A. de C.V."
+                               class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
                     </div>
                 </div>
             }
@@ -72,7 +129,9 @@
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
                         <span class="material-symbols-outlined text-xl">mail</span>
                     </span>
-                    <input @bind="email" type="email" placeholder="@(IsEnterprise ? "nombre@empresa.com" : "correo@ejemplo.com")" class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
+                    <input @bind="email" type="email"
+                           placeholder="@(IsEnterprise ? "correo@tuempresa.com" : "correo@ejemplo.com")"
+                           class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
                 </div>
             </div>
 
@@ -82,40 +141,43 @@
                     <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">
                         <span class="material-symbols-outlined text-xl">lock</span>
                     </span>
-                    <input @bind="password" type="@(showPassword ? "text" : "password")" placeholder="••••••••" class="w-full pl-11 pr-12 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
-                    <button type="button" @onclick="TogglePassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                    <input @bind="password" type="@(showPassword ? "text" : "password")" placeholder="••••••••"
+                           class="w-full pl-11 pr-12 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all text-sm font-medium outline-none" />
+                    <button type="button" @onclick="TogglePassword"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
                         <span class="material-symbols-outlined text-xl">@(showPassword ? "visibility_off" : "visibility")</span>
                     </button>
                 </div>
             </div>
 
             <div class="flex items-start gap-2 pt-2 pb-2">
-                <input type="checkbox" @bind="acceptTerms" class="mt-1 w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30 shrink-0" />
+                <input type="checkbox" @bind="acceptTerms"
+                       class="mt-1 w-4 h-4 rounded border-slate-300 text-primary focus:ring-primary/30 shrink-0" />
                 <span class="text-xs sm:text-sm text-slate-500 leading-tight">
                     Acepto los <a href="#" class="text-primary hover:underline">Términos de Servicio</a> y la <a href="#" class="text-primary hover:underline">Política de Privacidad</a>.
                 </span>
             </div>
 
-            @* BOTÓN con animación neobrutalist press — se desactiva visualmente durante carga *@
-            <button @onclick="HandleSignUp" disabled="@isLoading" type="button" class="w-full py-3.5 px-6 rounded-xl bg-primary text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 border-2 border-blue-800 shadow-[4px_4px_0px_0px_rgba(30,58,138,0.8)] hover:shadow-[1px_1px_0px_0px_rgba(30,58,138,0.8)] hover:translate-x-[3px] hover:translate-y-[3px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.8)] disabled:translate-x-0 disabled:translate-y-0 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 [touch-action:manipulation]">
-            @if (isLoading)
-            {
-                <span class="material-symbols-outlined text-lg animate-spin">autorenew</span>
-                <span>Creando cuenta...</span>
-            }
-            else
-            {
-                <span>Comenzar ahora</span>
-                <span class="material-symbols-outlined text-lg">rocket_launch</span>
-            }
+            <button @onclick="HandleSignUp" disabled="@isLoading" type="button"
+                    class="w-full py-3.5 px-6 rounded-xl bg-primary text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 border-2 border-blue-800 shadow-[4px_4px_0px_0px_rgba(30,58,138,0.8)] hover:shadow-[1px_1px_0px_0px_rgba(30,58,138,0.8)] hover:translate-x-[3px] hover:translate-y-[3px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-[4px_4px_0px_0px_rgba(30,58,138,0.8)] disabled:translate-x-0 disabled:translate-y-0 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400 [touch-action:manipulation]">
+                @if (isLoading)
+                {
+                    <span class="material-symbols-outlined text-lg animate-spin">autorenew</span>
+                    <span>Creando cuenta...</span>
+                }
+                else
+                {
+                    <span>Comenzar ahora</span>
+                    <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                }
             </button>
         </div>
 
-            <p class="text-center text-sm font-medium text-slate-500 pt-8">
+        <p class="text-center text-sm font-medium text-slate-500 pt-8">
             ¿Ya tienes una cuenta? <a href="/login" class="text-primary font-bold hover:underline transition-colors">Inicia sesión</a>
-            </p>
-        
-            <div class="text-center pt-6 mt-6 border-t border-slate-100">
+        </p>
+
+        <div class="text-center pt-6 mt-6 border-t border-slate-100">
             <a href="/" class="text-sm font-semibold text-slate-400 hover:text-slate-700 transition-colors inline-flex items-center gap-1">
                 <span class="material-symbols-outlined text-sm">arrow_back</span> Volver a Spider Fleet
             </a>
@@ -138,6 +200,7 @@
     {
         IsEnterprise = isEnterprise;
         errorMessage = "";
+        email = "";
     }
 
     private void TogglePassword() => showPassword = !showPassword;
@@ -162,6 +225,7 @@
             return;
         }
 
+        //  Sin validación de dominio — el tenant identifica la empresa en backend
         isLoading = true;
         errorMessage = "";
         StateHasChanged();

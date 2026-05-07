@@ -12,11 +12,20 @@
 @inject IJSRuntime JS
 
 <div class="relative min-h-screen bg-white dark:bg-background-dark pt-32 pb-20 overflow-hidden">
-    <!-- Background Gradients -->
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute -top-24 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute top-1/2 -right-20 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl" style="animation-delay: 2s"></div>
+
+    <!-- Background Gradients con Parallax -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div data-parallax="0.12" data-parallax-dir="up"
+         class="absolute -top-24 -left-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl will-change-transform">
     </div>
+    <div data-parallax="0.08" data-parallax-dir="down"
+         class="absolute top-1/2 -right-20 w-80 h-80 bg-blue-300/20 rounded-full blur-3xl will-change-transform"
+         style="animation-delay: 2s">
+    </div>
+    <div data-parallax="0.05" data-parallax-dir="up"
+         class="absolute bottom-1/4 left-1/3 w-64 h-64 bg-emerald-300/15 rounded-full blur-3xl will-change-transform">
+    </div>
+</div>
 
     <!-- 1. Hero Section -->
     <section class="relative z-10 mx-auto max-w-5xl px-6 text-center mb-32">
@@ -59,7 +68,6 @@
                     <div class="absolute inset-0 bg-primary/20 rounded-3xl blur-2xl group-hover:bg-primary/30 transition-all"></div>
                     <img src="Assets/Meeting.jpg" width="600" height="256" class="relative rounded-3xl w-full h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500" alt="Fundadores de Spider Fleet planificando la solución de logística para flotas en México — 2014" />
                 </div>
-                <!-- Point -->
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white dark:bg-slate-900 border-4 border-primary rounded-full hidden md:block z-20"></div>
             </div>
 
@@ -76,7 +84,6 @@
                     <div class="absolute inset-0 bg-blue-500/20 rounded-3xl blur-2xl group-hover:bg-blue-500/30 transition-all"></div>
                     <img src="Assets/Fleet.jpg" width="600" height="256" class="relative rounded-3xl w-full h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500" alt="Flota de vehículos gestionada con Spider Fleet en México — evolución hacia plataforma integral" />
                 </div>
-                <!-- Point -->
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white dark:bg-slate-900 border-4 border-blue-500 rounded-full hidden md:block z-20"></div>
             </div>
 
@@ -93,7 +100,6 @@
                     <div class="absolute inset-0 bg-slate-900/20 dark:bg-white/10 rounded-3xl blur-2xl transition-all"></div>
                     <img src="Assets/Digital-Map.jpg" width="600" height="256" class="relative rounded-3xl w-full h-64 object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-500" alt="Mapa digital de rastreo GPS en tiempo real de Spider Fleet — tecnología de flota para México hoy" />
                 </div>
-                <!-- Point -->
                 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white dark:bg-slate-900 border-4 border-emerald-500 rounded-full hidden md:block z-20"></div>
             </div>
         </div>
@@ -125,60 +131,84 @@
 
     <!-- 4. Valores Section -->
     <section class="max-w-6xl mx-auto px-6 mb-40">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-display font-bold text-slate-900 dark:text-white mb-4">Lo que nos guía</h2>
-            <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate">
-                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">insights</span>
-                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Visibilidad</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Información real para decisiones inteligentes en el momento justo.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-100">
-                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">shield</span>
-                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Confianza</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Cuidamos el patrimonio de miles como si fuera el nuestro.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-200">
-                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">auto_awesome</span>
-                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Innovación</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Buscamos siempre el siguiente paso de la inteligencia logística.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-300">
-                <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">public</span>
-                <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Accesibilidad</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Tecnología premium al alcance de todos los presupuestos.</p>
-            </div>
-        </div>
-    </section>
+    <div class="text-center mb-16">
+        <h2 class="text-3xl font-display font-bold text-slate-900 dark:text-white mb-4">Lo que nos guía</h2>
+        <div class="h-1 w-20 bg-primary mx-auto rounded-full"></div>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-    <!-- 5. Estadísticas Section -->
+        <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate-left">
+            <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">insights</span>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Visibilidad</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Información real para decisiones inteligentes en el momento justo.</p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-100">
+            <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">shield</span>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Confianza</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Cuidamos el patrimonio de miles como si fuera el nuestro.</p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate delay-200">
+            <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">auto_awesome</span>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Innovación</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Buscamos siempre el siguiente paso de la inteligencia logística.</p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all group scroll-animate-right delay-300">
+            <span class="material-symbols-outlined text-3xl text-primary mb-4 block group-hover:scale-110 transition-transform">public</span>
+            <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Accesibilidad</h4>
+            <p class="text-sm text-slate-600 dark:text-slate-400 font-medium">Tecnología premium al alcance de todos los presupuestos.</p>
+        </div>
+
+    </div>
+</section>
+
+
+    <!-- 5. Estadísticas Section — PARCHE APLICADO -->
+    <!--
+        BUG ORIGINAL: el grid exterior estaba duplicado DENTRO del primer stat-div,
+        rompiendo el layout. Los 4 stat-divs quedaban fuera del dark-card y fuera
+        del IntersectionObserver → count-up nunca disparaba → todos mostraban "0".
+        FIX: estructura plana — un solo grid contenedor, 4 hijos directos.
+    -->
     <section class="max-w-5xl mx-auto px-6 mb-40">
         <div class="rounded-[2.5rem] bg-background-dark p-12 relative overflow-hidden text-center border border-slate-800">
             <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(19,100,237,0.1),transparent)]"></div>
+
             <div class="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="scroll-animate scale-95 transition-all duration-700">
-                    <div class="text-4xl font-bold text-white mb-2">10+</div>
+
+                <div class="scroll-animate">
+                    <div class="text-4xl font-bold text-white mb-2">
+                        <span data-countup="10" data-suffix="" data-duration="1400">0</span>
+                    </div>
                     <div class="text-xs font-bold text-primary uppercase tracking-widest">Años de experiencia</div>
                 </div>
-                <div class="scroll-animate scale-95 transition-all duration-700 delay-100">
+
+                <div class="scroll-animate delay-100">
                     <div class="text-4xl font-bold text-white mb-2">24/7</div>
                     <div class="text-xs font-bold text-primary uppercase tracking-widest">Monitoreo Ininterrumpido</div>
                 </div>
-                <div class="scroll-animate scale-95 transition-all duration-700 delay-200">
-                    <div class="text-4xl font-bold text-white mb-2">+3</div>
+
+                <div class="scroll-animate delay-200">
+                    <div class="text-4xl font-bold text-white mb-2">
+                        <span data-countup="3" data-suffix="" data-duration="900">0</span>
+                    </div>
                     <div class="text-xs font-bold text-primary uppercase tracking-widest">Industrias Atendidas</div>
                 </div>
-                <div class="scroll-animate scale-95 transition-all duration-700 delay-300">
-                    <div class="text-4xl font-bold text-white mb-2">100%</div>
+
+                <div class="scroll-animate delay-300">
+                    <div class="text-4xl font-bold text-white mb-2">
+                        <span data-countup="100" data-suffix="%" data-duration="1800">0</span>
+                    </div>
                     <div class="text-xs font-bold text-primary uppercase tracking-widest">Cobertura Nacional</div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- 6. CTA Final -->
+        <!-- 6. CTA Final -->
     <section class="max-w-4xl mx-auto px-6 text-center mb-20">
         <h2 class="text-3xl md:text-5xl font-display font-bold text-slate-900 dark:text-white mb-8">
             Empieza hoy. Tu flota no puede esperar.
@@ -187,10 +217,14 @@
             Tu primera unidad conectada está a un clic de distancia. Sin tarjeta, sin compromisos.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contacto" class="rounded-full bg-primary px-8 py-4 text-sm font-bold text-white shadow-xl shadow-primary/20 hover:bg-blue-600 hover:scale-105 transition-all active:scale-95">
+            <a href="/contacto"
+               class="magnetic-btn rounded-full bg-primary px-8 py-4 text-sm font-bold text-white
+                      shadow-xl shadow-primary/20 hover:bg-blue-600 transition-colors active:scale-95">
                 Empieza Gratis Ahora
             </a>
-            <a href="/" class="rounded-full bg-slate-100 dark:bg-slate-800 px-8 py-4 text-sm font-bold text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+            <a href="/"
+               class="magnetic-btn rounded-full bg-slate-100 dark:bg-slate-800 px-8 py-4 text-sm font-bold
+                      text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
                 Ver productos
             </a>
         </div>
@@ -204,6 +238,8 @@
         if (firstRender)
         {
             await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("initCountUp");
+            await JS.InvokeVoidAsync("initMagneticButtons");
         }
     }
 }

@@ -46,7 +46,6 @@
         transform: scale(1.1);
     }
 
-    /* Video container: 9:16 on mobile, 1:1 square on desktop */
     .motor-video-wrapper {
         aspect-ratio: 9 / 16;
         width: 100%;
@@ -62,6 +61,17 @@
 </style>
 
 <section id="caracteristicas" class="bg-white py-24 relative overflow-hidden">
+
+    <!-- Parallax Orbs -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div data-parallax="0.10" data-parallax-dir="up"
+             class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl will-change-transform">
+        </div>
+        <div data-parallax="0.06" data-parallax-dir="down"
+             class="absolute bottom-0 -left-20 w-80 h-80 bg-indigo-400/5 rounded-full blur-3xl will-change-transform">
+        </div>
+    </div>
+
     <div class="mx-auto max-w-7xl px-6 relative z-10">
 
         <div class="mb-20 scroll-animate text-center">
@@ -82,9 +92,9 @@
         </div>
 
         @* ===================== MODO EMPRESA ===================== *@
-        <div class="flex-col gap-16 @(!IsPersonalMode ? "flex" : "hidden")">
+        <div class="@(IsPersonalMode ? "hidden" : "flex") flex-col gap-16">
 
-            <div class="grid lg:grid-cols-2 gap-12 items-center scroll-animate delay-100">
+            <div class="grid lg:grid-cols-2 gap-12 items-center sf-anim-1">
                 <div class="order-2 lg:order-1">
                     <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-primary mb-6">
                         <span class="material-symbols-outlined text-2xl">location_on</span>
@@ -105,7 +115,7 @@
                 </div>
             </div>
 
-            <div class="grid lg:grid-cols-2 gap-12 items-center scroll-animate delay-200">
+            <div class="grid lg:grid-cols-2 gap-12 items-center sf-anim-2">
                 <div class="bg-indigo-50 rounded-3xl p-6 h-[350px] flex items-center justify-center border border-indigo-100 shadow-inner">
                     <span class="text-indigo-300 font-medium flex flex-col items-center">
                         <span class="material-symbols-outlined text-5xl mb-2">alt_route</span> Mockup Rutas IA
@@ -122,8 +132,10 @@
                 </div>
             </div>
 
+            @* ── Staggered cards Empresa: izquierda → centro ↑ → derecha ── *@
             <div class="grid md:grid-cols-3 gap-6 mt-8">
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-green-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-100">
+
+                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-green-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 sf-anim-left-1">
                     <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500/60 to-transparent"></div>
                     <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-green-50 text-green-600 mb-4">
                         <span class="material-symbols-outlined text-2xl">verified_user</span>
@@ -138,7 +150,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-amber-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-200">
+                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-amber-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 sf-anim-2">
                     <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500/60 to-transparent"></div>
                     <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-amber-50 text-amber-600 mb-4">
                         <span class="material-symbols-outlined text-2xl">assignment_turned_in</span>
@@ -153,7 +165,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-rose-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-300">
+                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-rose-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 sf-anim-right-1">
                     <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500/60 to-transparent"></div>
                     <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-rose-50 text-rose-600 mb-4">
                         <span class="material-symbols-outlined text-2xl">whatshot</span>
@@ -167,31 +179,27 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </div>
+        @* -- Fin MODO EMPRESA -- *@
 
-        @* ===================== MODO PERSONAL ===================== *@
-        <div class="flex-col gap-16 @(IsPersonalMode ? "flex" : "hidden")">
+        @* =================== MODO PERSONAL =================== *@
+        <div class="@(IsPersonalMode ? "flex" : "hidden") flex-col gap-16">
 
-            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center scroll-animate delay-100">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center sf-anim-1">
 
-                @* Columna izquierda: texto *@
                 <div class="order-2 lg:order-1 flex flex-col justify-center">
-
                     <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-[#0d6efd] mb-6">
                         <span class="material-symbols-outlined text-2xl">power_settings_new</span>
                     </div>
-
-                    @* Título escalado en desktop *@
                     <h3 class="text-3xl lg:text-5xl font-extrabold text-slate-900 mb-5 leading-tight">
                         Apaga tu auto<br class="hidden lg:block" /> desde el celular.
                     </h3>
-
-                    @* Párrafo escalado en desktop *@
                     <p class="text-lg lg:text-xl text-slate-600 leading-relaxed mb-8">
                         En caso de emergencia o robo, toma el control total. Corta la corriente del motor en segundos directamente desde tu aplicación móvil, sin importar dónde estés.
                     </p>
-
                     <ul class="space-y-5 mb-10">
                         <li class="flex items-start gap-3">
                             <div class="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-lg bg-blue-50 text-[#0d6efd]">
@@ -212,7 +220,6 @@
                             </div>
                         </li>
                     </ul>
-
                     <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-100">
                         <div class="flex flex-col">
                             <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">&lt; 3s</span>
@@ -223,13 +230,14 @@
                             <span class="text-xs text-slate-500 font-medium">Disponibilidad</span>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">100%</span>
+                            <span class="text-2xl lg:text-3xl font-extrabold text-[#0d6efd]">
+                                <span data-countup="100" data-suffix="%" data-duration="1500">0</span>
+                            </span>
                             <span class="text-xs text-slate-500 font-medium">Seguro y encriptado</span>
                         </div>
                     </div>
                 </div>
 
-                @* Columna derecha: video — 9:16 mobile, 1:1 desktop via .motor-video-wrapper *@
                 <div class="order-1 lg:order-2 flex items-center justify-center py-4">
                     <div class="motor-video-wrapper relative bg-black rounded-[2rem] shadow-2xl overflow-hidden">
                         <video id="motorVideo"
@@ -240,11 +248,13 @@
                         <div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[2rem] pointer-events-none"></div>
                     </div>
                 </div>
+
             </div>
 
+            @* ── Staggered cards Personal: izquierda → centro ↑ → derecha ── *@
             <div class="grid md:grid-cols-3 gap-6 mt-8">
 
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-100">
+                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 sf-anim-left-1">
                     <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
                     <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
                         <span class="material-symbols-outlined text-2xl">notifications_active</span>
@@ -259,7 +269,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-200">
+                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 sf-anim-2">
                     <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
                     <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
                         <span class="material-symbols-outlined text-2xl">history</span>
@@ -274,7 +284,7 @@
                     </div>
                 </div>
 
-                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 scroll-animate delay-300">
+                <div class="feature-card flex flex-col relative rounded-2xl bg-white border border-slate-200 hover:border-blue-400/50 hover:shadow-xl overflow-hidden cursor-pointer p-8 sf-anim-right-1">
                     <div class="card-top-line absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0d6efd]/60 to-transparent"></div>
                     <div class="card-icon inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-50 text-[#0d6efd] mb-4">
                         <span class="material-symbols-outlined text-2xl">fact_check</span>
@@ -290,33 +300,31 @@
                 </div>
 
             </div>
+
         </div>
+        @* -- Fin MODO PERSONAL -- *@
 
     </div>
 </section>
 
 @code {
-    private bool IsPersonalMode { get; set; } = false;
+    private bool IsPersonalMode { get; set; } = true;
 
     private async Task SetMode(bool isPersonal)
     {
         IsPersonalMode = isPersonal;
         StateHasChanged();
         await Task.Delay(50);
-        await JS.InvokeVoidAsync("initScrollAnimations");
-
+        await JS.InvokeVoidAsync("initCountUp");
+        await JS.InvokeVoidAsync("initMagneticButtons");
         if (isPersonal)
-        {
             await JS.InvokeVoidAsync("restartVideo", "motorVideo");
-        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await Task.Delay(150);
-            await JS.InvokeVoidAsync("initScrollAnimations");
             await JS.InvokeVoidAsync("initVideoAutoplay", "motorVideo");
         }
     }

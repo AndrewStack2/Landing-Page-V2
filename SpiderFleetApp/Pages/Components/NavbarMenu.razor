@@ -15,7 +15,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
+        /* ✅ FIX: cursor: pointer eliminado — lo maneja * { cursor: none !important } global */
         z-index: 61;
         color: #1364ed;
         outline: none;
@@ -52,7 +52,7 @@
         padding-left: 0;
         text-decoration: none;
         color: #475569;
-        cursor: pointer;
+        /* ✅ FIX: cursor: pointer eliminado aquí también */
         overflow: hidden;
         white-space: nowrap;
         will-change: transform, opacity, width;
@@ -175,8 +175,8 @@
 </style>
 
 @* ── DESKTOP NAVBAR (hidden on mobile) ── *@
-<div class="hidden md:flex fixed left-0 w-full z-50 justify-center nav-container"
-     style="top: @NavContainerTop;">
+<div class="hidden md:flex fixed left-0 w-full justify-center nav-container"
+     style="top: @NavContainerTop; z-index: 50;">
     <nav class="nav-pill inline-flex items-center rounded-full
                 bg-white/60 dark:bg-black/70
                 backdrop-blur-2xl backdrop-saturate-[180%] backdrop-brightness-110
@@ -197,7 +197,7 @@
                         @onmouseenter="() => HandleMouseEnter(item.Id)"
                         @onmouseleave="() => HandleMouseLeave(item.Id)">
 
-                        <div class="flip-container cursor-pointer"
+                        <div class="flip-container"
                              @onclick="() => HandleItemClick(item)">
                             <div class="@GlowClass(item.Id)" style="background: @item.Gradient;"></div>
                             <div class="@FlipClass(item.Id)">
@@ -401,7 +401,6 @@
 @implements IDisposable
 
 @code {
-    // ── Scroll state ────────────────────────────────────────
     private bool   IsScrolled   { get; set; } = false;
     private double _lastScrollY = 0;
     private DotNetObjectReference<NavbarMenu>? _dotNetRef;
@@ -430,7 +429,6 @@
             StateHasChanged();
     }
 
-    // ── Desktop state ───────────────────────────────────────
     private string? hoveredItem;
     private bool isProductosPersistent;
     private System.Threading.CancellationTokenSource? mouseLeaveCts;
@@ -442,7 +440,6 @@
         : "label-text font-bold text-sm text-slate-900 dark:text-slate-100";
     private string DropdownClass() => IsActive("productos") ? "dropdown-panel active" : "dropdown-panel";
 
-    // ── Mobile state ────────────────────────────────────────
     private bool IsMobileOpen          { get; set; } = false;
     private bool IsMobileProductosOpen { get; set; } = false;
 
@@ -452,7 +449,6 @@
         if (!IsMobileOpen) IsMobileProductosOpen = false;
     }
 
-    // ✅ FIX: CloseMobileMenu con su cuerpo correctamente cerrado
     private void CloseMobileMenu()
     {
         IsMobileOpen          = false;
@@ -461,14 +457,12 @@
 
     private void ToggleProductosMobile() => IsMobileProductosOpen = !IsMobileProductosOpen;
 
-    // ✅ FIX: IsCurrentPage como método independiente, después de CloseMobileMenu
     private bool IsCurrentPage(string path)
     {
         return NavigationManager.Uri.EndsWith(path, StringComparison.OrdinalIgnoreCase)
             || (path == "/" && NavigationManager.Uri == NavigationManager.BaseUri);
     }
 
-    // ── Lifecycle ───────────────────────────────────────────
     protected override void OnInitialized()
     {
         NavigationManager.LocationChanged += HandleLocationChanged;
@@ -498,7 +492,6 @@
         _dotNetRef?.Dispose();
     }
 
-    // ── Desktop handlers ────────────────────────────────────
     private void HandleMouseEnter(string id)
     {
         mouseLeaveCts?.Cancel();
@@ -537,7 +530,6 @@
     private bool IsActive(string id) =>
         hoveredItem == id || (id == "productos" && isProductosPersistent);
 
-    // ── Data ────────────────────────────────────────────────
     private List<MenuItem> MenuItems = new()
     {
         new("productos", "Productos",       "#",                 "grid_view",          "radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(37,99,235,0.15) 50%, rgba(29,78,216,0) 100%)", "text-blue-500"),

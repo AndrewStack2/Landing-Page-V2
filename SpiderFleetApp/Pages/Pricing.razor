@@ -1,6 +1,7 @@
 @page "/precios"
-<PageTitle>Planes y Precios | Spider Fleet</PageTitle>
 @inject IJSRuntime JS
+<PageTitle>Planes y Precios | Spider Fleet</PageTitle>
+
 <HeadContent>
     <meta name="description" content="Planes flexibles para conductores independientes y flotas empresariales. Comienza gratis sin tarjeta de crédito. Spider Fleet México." />
     <link rel="canonical" href="https://spiderfleet.mx/precios" />
@@ -71,147 +72,153 @@
             @* -- Cards Personal -- *@
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:items-start">
 
-                @* Card: Gratis *@
-                <div class="pricing-card anim-card-1 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">Gratis</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para empezar sin riesgos</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-5xl font-extrabold text-slate-900">$0</span>
-                        <span class="text-slate-500 text-sm">/mes</span>
-                    </div>
-                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
-                        Elegir Gratis
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>1 vehículo</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Rastreo básico</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Historial 7 días</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Alertas básicas</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: Gratis *@
+    <div class="pricing-card anim-card-1 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">Gratis</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para empezar sin riesgos</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-5xl font-extrabold text-slate-900">$0</span>
+            <span class="text-slate-500 text-sm">/mes</span>
+        </div>
+        <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
+            Elegir Gratis
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>1 vehículo</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Rastreo básico</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Historial 7 días</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Alertas básicas</span>
+            </li>
+        </ul>
+    </div>
 
-                @* Card: Básico — Más Popular *@
-                <div class="pricing-card anim-card-2 relative flex flex-col bg-white border-2 border-indigo-500 text-center rounded-2xl p-8 shadow-2xl shadow-indigo-900/10 hover:shadow-[0_0_40px_rgba(79,70,229,0.25)] lg:scale-105 z-10">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-indigo-500 px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">
-                        Más Popular
-                    </div>
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">Básico</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para quien quiere proteger su vehículo</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-5xl font-extrabold text-slate-900">$99</span>
-                        <span class="text-slate-500 text-sm">MXN/mes</span>
-                    </div>
-                    <button class="mb-8 w-full relative overflow-hidden rounded-full bg-indigo-600 py-3 text-sm font-bold text-white transition-all hover:bg-indigo-700 hover:shadow-lg group">
-                        <span class="relative z-10">Elegir Básico</span>
-                        <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
-                            <span>Rastreo en tiempo real</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
-                            <span>Geocercas</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
-                            <span>Historial 30 días</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
-                            <span>Alertas por app y correo</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
-                            <span>Anti-robo remoto</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: Básico — Más Popular *@
+    <div class="pricing-card anim-card-2 relative flex flex-col bg-white border-2 border-indigo-500 text-center rounded-2xl p-8 shadow-2xl shadow-indigo-900/10 hover:shadow-[0_0_40px_rgba(79,70,229,0.25)] lg:scale-105 z-10">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-indigo-500 px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">
+            Más Popular
+        </div>
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">Básico</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para quien quiere proteger su vehículo</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-5xl font-extrabold text-slate-900">
+                <span data-countup="99" data-prefix="$" data-suffix="" data-duration="1200">$0</span>
+            </span>
+            <span class="text-slate-500 text-sm">MXN/mes</span>
+        </div>
+        <button class="mb-8 w-full relative overflow-hidden rounded-full bg-indigo-600 py-3 text-sm font-bold text-white transition-all hover:bg-indigo-700 hover:shadow-lg group">
+            <span class="relative z-10">Elegir Básico</span>
+            <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                <span>Rastreo en tiempo real</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                <span>Geocercas</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                <span>Historial 30 días</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                <span>Alertas por app y correo</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                <span>Anti-robo remoto</span>
+            </li>
+        </ul>
+    </div>
 
-                @* Card: Avanzado *@
-                <div class="pricing-card anim-card-3 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">Avanzado</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Control total de tu unidad</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-5xl font-extrabold text-slate-900">$199</span>
-                        <span class="text-slate-500 text-sm">MXN/mes</span>
-                    </div>
-                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
-                        Elegir Avanzado
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
-                            <strong>Todo en Básico +</strong>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Gestión documental</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Calendarización de mantenimientos</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Historial ilimitado</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: Avanzado *@
+    <div class="pricing-card anim-card-3 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">Avanzado</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Control total de tu unidad</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-5xl font-extrabold text-slate-900">
+                <span data-countup="199" data-prefix="$" data-suffix="" data-duration="1400">$0</span>
+            </span>
+            <span class="text-slate-500 text-sm">MXN/mes</span>
+        </div>
+        <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
+            Elegir Avanzado
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                <strong>Todo en Básico +</strong>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Gestión documental</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Calendarización de mantenimientos</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Historial ilimitado</span>
+            </li>
+        </ul>
+    </div>
 
-                @* Card: Familiar *@
-                <div class="pricing-card anim-card-4 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">Familiar</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para quienes cuidan más de un vehículo</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-5xl font-extrabold text-slate-900">$299</span>
-                        <span class="text-slate-500 text-sm">MXN/mes</span>
-                    </div>
-                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
-                        Elegir Familiar
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
-                            <strong>Todo en Avanzado +</strong>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Hasta 3 vehículos</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Perfiles por conductor</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Reportes de conducción</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: Familiar *@
+    <div class="pricing-card anim-card-4 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-indigo-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.12)]">
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">Familiar</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para quienes cuidan más de un vehículo</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-5xl font-extrabold text-slate-900">
+                <span data-countup="299" data-prefix="$" data-suffix="" data-duration="1600">$0</span>
+            </span>
+            <span class="text-slate-500 text-sm">MXN/mes</span>
+        </div>
+        <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-indigo-500 hover:text-indigo-600">
+            Elegir Familiar
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-indigo-500 text-base mt-0.5">check_circle</span>
+                <strong>Todo en Avanzado +</strong>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Hasta 3 vehículos</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Perfiles por conductor</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Reportes de conducción</span>
+            </li>
+        </ul>
+    </div>
 
-            </div>
+</div>
             @* -- Fin Cards Personal -- *@
 
             @* -- Tabla Comparativa Personal -- *@
@@ -538,154 +545,158 @@
             @* -- Cards Empresa -- *@
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:items-start">
 
-                @* Card: Gratis Empresa *@
-                <div class="pricing-card anim-card-1 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">Gratis</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Prueba Spider Fleet sin costo</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-5xl font-extrabold text-slate-900">$0</span>
-                        <span class="text-slate-500 text-sm">/mes</span>
-                    </div>
-                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
-                        Elegir Gratis
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>1 unidad</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Rastreo básico</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Historial 7 días</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: Gratis Empresa *@
+    <div class="pricing-card anim-card-1 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">Gratis</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Prueba Spider Fleet sin costo</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-5xl font-extrabold text-slate-900">$0</span>
+            <span class="text-slate-500 text-sm">/mes</span>
+        </div>
+        <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
+            Elegir Gratis
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>1 unidad</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Rastreo básico</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Historial 7 días</span>
+            </li>
+        </ul>
+    </div>
 
-                @* Card: Pequeña Flota *@
-                <div class="pricing-card anim-card-2 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">Pequeña Flota</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Ideal para flotas de hasta 10 unidades</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-5xl font-extrabold text-slate-900">$499</span>
-                        <span class="text-slate-500 text-sm">MXN/mes</span>
-                    </div>
-                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
-                        Elegir Pequeña Flota
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Rastreo en tiempo real</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Geocercas</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Alertas</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Historial 30 días</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>App para conductores</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: Pequeña Flota *@
+    <div class="pricing-card anim-card-2 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">Pequeña Flota</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Ideal para flotas de hasta 10 unidades</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-5xl font-extrabold text-slate-900">
+                <span data-countup="499" data-prefix="$" data-suffix="" data-duration="1400">$0</span>
+            </span>
+            <span class="text-slate-500 text-sm">MXN/mes</span>
+        </div>
+        <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
+            Elegir Pequeña Flota
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Rastreo en tiempo real</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Geocercas</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Alertas</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Historial 30 días</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>App para conductores</span>
+            </li>
+        </ul>
+    </div>
 
-                @* Card: En Crecimiento — Más Popular *@
-                <div class="pricing-card anim-card-3 relative flex flex-col bg-white border-2 border-primary text-center rounded-2xl p-8 shadow-2xl shadow-blue-900/10 hover:shadow-[0_0_40px_rgba(19,100,237,0.25)] lg:scale-105 z-10">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">
-                        Más Popular
-                    </div>
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">En Crecimiento</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para operaciones en expansión</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-5xl font-extrabold text-slate-900">$899</span>
-                        <span class="text-slate-500 text-sm">MXN/mes</span>
-                    </div>
-                    <button class="mb-8 w-full relative overflow-hidden rounded-full bg-primary py-3 text-sm font-bold text-white transition-all hover:bg-blue-700 hover:shadow-lg group">
-                        <span class="relative z-10">Elegir En Crecimiento</span>
-                        <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <strong>Todo en Pequeña Flota +</strong>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Optimización de rutas</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Gestión de envíos</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Calificación de choferes</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Mapa de calor</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <span>Gestión documental</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: En Crecimiento — Más Popular *@
+    <div class="pricing-card anim-card-3 relative flex flex-col bg-white border-2 border-primary text-center rounded-2xl p-8 shadow-2xl shadow-blue-900/10 hover:shadow-[0_0_40px_rgba(19,100,237,0.25)] lg:scale-105 z-10">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-lg animate-pulse">
+            Más Popular
+        </div>
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">En Crecimiento</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Para operaciones en expansión</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-5xl font-extrabold text-slate-900">
+                <span data-countup="899" data-prefix="$" data-suffix="" data-duration="1800">$0</span>
+            </span>
+            <span class="text-slate-500 text-sm">MXN/mes</span>
+        </div>
+        <button class="mb-8 w-full relative overflow-hidden rounded-full bg-primary py-3 text-sm font-bold text-white transition-all hover:bg-blue-700 hover:shadow-lg group">
+            <span class="relative z-10">Elegir En Crecimiento</span>
+            <div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-0"></div>
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <strong>Todo en Pequeña Flota +</strong>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Optimización de rutas</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Gestión de envíos</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Calificación de choferes</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Mapa de calor</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <span>Gestión documental</span>
+            </li>
+        </ul>
+    </div>
 
-                @* Card: Operación Compleja *@
-                <div class="pricing-card anim-card-4 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
-                    <div class="mb-4">
-                        <h3 class="font-bold text-xl text-slate-900">Operación Compleja</h3>
-                        <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Flotas grandes y operaciones críticas</p>
-                    </div>
-                    <div class="mb-6 flex items-baseline justify-center gap-1">
-                        <span class="text-2xl font-extrabold text-slate-900">Contactar</span>
-                    </div>
-                    <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
-                        Cotizar Ahora
-                    </button>
-                    <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
-                            <strong>Suite completa +</strong>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>API personalizada</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Hardware GPS incluido</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Soporte 24/7</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
-                            <span>Integraciones personalizadas</span>
-                        </li>
-                    </ul>
-                </div>
+    @* Card: Operación Compleja *@
+    <div class="pricing-card anim-card-4 flex flex-col bg-white border border-slate-200 text-center rounded-2xl p-8 hover:border-primary/40 hover:shadow-[0_0_30px_rgba(19,100,237,0.10)]">
+        <div class="mb-4">
+            <h3 class="font-bold text-xl text-slate-900">Operación Compleja</h3>
+            <p class="text-sm text-slate-500 mt-1 min-h-[40px]">Flotas grandes y operaciones críticas</p>
+        </div>
+        <div class="mb-6 flex items-baseline justify-center gap-1">
+            <span class="text-2xl font-extrabold text-slate-900">Contactar</span>
+        </div>
+        <button class="mb-8 w-full rounded-full border border-slate-300 bg-white py-3 text-sm font-bold text-slate-900 transition-all hover:bg-slate-50 hover:border-primary hover:text-primary">
+            Cotizar Ahora
+        </button>
+        <ul class="flex flex-col gap-3 text-sm text-slate-600 text-left">
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-base mt-0.5">check_circle</span>
+                <strong>Suite completa +</strong>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>API personalizada</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Hardware GPS incluido</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Soporte 24/7</span>
+            </li>
+            <li class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-base mt-0.5">check_circle</span>
+                <span>Integraciones personalizadas</span>
+            </li>
+        </ul>
+    </div>
 
-            </div>
+</div>
             @* -- Fin Cards Empresa -- *@
 
             @* -- Tabla Comparativa Empresa -- *@
@@ -976,18 +987,27 @@
 @code {
     private bool IsPersonalMode { get; set; } = true;
 
-    private void SetMode(bool personal) => IsPersonalMode = personal;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    private async Task SetMode(bool personal)
     {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("initScrollAnimations");
-        }
+        IsPersonalMode = personal;
+        StateHasChanged();
+        await Task.Delay(50);
+        await JS.InvokeVoidAsync("initScrollAnimations");
+        await JS.InvokeVoidAsync("initCountUp");
     }
 
-    private string SliderStyle  => IsPersonalMode ? "transform:translateX(0)"    : "transform:translateX(100%)";
-    private string BtnPersonal  => IsPersonalMode ? "text-indigo-600 font-bold"  : "text-slate-500 font-semibold";
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    await base.OnAfterRenderAsync(firstRender);
+    if (firstRender)
+    {
+        await JS.InvokeVoidAsync("initScrollAnimations");
+        await JS.InvokeVoidAsync("initCountUp");
+    }
+}
+
+    private string SliderStyle  => IsPersonalMode ? "transform:translateX(0)"     : "transform:translateX(100%)";
+    private string BtnPersonal  => IsPersonalMode ? "text-indigo-600 font-bold"   : "text-slate-500 font-semibold";
     private string BtnEmpresa   => IsPersonalMode ? "text-slate-500 font-semibold" : "text-primary font-bold";
     private string ShowPersonal => IsPersonalMode ? "block" : "hidden";
     private string ShowEmpresa  => IsPersonalMode ? "hidden" : "block";

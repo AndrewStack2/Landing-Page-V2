@@ -4,35 +4,38 @@
 
 @using SpiderFleetApp.Pages.Components
 
-@* 1. THE HOOK: Atraer la atención y mostrar el producto interactivo *@
+@* 1. THE HOOK *@
 <Hero />
 
-@* 2. THE PAIN: Mostrar empatía con los problemas logísticos actuales *@
+@* 2. THE PAIN *@
 <PainVsDream />
 
-@* 3. THE FIX: Explicar cómo funciona detalladamente (Z-Pattern) *@
+@* 3. THE FIX *@
 <FeaturesMode />
 
-@* 4. THE PROOF (Visual): Verlo en acción retiene a los dudosos *@
+@* 4. THE PROOF (Visual) *@
 <VideoFeature />
 
-@* 5. THE PROOF (Social): Testimonios validan la compra *@
+@* 5. THE PROOF (Social) *@
 <TestimonialsGrid />
 
-@* 6. OBJECTIONS: Resolver dudas antes de pedir la compra *@
+@* 6. OBJECTIONS *@
 <FAQ />
 
-@* 7. CLIMAX: El llamado a la acción final *@
+@* 7. CLIMAX *@
 <CtaBannerFinal />
 
 @code {
     [Inject] IJSRuntime JS { get; set; } = default!;
 
-   protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
+            await Task.Delay(300);
             await JS.InvokeVoidAsync("initScrollAnimations");
+            await JS.InvokeVoidAsync("initCountUp");
+            await JS.InvokeVoidAsync("initMagneticButtons");
         }
     }
 }
