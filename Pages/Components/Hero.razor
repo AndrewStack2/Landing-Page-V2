@@ -1,11 +1,5 @@
 @inject IJSRuntime JS
 
-@* ──────────────────────────────────────────────────────────────────────────
-   Hero.razor — Ultrawide-ready: 16:9 / 16:10 / 21:9 / 32:9 / 5K
-   Usa el sistema sf-* definido en app.css
-   v4.1 — Título con presencia restaurada + botones píldora
-   ─────────────────────────────────────────────────────────────────────────── *@
-
 <section id="inicio"
          class="sf-hero sf-shell relative flex w-full flex-col items-center justify-center overflow-hidden bg-white">
 
@@ -223,33 +217,33 @@
             }
             else if (activeTab == 1)
             {
-                <div class="absolute inset-0 bg-slate-50 p-6 flex flex-col gap-3 pt-12 sm:pt-6 pb-24">
-                    <h3 class="text-sm font-bold text-slate-800 mb-2">Alertas y Vencimientos</h3>
+<div class="absolute inset-0 bg-slate-50 p-6 flex flex-col gap-3 pt-12 sm:pt-6 pb-24">
+                     <h3 class="text-sm font-bold text-slate-800 mb-2 sf-anim-header">Alertas y Vencimientos</h3>
 
-                    <div class="bg-white border-l-4 border-red-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3">
-                        <span class="material-symbols-outlined text-red-500 mt-0.5 text-[20px]">warning</span>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Seguro por vencer: S-205</p>
-                            <p class="text-[10px] text-slate-500">Póliza vence en 3 días.</p>
-                        </div>
-                    </div>
+                     <div class="alert-stagger bg-white border-l-4 border-red-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3">
+                         <span class="material-symbols-outlined text-red-500 mt-0.5 text-[20px]">warning</span>
+                         <div>
+                             <p class="text-xs font-bold text-slate-900">Seguro por vencer: S-205</p>
+                             <p class="text-[10px] text-slate-500">Póliza vence en 3 días.</p>
+                         </div>
+                     </div>
 
-                    <div class="bg-white border-l-4 border-amber-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3">
-                        <span class="material-symbols-outlined text-amber-500 mt-0.5 text-[20px]">car_repair</span>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Mantenimiento</p>
-                            <p class="text-[10px] text-slate-500">Unidad A-101 (10k km).</p>
-                        </div>
-                    </div>
+                     <div class="alert-stagger bg-white border-l-4 border-amber-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3">
+                         <span class="material-symbols-outlined text-amber-500 mt-0.5 text-[20px]">car_repair</span>
+                         <div>
+                             <p class="text-xs font-bold text-slate-900">Mantenimiento</p>
+                             <p class="text-[10px] text-slate-500">Unidad A-101 (10k km).</p>
+                         </div>
+                     </div>
 
-                    <div class="bg-white border-l-4 border-green-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3 opacity-60">
-                        <span class="material-symbols-outlined text-green-500 mt-0.5 text-[20px]">verified</span>
-                        <div>
-                            <p class="text-xs font-bold text-slate-900">Licencia renovada</p>
-                            <p class="text-[10px] text-slate-500">Documento archivado.</p>
-                        </div>
-                    </div>
-                </div>
+                     <div class="alert-stagger bg-white border-l-4 border-green-500 rounded-r-lg p-3 shadow-sm flex items-start gap-3 opacity-60">
+                         <span class="material-symbols-outlined text-green-500 mt-0.5 text-[20px]">verified</span>
+                         <div>
+                             <p class="text-xs font-bold text-slate-900">Licencia renovada</p>
+                             <p class="text-[10px] text-slate-500">Documento archivado.</p>
+                         </div>
+                     </div>
+                 </div>
             }
             else if (activeTab == 2)
             {
@@ -266,17 +260,17 @@
                         <div class="w-full bg-slate-100 rounded-t h-8 relative"><span class="absolute -top-4 left-1/2 -translate-x-1/2 text-[8px] text-slate-400">Abr</span></div>
                     </div>
 
-                    <div class="bg-white rounded border border-slate-200 overflow-hidden text-[10px]">
-                        <div class="grid grid-cols-3 bg-slate-100 p-2 font-bold text-slate-600">
-                            <div>Concepto</div><div>Unidad</div><div class="text-right">Costo</div>
-                        </div>
-                        <div class="grid grid-cols-3 p-2 border-b border-slate-100 text-slate-700">
-                            <div>Aceite</div><div>A-101</div><div class="text-right text-red-600">-$1,200</div>
-                        </div>
-                        <div class="grid grid-cols-3 p-2 text-slate-700">
-                            <div>Balatas</div><div>C-302</div><div class="text-right text-red-600">-$850</div>
-                        </div>
-                    </div>
+<div class="bg-white rounded border border-slate-200 overflow-hidden text-[10px]">
+                         <div class="grid grid-cols-3 bg-slate-100 p-2 font-bold text-slate-600 sf-anim-header">
+                             <div>Concepto</div><div>Unidad</div><div class="text-right">Costo</div>
+                         </div>
+                         <div class="grid grid-cols-3 p-2 border-b border-slate-100 text-slate-700 alert-stagger">
+                             <div>Aceite</div><div>A-101</div><div class="text-right text-red-600">-$1,200</div>
+                         </div>
+                         <div class="grid grid-cols-3 p-2 text-slate-700 alert-stagger">
+                             <div>Balatas</div><div>C-302</div><div class="text-right text-red-600">-$850</div>
+                         </div>
+                     </div>
                 </div>
             }
             else if (activeTab == 3)
@@ -291,16 +285,39 @@
 }
 
 <style>
-    .animate-mockup {
-        animation: mockupAppears 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
     @@keyframes mockupAppears {
         0%   { opacity: 0; transform: translateY(10px) scale(0.97); }
         100% { opacity: 1; transform: translateY(0)    scale(1);    }
     }
 
-    @@keyframes dash {
-        to { stroke-dashoffset: -100; }
+    .animate-mockup {
+        animation: mockupAppears 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+
+    @@media (prefers-reduced-motion: reduce) {
+        .animate-mockup {
+            animation: none;
+            opacity: 1;
+        }
+
+        .alert-stagger {
+            opacity: 1;
+            transform: none;
+            animation: none;
+        }
+    }
+
+    .alert-stagger {
+        opacity: 0;
+        transform: translateY(8px);
+        animation: alertFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @@keyframes alertFadeIn {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .alert-stagger:nth-child(1) { animation-delay: 80ms; }
+    .alert-stagger:nth-child(2) { animation-delay: 140ms; }
+    .alert-stagger:nth-child(3) { animation-delay: 200ms; }
 </style>
