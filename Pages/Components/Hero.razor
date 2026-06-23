@@ -37,37 +37,37 @@
                     </div>
 
                     @* ── Título Principal — tamaños explícitos restaurados ── *@
-                    <h1 class="sf-hero-title
-                               text-5xl md:text-6xl xl:text-[4.5rem] 2xl:text-[5rem]
-                               font-extrabold tracking-tight leading-[1.02]
-                               text-slate-900 drop-shadow-sm">
+<h1 class="sf-hero-title
+                           text-5xl md:text-6xl xl:text-[5rem] 2xl:text-[6rem]
+                           font-extrabold tracking-tight leading-[1.02]
+                           text-slate-900 drop-shadow-md hover:drop-shadow-xl transition-all duration-300">
                         La inteligencia que mueve tu flota hacia
-                        <span class="text-primary block">adelante.</span>
+                        <span class="text-primary block sf-anim-header">adelante.</span>
                     </h1>
 
                     @* Cuerpo *@
-                    <p class="sf-hero-body text-lg xl:text-[1.15rem] text-slate-600 leading-relaxed">
+                    <p class="sf-hero-body text-lg xl:text-[1.15rem] text-slate-700 leading-relaxed max-w-[55ch]">
                         Mucho más que un simple GPS. SpiderFleet es el sistema operativo integral
                         diseñado para mantener tus vehículos en ruta, tus documentos al día y tus costos bajo control.
                     </p>
 
-                    @* ── CTAs — rounded-full restaurado para forma píldora ── *@
+                    @* ── CTAs — bold pill style ── *@
                     <div class="flex flex-col sm:flex-row items-start gap-4 w-full mt-2">
                         <a href="/SignUp"
                            class="magnetic-btn inline-flex items-center justify-center gap-2
                                   rounded-full
-                                  bg-primary px-6 py-3.5 text-sm font-bold text-white
-                                  shadow-lg shadow-primary/30 w-full sm:w-auto
-                                  hover:bg-blue-700 transition-all duration-150">
-                            Empieza Gratis Ahora
-                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                  bg-primary px-8 py-4 text-sm font-bold text-white
+                                  shadow-xl shadow-primary/30 w-full sm:w-auto
+                                  hover:shadow-2xl hover:shadow-primary/50 hover:-translate-y-0.5 transition-all duration-200">
+                           Empieza Gratis Ahora
+                           <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
                         </a>
                         <a href="/precios"
                            class="magnetic-btn inline-flex items-center justify-center gap-2
                                   rounded-full border
-                                  bg-white border-slate-200 px-6 py-3.5 text-sm font-bold text-slate-700
-                                  shadow-sm w-full sm:w-auto hover:bg-slate-50 transition-all duration-150">
-                            Ver Precios
+                                  bg-white border-primary/30 px-8 py-4 text-sm font-bold text-primary
+                                  shadow-md w-full sm:w-auto hover:bg-primary/5 hover:shadow-lg transition-all duration-200">
+                           Ver Precios
                         </a>
                     </div>
 
@@ -80,13 +80,14 @@
             @* ────────────────────────────────────────────────────────────────
                COLUMNA DERECHA — INTERACTIVE MOCKUP SWITCHER
                ──────────────────────────────────────────────────────────────── *@
-            <div class="sf-hero-visual relative scroll-animate delay-200">
+            <div class="sf-hero-visual relative scroll-animate delay-200 hover:scale-[1.02] transition-transform duration-500">
 
                 @* ==========================================
                    1. MOBILE MOCKUP (Solo visible en móvil)
                    ========================================== *@
                 <div class="flex md:hidden relative mx-auto border-slate-800 bg-slate-800 border-[10px]
-                            rounded-[2.5rem] h-[550px] w-[min(300px,82vw)] shadow-2xl z-10 overflow-hidden">
+                            rounded-[2.5rem] h-[550px] w-[min(300px,82vw)] shadow-2xl z-10 overflow-hidden
+                            shadow-primary/20 hover:shadow-primary/40 transition-shadow duration-500">
                     @* Dynamic Island / Notch *@
                     <div class="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 bg-black rounded-full z-30 flex items-center justify-between px-2">
                         <div class="w-2 h-2 rounded-full bg-slate-800/50"></div>
@@ -124,14 +125,14 @@
                 @* ==========================================
                    2. DESKTOP BROWSER MOCKUP (Desktop / Ultrawide)
                    ========================================== *@
-                <div class="hidden md:flex sf-media-stage w-full rounded-2xl border border-slate-200/80 bg-white shadow-2xl overflow-hidden flex-col relative z-10">
+                <div class="hidden md:flex sf-media-stage w-full rounded-2xl border border-slate-200/80 bg-white shadow-2xl overflow-hidden flex-col relative z-10 hover:scale-[1.02] transition-transform duration-500 shadow-primary/10 hover:shadow-primary/20">
 
                     @* Fake Chrome Top Bar *@
                     <div class="flex items-center bg-slate-50/80 backdrop-blur-md px-4 py-3 border-b border-slate-200 gap-4 shrink-0">
                         <div class="flex gap-1.5">
-                            <div class="h-3 w-3 rounded-full bg-slate-300"></div>
-                            <div class="h-3 w-3 rounded-full bg-slate-300"></div>
-                            <div class="h-3 w-3 rounded-full bg-slate-300"></div>
+                            <div class="h-3 w-3 rounded-full bg-slate-300 animate-pulse" style="animation-duration: 2.5s;"></div>
+                            <div class="h-3 w-3 rounded-full bg-slate-300 animate-pulse" style="animation-duration: 2s; animation-delay: 0.3s;"></div>
+                            <div class="h-3 w-3 rounded-full bg-slate-300 animate-pulse" style="animation-duration: 1.8s; animation-delay: 0.6s;"></div>
                         </div>
                         <div class="flex-1 flex justify-center">
                             <div class="flex h-6 w-64 items-center justify-center rounded-md
